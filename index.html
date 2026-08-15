@@ -194,6 +194,61 @@
   .timeline-desc { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.6rem; }
   .timeline-desc strong { color: var(--text); font-weight: 600; }
 
+  /* ===== 경력 (토글) ===== */
+  .job-list { max-width: 46rem; margin: 0 auto; }
+  .job-item { border-top: 1px solid var(--line); }
+  .job-item:first-child { border-top: none; }
+  .job-item summary {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr 1.4rem;
+    grid-template-areas: "date heading chev";
+    align-items: start;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    list-style: none;
+  }
+  .job-item summary::-webkit-details-marker { display: none; }
+  .job-date {
+    grid-area: date;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.2rem;
+  }
+  .job-heading { grid-area: heading; }
+  .job-role { font-size: 1.08rem; font-weight: 700; }
+  .job-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; }
+  .job-chevron {
+    grid-area: chev;
+    color: var(--text-secondary);
+    padding-top: 0.25rem;
+    transition: transform 0.2s ease;
+  }
+  .job-item[open] .job-chevron { transform: rotate(180deg); }
+  @media (prefers-reduced-motion: reduce) { .job-chevron { transition: none; } }
+  .job-bullets {
+    margin: 0 0 1.6rem;
+    padding-left: calc(8.5rem + 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .job-bullets li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .job-bullets li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .job-bullets strong { color: var(--text); font-weight: 600; }
+
   /* ===== 프로젝트 카드 ===== */
   .work-grid {
     display: grid;
@@ -331,6 +386,13 @@
 
   @media (max-width: 720px) {
     .timeline-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .job-item summary {
+      grid-template-columns: 1fr 1.4rem;
+      grid-template-areas: "date chev" "heading heading";
+      row-gap: 0.3rem;
+      column-gap: 0.75rem;
+    }
+    .job-bullets { padding-left: 1rem; }
     .nav-links { font-size: 0.74rem; gap: 0.7rem; }
     .mini-row { grid-template-columns: 1fr; }
   }
@@ -365,9 +427,8 @@
   <section class="block" id="about">
     <div class="container">
       <div class="about-text reveal">
-        <p>"교육학도들이 창업으로 세상에 변화를 만들 수도 있다"는 한 교수님의 말이 터닝 포인트가 됐습니다. 사람의 성장을 돕고 싶어 교육학을 전공했지만, 더 넓은 세상에서 변화를 만들고 싶다는 열망으로 경영전략학회에 들어가 매주 산업 과제를 풀며 낯선 분야를 빠르게 학습하는 감각을 익혔습니다.</p>
-        <p>엔라이즈 인턴십에서 서비스 기획에 흥미를 느꼈지만 실제 런칭을 경험하지 못한 아쉬움이 남았고, 그 아쉬움을 원동력 삼아 <strong>엘리먼츠 창업팀에서 '그들의생기부' 서비스 기획의 전 과정을 직접 이끌었습니다.</strong> 사업을 키워가며 비즈니스에 대한 이해가 부족하다고 느껴 벤처경영학을 복수전공했고, 이후 네이버클라우드에서 LLM 기반 서비스를 기획하며 AI에 대한 이해를 한층 더 깊이 쌓았습니다.</p>
-        <p>다양한 도메인을 넘나들며 쌓은 경험을 바탕으로, 지금은 메리츠화재에서 새로운 성장을 이어가고 있습니다. 기술로 고객과 서비스 사이의 간극을 좁히는 <strong>AI 서비스 기획자</strong>가 되는 것이 다음 목표입니다.</p>
+        <p>교육학과 벤처경영학을 함께 전공하며 사람과 비즈니스를 함께 보는 시야를 길러왔습니다. 경영전략학회 N-CEO에서 다양한 산업군의 산학 프로젝트를 수행했고, 이후 스타트업 창업과 벤처캐피탈, 대기업 신사업 조직을 거치며 서비스 기획 역량을 쌓았습니다.</p>
+        <p><strong>엘리먼츠 창업팀</strong>에서는 서비스 기획의 전 과정을 주도해 데이터 기반 의사결정으로 핵심 지표를 개선했고, <strong>네이버클라우드</strong>에서는 LLM 서비스 기획을 통해 AI 기술에 대한 실무 이해를 더했습니다. 현재는 <strong>메리츠화재</strong>에서 사업지표 분석과 CRM 캠페인 기획을 담당하며, 데이터와 AI를 활용하는 서비스 기획자로 성장하고 있습니다.</p>
       </div>
     </div>
   </section>
@@ -379,78 +440,98 @@
         <h2>경력</h2>
         <p>정규직 포함 총 경력 3년+</p>
       </div>
-      <div class="timeline reveal">
-        <div class="timeline-row">
-          <span class="timeline-date">2025.01 — 현재</span>
-          <div>
-            <div class="timeline-role">Associate</div>
-            <div class="timeline-org">메리츠화재 · 정규직 · Partners Marketing part</div>
-            <p class="timeline-desc">
-              온라인 플랫폼을 통해 N잡러 파트너스를 유치하는 신사업 조직, Partners Marketing part에서
-              <strong>B2C·B2B 성격을 모두 가진</strong> 파트너스 사업의 전략 수립과 성과 분석을 담당하고 있습니다.
-              초반 6개월은 Funnel 효율 관리를 위한 사업지표 분석과 운영 프로세스 기획을 <strong>Tableau</strong>로 수행했고,
-              이후부터는 CRM 캠페인 기획과 운영 성과 리포팅을 맡고 있습니다.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-row">
-          <span class="timeline-date">2024.06 — 2024.08</span>
-          <div>
-            <div class="timeline-role">LLM서비스기획 인턴</div>
-            <div class="timeline-org">네이버클라우드 · Hyper AI Planning팀 · 경기</div>
-            <p class="timeline-desc">
-              에듀테크·AI 트렌드를 분석해 매주 임직원 대상 뉴스레터를 발행하고,
-              <strong>HCX(하이퍼클로바X) 기반 수학튜터서비스</strong>의 프롬프트를 대량의 문항 데이터셋으로 테스트하며 Golden Set을 제작했습니다.
-              학습 상태(User Status)에 따라 힌트·개념 카드를 생성하는 로직을 고도화하고, Audio LLM·Voice Agent 등 신규 LLM 활용 영역 리서치도 병행했습니다.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-row">
-          <span class="timeline-date">2023.09</span>
-          <div>
-            <div class="timeline-role">투자유치 (프리랜서)</div>
-            <div class="timeline-org">엘리먼츠 · 창업팀</div>
-            <p class="timeline-desc">
-              단기 프리랜서로 고용되어 프로덕트 기술 관련 리서치를 수행하고 TIPS 지원사업용 IR 자료를 제작해
-              <strong>2023년 10월 TIPS 기업 선정</strong>에 기여했습니다.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-row">
-          <span class="timeline-date">2022.11 — 2023.06</span>
-          <div>
-            <div class="timeline-role">기획 담당 (창업멤버)</div>
-            <div class="timeline-org">엘리먼츠 (Elements) · 창업팀 · LLM 기반 스타트업</div>
-            <p class="timeline-desc">
-              합격생 생활기록부 열람 서비스 '그들의생기부(saenggibu.com)'를 상위 기획부터 개발 착수까지 담당했습니다.
-              이탈 데이터를 분석해 공급 고객이 동아리명·학교명 등 유추 가능한 정보 노출에 거부감을 느낀다는 점을 파악하고
-              민감 정보를 마스킹하는 기능을 도입해 <strong>생활기록부 업로드 수를 5배, 페이지 MAU를 300% 이상</strong> 끌어올렸습니다.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-row">
-          <span class="timeline-date">2022.06 — 2022.08</span>
-          <div>
-            <div class="timeline-role">투자팀 RA</div>
-            <div class="timeline-org">비에이파트너스 · 벤처캐피탈</div>
-            <p class="timeline-desc">
-              신규 펀드 결성 시기에 <strong>규약 대조 시트를 직접 제작</strong>해 회의 진행 효율을 높였고,
-              홈페이지 관리와 IR 미팅 질의사항 준비, 투자 집행 전 사무실·공장 실사 방문, 투자조합 결성 서류 작성을 보조했습니다.
-            </p>
-          </div>
-        </div>
-        <div class="timeline-row">
-          <span class="timeline-date">2022.01 — 2022.04</span>
-          <div>
-            <div class="timeline-role">신사업(웹커머스) 기획</div>
-            <div class="timeline-org">엔라이즈 (Nlize) · 신사업기획팀</div>
-            <p class="timeline-desc">
-              건강기능식품 웹커머스 'GOYO LAB'의 상위·상세 서비스 기획을 담당했습니다.
-              기능정의서와 UX/UI 와이어프레임을 제작해 SI업체와 소통했고,
-              <strong>해외 SKU를 선별해 브랜드사·벤더사에 직접 컨택</strong>하며 납품 제안과 계약 진행을 보조했습니다.
-            </p>
-          </div>
-        </div>
+      <div class="job-list reveal">
+        <details class="job-item" open>
+          <summary>
+            <span class="job-date">2025.01 — 현재</span>
+            <div class="job-heading">
+              <div class="job-role">Associate</div>
+              <div class="job-org">메리츠화재 · 정규직 · Partners Marketing part</div>
+            </div>
+            <span class="job-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <ul class="job-bullets">
+            <li>온라인 플랫폼 기반 N잡러 파트너스 유치 신사업 조직 소속, <strong>B2C·B2B 성격을 모두 가진</strong> 파트너스 사업의 전략 수립 및 성과 분석 담당</li>
+            <li>Funnel 효율 관리를 위한 사업지표 분석 및 운영 프로세스 기획 (<strong>Tableau</strong> 활용, 2025.01–06)</li>
+            <li>CRM 캠페인 기획 및 운영 성과 리포팅 수행 (2025.07–현재)</li>
+          </ul>
+        </details>
+        <details class="job-item">
+          <summary>
+            <span class="job-date">2024.06 — 2024.08</span>
+            <div class="job-heading">
+              <div class="job-role">LLM서비스기획 인턴</div>
+              <div class="job-org">네이버클라우드 · Hyper AI Planning팀 · 경기</div>
+            </div>
+            <span class="job-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <ul class="job-bullets">
+            <li>에듀테크·AI 트렌드 분석 기반 주간 사내 뉴스레터 발행</li>
+            <li><strong>HCX(하이퍼클로바X) 기반 수학튜터서비스</strong> 프롬프트 테스트 및 Golden Set 구축</li>
+            <li>학습 상태(User Status)별 힌트·개념 카드 생성 로직 고도화</li>
+            <li>Audio LLM, Voice Agent 등 신규 LLM 활용 영역 리서치</li>
+          </ul>
+        </details>
+        <details class="job-item">
+          <summary>
+            <span class="job-date">2023.09</span>
+            <div class="job-heading">
+              <div class="job-role">투자유치 (프리랜서)</div>
+              <div class="job-org">엘리먼츠 · 창업팀</div>
+            </div>
+            <span class="job-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <ul class="job-bullets">
+            <li>LLM 산업 및 제품 기술 리서치 수행</li>
+            <li>TIPS 지원사업 IR 자료 제작 → <strong>2023년 10월 TIPS 기업 선정</strong></li>
+          </ul>
+        </details>
+        <details class="job-item">
+          <summary>
+            <span class="job-date">2022.11 — 2023.06</span>
+            <div class="job-heading">
+              <div class="job-role">기획 담당 (창업멤버)</div>
+              <div class="job-org">엘리먼츠 (Elements) · 창업팀 · LLM 기반 스타트업</div>
+            </div>
+            <span class="job-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <ul class="job-bullets">
+            <li>합격생 생활기록부 열람 서비스 '그들의생기부(saenggibu.com)' 상위 기획부터 개발 착수까지 총괄</li>
+            <li>개인정보보호법 등 규제 리스크 검토 및 가격정책 수립</li>
+            <li>이탈 데이터 분석 기반 민감정보 마스킹 기능 기획 → <strong>업로드 수 5배, MAU 300%↑ 달성</strong></li>
+            <li>기능정의서 및 UX/UI(Figma) 제작</li>
+          </ul>
+        </details>
+        <details class="job-item">
+          <summary>
+            <span class="job-date">2022.06 — 2022.08</span>
+            <div class="job-heading">
+              <div class="job-role">투자팀 RA</div>
+              <div class="job-org">비에이파트너스 · 벤처캐피탈</div>
+            </div>
+            <span class="job-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <ul class="job-bullets">
+            <li><strong>펀드 규약 대조 시트 제작</strong> → 주간회의 진행 효율화</li>
+            <li>IR 미팅 질의사항 준비 및 투자 집행 전 사무실·공장 실사 방문</li>
+            <li>투자조합 결성 서류 작성 보조</li>
+          </ul>
+        </details>
+        <details class="job-item">
+          <summary>
+            <span class="job-date">2022.01 — 2022.04</span>
+            <div class="job-heading">
+              <div class="job-role">신사업(웹커머스) 기획</div>
+              <div class="job-org">엔라이즈 (Nlize) · 신사업기획팀</div>
+            </div>
+            <span class="job-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <ul class="job-bullets">
+            <li>건강기능식품 웹커머스 'GOYO LAB' 상위·상세 서비스 기획</li>
+            <li>기능정의서 및 UX/UI 와이어프레임 제작, SI업체 커뮤니케이션</li>
+            <li><strong>해외 SKU 선별 및 브랜드사·벤더사 컨택</strong>, 납품 제안·계약 진행 보조</li>
+          </ul>
+        </details>
       </div>
     </div>
   </section>
