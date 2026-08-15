@@ -64,10 +64,11 @@
     filter: blur(110px);
   }
   .glow-orb.a { top: -8%; left: -12%; opacity: 0.3; }
-  .glow-orb.b { top: 22%; right: -14%; opacity: 0.22; }
+  .glow-orb.b { top: 22%; right: -14%; opacity: 0.22; background: #ff9f4a; }
   .glow-orb.c { top: 48%; left: -10%; opacity: 0.24; }
-  .glow-orb.d { top: 72%; right: -12%; opacity: 0.22; }
+  .glow-orb.d { top: 72%; right: -12%; opacity: 0.2; background: #ff6fae; }
   .glow-orb.e { top: 92%; left: 20%; opacity: 0.18; }
+  .glow-orb.f { top: 60%; left: 38%; opacity: 0.14; background: #ffd43b; width: 38vw; height: 38vw; max-width: 460px; max-height: 460px; }
 
   a { color: inherit; }
   p { margin: 0; }
@@ -208,27 +209,57 @@
   .timeline-desc strong { color: var(--text); font-weight: 600; }
 
   /* ===== 경력 (토글) ===== */
-  .job-list { max-width: 46rem; margin: 0 auto; }
-  .job-item { border-top: 1px solid var(--line); }
-  .job-item:first-child { border-top: none; }
+  .job-list { max-width: 46rem; margin: 0 auto; position: relative; }
+  .job-list::before {
+    content: "";
+    position: absolute;
+    top: 1.6rem;
+    bottom: 1.6rem;
+    left: 1.7rem;
+    width: 2px;
+    background: var(--line);
+  }
+  .job-item { position: relative; }
   .job-item summary {
     display: grid;
-    grid-template-columns: 8.5rem 1fr 1.4rem;
-    grid-template-areas: "date heading chev";
+    grid-template-columns: 3.4rem 1fr 1.4rem;
+    grid-template-areas: "marker heading chev";
     align-items: start;
-    gap: 1.5rem;
+    gap: 1.1rem;
     padding: 1.5rem 0;
     cursor: pointer;
     list-style: none;
   }
-  .job-item summary::-webkit-details-marker { display: none; }
-  .job-date {
-    grid-area: date;
-    font-size: 0.85rem;
+  .job-marker {
+    grid-area: marker;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .job-badge {
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    background: var(--bg-raised);
+    border: 2px solid var(--line);
+    color: var(--text-secondary);
+  }
+  .job-badge.current { background: var(--accent-tint); border-color: var(--accent); color: var(--accent); }
+  .job-date-range {
+    display: block;
+    font-size: 0.78rem;
     color: var(--text-secondary);
     font-variant-numeric: tabular-nums;
-    padding-top: 0.2rem;
+    margin-bottom: 0.2rem;
   }
+  .job-item summary::-webkit-details-marker { display: none; }
   .job-heading { grid-area: heading; }
   .job-role { font-size: 1.08rem; font-weight: 700; }
   .job-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; }
@@ -254,7 +285,7 @@
   }
   .job-bullets {
     margin: 0 0 1.6rem;
-    padding-left: calc(8.5rem + 1.5rem);
+    padding-left: calc(3.4rem + 1.1rem);
     display: flex;
     flex-direction: column;
     gap: 0.55rem;
@@ -276,7 +307,7 @@
 
   /* ===== 세부 프로젝트 (팝업) ===== */
   .subproject-trigger {
-    margin: 0.2rem 0 1.6rem calc(8.5rem + 1.5rem);
+    margin: 0.2rem 0 1.6rem calc(3.4rem + 1.1rem);
     background: none;
     border: none;
     padding: 0;
@@ -456,12 +487,6 @@
 
   @media (max-width: 720px) {
     .timeline-row { grid-template-columns: 1fr; gap: 0.3rem; }
-    .job-item summary {
-      grid-template-columns: 1fr 1.4rem;
-      grid-template-areas: "date chev" "heading heading";
-      row-gap: 0.3rem;
-      column-gap: 0.75rem;
-    }
     .job-bullets { padding-left: 1rem; }
     .subproject-trigger { margin-left: 1rem; }
     .nav-links { font-size: 0.74rem; gap: 0.7rem; }
@@ -477,6 +502,7 @@
   <span class="glow-orb c"></span>
   <span class="glow-orb d"></span>
   <span class="glow-orb e"></span>
+  <span class="glow-orb f"></span>
 </div>
 
 <nav class="nav">
@@ -519,11 +545,12 @@
         <h2>경력</h2>
         <p>정규직 포함 총 경력 3년+</p>
       </div>
-      <div class="job-list reveal">
-        <details class="job-item" open>
+      <div class="job-list">
+        <details class="job-item reveal" open>
           <summary>
-            <span class="job-date">2025.01 — 현재</span>
+            <div class="job-marker"><span class="job-badge current">2025</span></div>
             <div class="job-heading">
+              <span class="job-date-range">2025.01 — 현재</span>
               <div class="job-role">CRM &amp; Data Analyst</div>
               <div class="job-org">메리츠화재 · 정규직 · Partners Marketing part</div>
             </div>
@@ -537,10 +564,11 @@
           </ul>
           <button class="subproject-trigger" type="button" data-dialog="dlg-meritz">세부 프로젝트 보기 →</button>
         </details>
-        <details class="job-item">
+        <details class="job-item reveal">
           <summary>
-            <span class="job-date">2024.06 — 2024.08</span>
+            <div class="job-marker"><span class="job-badge">2024</span></div>
             <div class="job-heading">
+              <span class="job-date-range">2024.06 — 2024.08</span>
               <div class="job-role">LLM서비스기획 (계약직)</div>
               <div class="job-org">네이버클라우드 · Hyper AI Planning팀 · 경기</div>
             </div>
@@ -555,10 +583,11 @@
           </ul>
           <button class="subproject-trigger" type="button" data-dialog="dlg-naver">세부 프로젝트 보기 →</button>
         </details>
-        <details class="job-item">
+        <details class="job-item reveal">
           <summary>
-            <span class="job-date">2023.09</span>
+            <div class="job-marker"><span class="job-badge">2023</span></div>
             <div class="job-heading">
+              <span class="job-date-range">2023.09</span>
               <div class="job-role">투자유치 (프리랜서)</div>
               <div class="job-org">엘리먼츠 · 창업팀</div>
             </div>
@@ -570,10 +599,11 @@
           </ul>
           <button class="subproject-trigger" type="button" data-dialog="dlg-elements">세부 프로젝트 보기 →</button>
         </details>
-        <details class="job-item">
+        <details class="job-item reveal">
           <summary>
-            <span class="job-date">2022.11 — 2023.06</span>
+            <div class="job-marker"><span class="job-badge">2022</span></div>
             <div class="job-heading">
+              <span class="job-date-range">2022.11 — 2023.06</span>
               <div class="job-role">웹서비스기획 (프리랜서)</div>
               <div class="job-org">엘리먼츠 (Elements) · 창업팀 · LLM 기반 스타트업</div>
             </div>
@@ -587,10 +617,11 @@
           </ul>
           <button class="subproject-trigger" type="button" data-dialog="dlg-elements">세부 프로젝트 보기 →</button>
         </details>
-        <details class="job-item">
+        <details class="job-item reveal">
           <summary>
-            <span class="job-date">2022.06 — 2022.08</span>
+            <div class="job-marker"><span class="job-badge">2022</span></div>
             <div class="job-heading">
+              <span class="job-date-range">2022.06 — 2022.08</span>
               <div class="job-role">투자팀 조사역 (계약직)</div>
               <div class="job-org">비에이파트너스 · 벤처캐피탈</div>
             </div>
@@ -602,10 +633,11 @@
             <li>투자조합 결성 서류 작성 보조</li>
           </ul>
         </details>
-        <details class="job-item">
+        <details class="job-item reveal">
           <summary>
-            <span class="job-date">2022.01 — 2022.04</span>
+            <div class="job-marker"><span class="job-badge">2022</span></div>
             <div class="job-heading">
+              <span class="job-date-range">2022.01 — 2022.04</span>
               <div class="job-role">신사업기획 (계약직)</div>
               <div class="job-org">엔라이즈 (Nlize) · 신사업기획팀</div>
             </div>
@@ -630,7 +662,7 @@
         <h3>메리츠화재 — 세부 프로젝트</h3>
       </div>
       <div class="dialog-body">
-        <div class="subproject">
+        <div class="subproject reveal">
           <div class="subproject-period">2025.01 — 2025.09</div>
           <h4>모집퍼널 초입 전환 효율 개선</h4>
           <dl>
@@ -646,7 +678,7 @@
             <dd class="pending">추후 작성 예정</dd>
           </dl>
         </div>
-        <div class="subproject">
+        <div class="subproject reveal">
           <div class="subproject-period">2025.10 — 현재</div>
           <h4>가설 기반 CRM 캠페인 설계·운영</h4>
           <dl>
@@ -668,7 +700,7 @@
             <dd>6개 캠페인 중 최고 반응률(CTR 최대 19.5%) 캠페인을 포함해 퍼널 진단의 실질적 근거 데이터를 축적했고, 설계사 CRM을 지점장까지 포함하는 2단 구조로 확장하는 설계 축을 마련했습니다.</dd>
           </dl>
         </div>
-        <div class="subproject">
+        <div class="subproject reveal">
           <div class="subproject-period">2025.10 — 현재</div>
           <h4>파트너스-지점장 상담신청 프로세스</h4>
           <dl>
@@ -697,7 +729,7 @@
         <h3>엘리먼츠 — 세부 프로젝트</h3>
       </div>
       <div class="dialog-body">
-        <div class="subproject">
+        <div class="subproject reveal">
           <div class="subproject-period">2022.11 — 2023.06</div>
           <h4>'그들의생기부' 기획·운영</h4>
           <dl>
@@ -713,7 +745,7 @@
             <dd class="pending">추후 작성 예정</dd>
           </dl>
         </div>
-        <div class="subproject">
+        <div class="subproject reveal">
           <div class="subproject-period">2023.09</div>
           <h4>TIPS 지원사업 IR 자료 제작</h4>
           <dl>
@@ -742,7 +774,7 @@
         <h3>네이버클라우드 — 세부 프로젝트</h3>
       </div>
       <div class="dialog-body">
-        <div class="subproject">
+        <div class="subproject reveal">
           <div class="subproject-period">2024.06 — 2024.08</div>
           <h4>HCX 기반 수학튜터서비스 '쉬운 설명' 프롬프트 설계</h4>
           <dl>
