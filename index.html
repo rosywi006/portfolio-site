@@ -575,8 +575,14 @@
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    cursor: pointer;
+    list-style: none;
   }
+  .hobby-group-label::-webkit-details-marker { display: none; }
   .hobby-group-label svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--accent); }
+  .hobby-group-chevron { margin-left: auto; color: var(--text-secondary); transition: transform 0.2s ease; }
+  .hobby-group[open] .hobby-group-chevron { transform: rotate(180deg); }
+  @media (prefers-reduced-motion: reduce) { .hobby-group-chevron { transition: none; } }
   .art-grid {
     max-width: 100%;
     animation: jobReveal 0.4s ease both;
@@ -1184,8 +1190,8 @@
         <p>사진을 찍고,<br>그림을 그립니다</p>
       </div>
       <div class="hobby-groups">
-        <div class="hobby-group">
-          <h3 class="hobby-group-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Photo</h3>
+        <details class="hobby-group" open>
+          <summary class="hobby-group-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Photo<span class="hobby-group-chevron" aria-hidden="true">⌄</span></summary>
           <div class="art-grid">
             <div class="art-track">
               <button class="art-card" type="button" data-full="assets/photo/photo1.jpg" aria-label="사진 크게 보기 1"><img src="assets/photo/photo1.jpg" alt="사진 작업 1" loading="lazy"></button>
@@ -1199,9 +1205,9 @@
               <button class="art-card" type="button" data-full="assets/photo/photo10.jpg" aria-label="사진 크게 보기 9"><img src="assets/photo/photo10.jpg" alt="사진 작업 9" loading="lazy"></button>
             </div>
           </div>
-        </div>
-        <div class="hobby-group">
-          <h3 class="hobby-group-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c-5.5 0-10-4.5-10-10S6.5 2 12 2c4.4 0 8 2.7 8 7 0 2-1.5 3-3 3h-2.2c-.9 0-1.3 1.1-.6 1.7.4.4.6.9.6 1.4 0 1.1-.9 1.9-2 1.9z"/><circle cx="6.5" cy="11.5" r="1.5"/><circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/></svg>Painting</h3>
+        </details>
+        <details class="hobby-group">
+          <summary class="hobby-group-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c-5.5 0-10-4.5-10-10S6.5 2 12 2c4.4 0 8 2.7 8 7 0 2-1.5 3-3 3h-2.2c-.9 0-1.3 1.1-.6 1.7.4.4.6.9.6 1.4 0 1.1-.9 1.9-2 1.9z"/><circle cx="6.5" cy="11.5" r="1.5"/><circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/></svg>Painting<span class="hobby-group-chevron" aria-hidden="true">⌄</span></summary>
           <div class="art-grid">
             <div class="art-track">
               <button class="art-card" type="button" data-full="assets/art/art1.jpg" aria-label="그림 크게 보기 1"><img src="assets/art/art1.jpg" alt="공원 풍경을 그린 유화" loading="lazy"></button>
@@ -1214,7 +1220,7 @@
               <button class="art-card" type="button" data-full="assets/art/art8.jpg" aria-label="그림 크게 보기 8"><img src="assets/art/art8.jpg" alt="유화 작업" loading="lazy"></button>
             </div>
           </div>
-        </div>
+        </details>
       </div>
     </div>
 
