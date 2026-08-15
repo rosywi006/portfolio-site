@@ -15,6 +15,11 @@
     --line: #d2d2d7;
     --shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.18);
     --meter-off: #d2d2d7;
+    --glass-fill: rgba(255, 255, 255, 0.55);
+    --glass-fill-strong: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-highlight: rgba(255, 255, 255, 0.5);
+    --glass-blur: 24px;
 
     --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
       "Apple SD Gothic Neo", "Noto Sans KR", Helvetica, Arial, sans-serif;
@@ -34,6 +39,10 @@
       --line: #38383a;
       --shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
       --meter-off: #38383a;
+      --glass-fill: rgba(40, 40, 42, 0.45);
+      --glass-fill-strong: rgba(44, 44, 46, 0.68);
+      --glass-border: rgba(255, 255, 255, 0.14);
+      --glass-highlight: rgba(255, 255, 255, 0.16);
     }
   }
 
@@ -47,6 +56,10 @@
     --line: #38383a;
     --shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
     --meter-off: #38383a;
+    --glass-fill: rgba(40, 40, 42, 0.45);
+    --glass-fill-strong: rgba(44, 44, 46, 0.68);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-highlight: rgba(255, 255, 255, 0.16);
   }
 
   * { box-sizing: border-box; }
@@ -80,10 +93,10 @@
     position: sticky;
     top: 0;
     z-index: 20;
-    background: color-mix(in srgb, var(--bg) 72%, transparent);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--line);
+    background: var(--glass-fill);
+    backdrop-filter: saturate(180%) blur(var(--glass-blur));
+    -webkit-backdrop-filter: saturate(180%) blur(var(--glass-blur));
+    border-bottom: 1px solid var(--glass-border);
   }
   .nav-row {
     max-width: 74rem;
@@ -150,10 +163,13 @@
     gap: 0.4rem;
     padding: 0.5rem 1rem;
     border-radius: 999px;
-    background: var(--bg-raised);
+    background: var(--glass-fill);
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
     font-size: 0.85rem;
     color: var(--text-secondary);
-    border: 1px solid var(--line);
+    border: 1px solid var(--glass-border);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
   }
   .fact-pill a { text-decoration: none; color: inherit; }
   .fact-pill a:hover { color: var(--accent); }
@@ -272,14 +288,20 @@
     max-width: 40rem;
     width: 90vw;
     max-height: 82vh;
-    border: none;
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius);
     padding: 0;
-    background: var(--bg);
+    background: var(--glass-fill-strong);
+    backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
     color: var(--text);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow), inset 0 1px 0 var(--glass-highlight);
   }
-  dialog.subproject-dialog::backdrop { background: rgba(0, 0, 0, 0.55); }
+  dialog.subproject-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
   .dialog-head {
     position: sticky;
     top: 0;
@@ -288,8 +310,11 @@
     justify-content: space-between;
     gap: 1rem;
     padding: 1.5rem 1.8rem;
-    background: var(--bg);
-    border-bottom: 1px solid var(--line);
+    background: var(--glass-fill);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-bottom: 1px solid var(--glass-border);
+    border-radius: var(--radius) var(--radius) 0 0;
   }
   .dialog-head h3 { font-size: 1.15rem; font-weight: 700; }
   .dialog-close {
@@ -391,7 +416,14 @@
   }
   .btn:hover { transform: translateY(-1px); opacity: 0.85; }
   .btn-primary { background: var(--accent); color: #fff; }
-  .btn-ghost { background: var(--bg-raised); color: var(--text); border: 1px solid var(--line); }
+  .btn-ghost {
+    background: var(--glass-fill);
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    color: var(--text);
+    border: 1px solid var(--glass-border);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
+  }
 
   footer {
     padding: 2rem var(--gutter) 3rem;
