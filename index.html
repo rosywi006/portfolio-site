@@ -269,31 +269,33 @@
     font-variant-numeric: tabular-nums;
     padding-top: 0.2rem;
   }
-  .timeline-role { font-size: 1.08rem; font-weight: 700; }
+  .timeline-role { font-size: 1.08rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+  .org-logo {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 7px;
+    background: #fff;
+    padding: 3px;
+    object-fit: contain;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
   .timeline-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; }
   .timeline-desc { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.6rem; }
   .timeline-desc strong { color: var(--text); font-weight: 600; }
 
   /* ===== 경력 (토글) ===== */
   .job-list {
-    --job-pad: clamp(1.2rem, 3.5vw, 2.2rem);
     max-width: 46rem;
     margin: 0 auto;
     position: relative;
-    background: var(--glass-fill);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius);
-    padding: 0.4rem var(--job-pad);
-    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-    box-shadow: inset 0 1px 0 var(--glass-highlight);
   }
   .job-list::before {
     content: "";
     position: absolute;
-    top: 2rem;
-    bottom: 2rem;
-    left: calc(1.7rem + var(--job-pad));
+    top: 1.6rem;
+    bottom: 1.6rem;
+    left: 1.7rem;
     width: 2px;
     background: var(--line);
   }
@@ -341,7 +343,7 @@
   .job-item summary::-webkit-details-marker { display: none; }
   .job-heading { grid-area: heading; }
   .job-role { font-size: 1.08rem; font-weight: 700; }
-  .job-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; }
+  .job-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; }
   .job-chevron {
     grid-area: chev;
     color: var(--text-secondary);
@@ -364,10 +366,15 @@
   }
   .job-bullets {
     margin: 0 0 1.6rem;
-    padding-left: calc(3.4rem + 1.1rem);
+    padding: 0.9rem 1.1rem 0.9rem calc(3.4rem + 1.1rem);
     display: flex;
     flex-direction: column;
     gap: 0.55rem;
+    background: var(--glass-fill);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
   }
   .job-bullets li {
     position: relative;
@@ -535,7 +542,7 @@
     background: var(--accent);
     margin-top: 0.55rem;
   }
-  .activity-title { font-weight: 700; font-size: 1rem; }
+  .activity-title { font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
   .activity-desc { color: var(--text-secondary); font-size: 0.94rem; margin-top: 0.3rem; }
 
   /* ===== 취미 (접이식 티저) ===== */
@@ -697,8 +704,7 @@
 
   @media (max-width: 720px) {
     .timeline-row { grid-template-columns: 1fr; gap: 0.3rem; }
-    .job-list { --job-pad: 1.1rem; padding: 0.4rem var(--job-pad); }
-    .job-list::before { left: calc(1.35rem + var(--job-pad)); top: 1.8rem; bottom: 1.8rem; }
+    .job-list::before { left: 1.35rem; top: 1.4rem; bottom: 1.4rem; }
     .job-item summary {
       grid-template-columns: 2.7rem 1fr 1.2rem;
       gap: 0.7rem;
@@ -789,7 +795,7 @@
             <div class="job-heading">
               <span class="job-date-range">2025.01 — 현재</span>
               <div class="job-role">CRM &amp; Data Analyst</div>
-              <div class="job-org">메리츠화재 · 정규직 · Partners Marketing part</div>
+              <div class="job-org"><img class="org-logo" src="assets/logos/meritz.jpg" alt="" loading="lazy">메리츠화재 · 정규직 · Partners Marketing part</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -807,7 +813,7 @@
             <div class="job-heading">
               <span class="job-date-range">2024.06 — 2024.08</span>
               <div class="job-role">LLM서비스기획</div>
-              <div class="job-org">네이버클라우드 · 계약직 · Hyper AI Planning팀 · 경기</div>
+              <div class="job-org"><img class="org-logo" src="assets/logos/naver-cloud.png" alt="" loading="lazy">네이버클라우드 · 계약직 · Hyper AI Planning팀 · 경기</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -826,7 +832,7 @@
             <div class="job-heading">
               <span class="job-date-range">2023.09</span>
               <div class="job-role">투자유치</div>
-              <div class="job-org">엘리먼츠 · 프리랜서 · 창업팀</div>
+              <div class="job-org"><img class="org-logo" src="assets/logos/elements.jpeg" alt="" loading="lazy">엘리먼츠 · 프리랜서 · 창업팀</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -842,7 +848,7 @@
             <div class="job-heading">
               <span class="job-date-range">2022.11 — 2023.06</span>
               <div class="job-role">웹서비스기획</div>
-              <div class="job-org">엘리먼츠 (Elements) · 프리랜서 · 창업팀 · LLM 기반 스타트업</div>
+              <div class="job-org"><img class="org-logo" src="assets/logos/elements.jpeg" alt="" loading="lazy">엘리먼츠 (Elements) · 프리랜서 · 창업팀 · LLM 기반 스타트업</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -860,7 +866,7 @@
             <div class="job-heading">
               <span class="job-date-range">2022.06 — 2022.08</span>
               <div class="job-role">투자팀 조사역</div>
-              <div class="job-org">비에이파트너스 · 계약직 · 벤처캐피탈</div>
+              <div class="job-org"><img class="org-logo" src="assets/logos/ba-partners.png" alt="" loading="lazy">비에이파트너스 · 계약직 · 벤처캐피탈</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -876,7 +882,7 @@
             <div class="job-heading">
               <span class="job-date-range">2022.01 — 2022.04</span>
               <div class="job-role">신사업기획</div>
-              <div class="job-org">엔라이즈 (Nlize) · 계약직 · 신사업기획팀</div>
+              <div class="job-org"><img class="org-logo" src="assets/logos/nlize.jpg" alt="" loading="lazy">엔라이즈 (Nlize) · 계약직 · 신사업기획팀</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -1032,7 +1038,7 @@
         <div class="timeline-row">
           <span class="timeline-date">2019.03 — 2024.08</span>
           <div>
-            <div class="timeline-role">서울대학교</div>
+            <div class="timeline-role"><img class="org-logo" src="assets/logos/snu.jpeg" alt="" loading="lazy">서울대학교</div>
             <div class="timeline-org">교육학 · 벤처경영학 전공</div>
             <p class="timeline-desc">컴퓨터 개념 및 실습(Python, SQL), 창업론실습, 재무관리, 경영정보론 등을 통해 경영과 벤처 생태계에 대한 식견을 넓혔습니다.</p>
           </div>
@@ -1043,28 +1049,28 @@
         <li class="activity-item">
           <span class="activity-dot"></span>
           <div>
-            <div class="activity-title">서울대학교 경영전략학회 N-CEO (2021.09 — 2022.12)</div>
+            <div class="activity-title"><img class="org-logo" src="assets/logos/nceo.jpeg" alt="" loading="lazy">서울대학교 경영전략학회 N-CEO (2021.09 — 2022.12)</div>
             <p class="activity-desc">팀원으로 PEF·VC·로보틱스·가전 등 6개 산학 프로젝트와 8개 내부 케이스 스터디를 수행했고, <strong>이후 회장을 맡아</strong> 교육 세션 기획, 산학 계약 수주, 조직 운영, 네트워킹 행사 기획을 총괄했습니다.</p>
           </div>
         </li>
         <li class="activity-item">
           <span class="activity-dot"></span>
           <div>
-            <div class="activity-title">LG전자 ESG 아카데미 7기 우수 조 수료 (2021.06 — 2021.11)</div>
+            <div class="activity-title"><img class="org-logo" src="assets/logos/lg.png" alt="" loading="lazy">LG전자 ESG 아카데미 7기 우수 조 수료 (2021.06 — 2021.11)</div>
             <p class="activity-desc">ESG 관련 과제를 수행하며 전반에 대한 이해를 쌓고, 우수기업 사례를 스터디해 관련 캠페인을 직접 집행했습니다.</p>
           </div>
         </li>
         <li class="activity-item">
           <span class="activity-dot"></span>
           <div>
-            <div class="activity-title">서울대학교 프로네시스 나눔실천단 (2020.08 — 2021.09)</div>
+            <div class="activity-title"><img class="org-logo" src="assets/logos/pronesis.jpeg" alt="" loading="lazy">서울대학교 프로네시스 나눔실천단 (2020.08 — 2021.09)</div>
             <p class="activity-desc">교육소외학교 학생 약 80명을 대상으로 5박 6일 교육봉사를 2회 진행했습니다. 교내 재학생 20명과 팀을 꾸려 한 달 반 동안 프로그램을 준비했고, 부팀장과 팀장을 맡아 각각 이끌었습니다.</p>
           </div>
         </li>
         <li class="activity-item">
           <span class="activity-dot"></span>
           <div>
-            <div class="activity-title">서울대학교 교육학과 부학생회장 (2019.12 — 2020.12)</div>
+            <div class="activity-title"><img class="org-logo" src="assets/logos/snu.jpeg" alt="" loading="lazy">서울대학교 교육학과 부학생회장 (2019.12 — 2020.12)</div>
             <p class="activity-desc">임기 시작과 함께 찾아온 코로나 팬데믹으로 기존 사업이 무산되자, 비대면 전환과 신규사업 수행을 위한 TF를 총괄하고 위기상황 매뉴얼을 제작했습니다.</p>
           </div>
         </li>
@@ -1272,16 +1278,6 @@
       }
     });
   });
-
-  var jobIo = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.open = true;
-        jobIo.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-  document.querySelectorAll('.job-item').forEach(function (el) { jobIo.observe(el); });
 
   var lightbox = document.getElementById('dlg-lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
