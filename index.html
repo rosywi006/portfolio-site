@@ -271,12 +271,12 @@
   }
   .timeline-role { font-size: 1.08rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
   .org-logo {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     flex-shrink: 0;
-    border-radius: 7px;
+    border-radius: 8px;
     background: #fff;
-    padding: 3px;
+    padding: 4px;
     object-fit: contain;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
@@ -302,8 +302,8 @@
   .job-item { position: relative; }
   .job-item summary {
     display: grid;
-    grid-template-columns: 3.4rem 1fr 1.4rem;
-    grid-template-areas: "marker heading chev";
+    grid-template-columns: 3.4rem 3rem 1fr 1.4rem;
+    grid-template-areas: "marker logo heading chev";
     align-items: start;
     gap: 1.1rem;
     padding: 1.5rem 0;
@@ -317,6 +317,8 @@
     position: relative;
     z-index: 1;
   }
+  .job-org-logo { grid-area: logo; display: flex; align-items: center; padding-top: 0.15rem; }
+  .job-org-logo .org-logo { width: 2.5rem; height: 2.5rem; border-radius: 9px; }
   .job-badge {
     width: 3.15rem;
     height: 3.15rem;
@@ -343,7 +345,7 @@
   .job-item summary::-webkit-details-marker { display: none; }
   .job-heading { grid-area: heading; }
   .job-role { font-size: 1.08rem; font-weight: 700; }
-  .job-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; }
+  .job-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; }
   .job-chevron {
     grid-area: chev;
     color: var(--text-secondary);
@@ -366,7 +368,7 @@
   }
   .job-bullets {
     margin: 0 0 1.6rem;
-    padding: 0.9rem 1.1rem 0.9rem calc(3.4rem + 1.1rem);
+    padding: 0.9rem 1.2rem;
     display: flex;
     flex-direction: column;
     gap: 0.55rem;
@@ -384,16 +386,20 @@
     line-height: 1.55;
   }
   .job-bullets li::before {
-    content: "–";
+    content: "";
     position: absolute;
-    left: 0;
-    color: var(--accent);
+    left: 2px;
+    top: 0.6em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--text);
   }
   .job-bullets strong { color: var(--text); font-weight: 600; }
 
   /* ===== 세부 프로젝트 (팝업) ===== */
   .subproject-trigger {
-    margin: 0.2rem 0 1.6rem calc(3.4rem + 1.1rem);
+    margin: 0.2rem 0 1.6rem 0.2rem;
     background: none;
     border: none;
     padding: 0;
@@ -545,37 +551,20 @@
   .activity-title { font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
   .activity-desc { color: var(--text-secondary); font-size: 0.94rem; margin-top: 0.3rem; }
 
-  /* ===== 취미 (접이식 티저) ===== */
-  .hobby-teasers {
-    max-width: 34rem;
+  /* ===== 취미 (갤러리) ===== */
+  .hobby-groups {
+    max-width: 46rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
+    gap: 1.4rem;
   }
-  .hobby-item {
+  .hobby-group {
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
     background: var(--glass-fill);
     overflow: hidden;
   }
-  .hobby-item summary {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    padding: 1rem 1.3rem;
-    cursor: pointer;
-    list-style: none;
-    font-weight: 600;
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-  }
-  .hobby-item summary::-webkit-details-marker { display: none; }
-  .hobby-icon { font-size: 1.05rem; }
-  .hobby-label { flex: 1; }
-  .hobby-chevron { color: var(--text-secondary); transition: transform 0.2s ease; }
-  .hobby-item[open] .hobby-chevron { transform: rotate(180deg); }
-  .hobby-item .art-grid { padding: 0; }
   .art-grid {
     max-width: 100%;
     animation: jobReveal 0.4s ease both;
@@ -706,15 +695,15 @@
     .timeline-row { grid-template-columns: 1fr; gap: 0.3rem; }
     .job-list::before { left: 1.35rem; top: 1.4rem; bottom: 1.4rem; }
     .job-item summary {
-      grid-template-columns: 2.7rem 1fr 1.2rem;
-      gap: 0.7rem;
+      grid-template-columns: 2.7rem 2rem 1fr 1.1rem;
+      gap: 0.6rem;
       padding: 1.2rem 0;
     }
     .job-badge { width: 2.55rem; height: 2.55rem; font-size: 0.52rem; }
+    .job-org-logo .org-logo { width: 1.9rem; height: 1.9rem; }
     .job-role { font-size: 1rem; }
     .job-org { font-size: 0.88rem; }
-    .job-bullets { padding-left: 2.1rem; }
-    .subproject-trigger { margin-left: 2.1rem; }
+    .job-bullets { padding: 0.8rem 0.9rem; }
     .nav-links { font-size: 0.74rem; gap: 0.7rem; }
     dialog.subproject-dialog { width: 94vw; max-height: 70vh; }
     .dialog-head { padding: 1.2rem 1.3rem; }
@@ -792,10 +781,11 @@
         <details class="job-item reveal" open>
           <summary>
             <div class="job-marker"><span class="job-badge current">'25.01</span></div>
+            <div class="job-org-logo"><img class="org-logo" src="assets/logos/meritz.jpg" alt="" loading="lazy"></div>
             <div class="job-heading">
               <span class="job-date-range">2025.01 — 현재</span>
               <div class="job-role">CRM &amp; Data Analyst</div>
-              <div class="job-org"><img class="org-logo" src="assets/logos/meritz.jpg" alt="" loading="lazy">메리츠화재 · 정규직 · Partners Marketing part</div>
+              <div class="job-org">메리츠화재 · 정규직 · Partners Marketing part</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -810,10 +800,11 @@
         <details class="job-item reveal">
           <summary>
             <div class="job-marker"><span class="job-badge">'24.06</span></div>
+            <div class="job-org-logo"><img class="org-logo" src="assets/logos/naver-cloud.png" alt="" loading="lazy"></div>
             <div class="job-heading">
               <span class="job-date-range">2024.06 — 2024.08</span>
               <div class="job-role">LLM서비스기획</div>
-              <div class="job-org"><img class="org-logo" src="assets/logos/naver-cloud.png" alt="" loading="lazy">네이버클라우드 · 계약직 · Hyper AI Planning팀 · 경기</div>
+              <div class="job-org">네이버클라우드 · 계약직 · Hyper AI Planning팀 · 경기</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -829,10 +820,11 @@
         <details class="job-item reveal">
           <summary>
             <div class="job-marker"><span class="job-badge">'23.09</span></div>
+            <div class="job-org-logo"><img class="org-logo" src="assets/logos/elements.jpeg" alt="" loading="lazy"></div>
             <div class="job-heading">
               <span class="job-date-range">2023.09</span>
               <div class="job-role">투자유치</div>
-              <div class="job-org"><img class="org-logo" src="assets/logos/elements.jpeg" alt="" loading="lazy">엘리먼츠 · 프리랜서 · 창업팀</div>
+              <div class="job-org">엘리먼츠 · 프리랜서 · 창업팀</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -845,10 +837,11 @@
         <details class="job-item reveal">
           <summary>
             <div class="job-marker"><span class="job-badge">'22.11</span></div>
+            <div class="job-org-logo"><img class="org-logo" src="assets/logos/elements.jpeg" alt="" loading="lazy"></div>
             <div class="job-heading">
               <span class="job-date-range">2022.11 — 2023.06</span>
               <div class="job-role">웹서비스기획</div>
-              <div class="job-org"><img class="org-logo" src="assets/logos/elements.jpeg" alt="" loading="lazy">엘리먼츠 (Elements) · 프리랜서 · 창업팀 · LLM 기반 스타트업</div>
+              <div class="job-org">엘리먼츠 (Elements) · 프리랜서 · 창업팀 · LLM 기반 스타트업</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -863,10 +856,11 @@
         <details class="job-item reveal">
           <summary>
             <div class="job-marker"><span class="job-badge">'22.06</span></div>
+            <div class="job-org-logo"><img class="org-logo" src="assets/logos/ba-partners.png" alt="" loading="lazy"></div>
             <div class="job-heading">
               <span class="job-date-range">2022.06 — 2022.08</span>
               <div class="job-role">투자팀 조사역</div>
-              <div class="job-org"><img class="org-logo" src="assets/logos/ba-partners.png" alt="" loading="lazy">비에이파트너스 · 계약직 · 벤처캐피탈</div>
+              <div class="job-org">비에이파트너스 · 계약직 · 벤처캐피탈</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -879,10 +873,11 @@
         <details class="job-item reveal">
           <summary>
             <div class="job-marker"><span class="job-badge">'22.01</span></div>
+            <div class="job-org-logo"><img class="org-logo" src="assets/logos/nlize.jpg" alt="" loading="lazy"></div>
             <div class="job-heading">
               <span class="job-date-range">2022.01 — 2022.04</span>
               <div class="job-role">신사업기획</div>
-              <div class="job-org"><img class="org-logo" src="assets/logos/nlize.jpg" alt="" loading="lazy">엔라이즈 (Nlize) · 계약직 · 신사업기획팀</div>
+              <div class="job-org">엔라이즈 (Nlize) · 계약직 · 신사업기획팀</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -1160,13 +1155,12 @@
   <!-- ===== 취미 (그림 · 사진, 궁금한 사람만 열어보게 접어둠) ===== -->
   <section class="block raised" id="art">
     <div class="container">
-      <div class="hobby-teasers">
-        <details class="hobby-item" open>
-          <summary>
-            <span class="hobby-icon" aria-hidden="true">🎨</span>
-            <span class="hobby-label">취미로 그림도 그려요</span>
-            <span class="hobby-chevron" aria-hidden="true">⌄</span>
-          </summary>
+      <div class="block-head">
+        <h2>Hobbies</h2>
+        <p>그림을 그리고,<br>사진을 찍습니다</p>
+      </div>
+      <div class="hobby-groups">
+        <div class="hobby-group">
           <div class="art-grid">
             <div class="art-track">
               <button class="art-card" type="button" data-full="assets/art/art1.jpg" aria-label="그림 크게 보기 1"><img src="assets/art/art1.jpg" alt="공원 풍경을 그린 유화" loading="lazy"></button>
@@ -1179,13 +1173,8 @@
               <button class="art-card" type="button" data-full="assets/art/art8.jpg" aria-label="그림 크게 보기 8"><img src="assets/art/art8.jpg" alt="유화 작업" loading="lazy"></button>
             </div>
           </div>
-        </details>
-        <details class="hobby-item">
-          <summary>
-            <span class="hobby-icon" aria-hidden="true">📷</span>
-            <span class="hobby-label">사진도 찍어요</span>
-            <span class="hobby-chevron" aria-hidden="true">⌄</span>
-          </summary>
+        </div>
+        <div class="hobby-group">
           <div class="art-grid">
             <div class="art-track">
               <button class="art-card" type="button" data-full="assets/photo/photo1.jpg" aria-label="사진 크게 보기 1"><img src="assets/photo/photo1.jpg" alt="사진 작업 1" loading="lazy"></button>
@@ -1199,7 +1188,7 @@
               <button class="art-card" type="button" data-full="assets/photo/photo10.jpg" aria-label="사진 크게 보기 9"><img src="assets/photo/photo10.jpg" alt="사진 작업 9" loading="lazy"></button>
             </div>
           </div>
-        </details>
+        </div>
       </div>
     </div>
 
