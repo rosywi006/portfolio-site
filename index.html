@@ -486,19 +486,35 @@
   .hobby-label { flex: 1; }
   .hobby-chevron { color: var(--text-secondary); transition: transform 0.2s ease; }
   .hobby-item[open] .hobby-chevron { transform: rotate(180deg); }
-  .hobby-item .art-grid { padding: 0.2rem 1.3rem 1.3rem; }
+  .hobby-item .art-grid { padding: 0.2rem 0 1.3rem; }
   .art-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-    gap: 0.7rem;
-    max-width: 56rem;
-    margin: 0 auto;
+    overflow: hidden;
+    max-width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
     animation: jobReveal 0.4s ease both;
   }
   @media (prefers-reduced-motion: reduce) { .art-grid { animation: none; } }
+  .art-track {
+    display: flex;
+    gap: 0.7rem;
+    width: max-content;
+    padding: 0 1.3rem;
+    animation: artScroll 34s linear infinite;
+  }
+  .art-track-reverse { animation-direction: reverse; animation-duration: 38s; }
+  .art-track:hover { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .art-track { animation: none; }
+  }
+  @keyframes artScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
   .art-card {
     display: block;
-    width: 100%;
+    flex: 0 0 auto;
+    width: 8.5rem;
     padding: 0;
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
@@ -608,8 +624,17 @@
 
   @media (max-width: 720px) {
     .timeline-row { grid-template-columns: 1fr; gap: 0.3rem; }
-    .job-bullets { padding-left: 1rem; }
-    .subproject-trigger { margin-left: 1rem; }
+    .job-list::before { left: 1.35rem; top: 1.4rem; bottom: 1.4rem; }
+    .job-item summary {
+      grid-template-columns: 2.7rem 1fr 1.2rem;
+      gap: 0.7rem;
+      padding: 1.2rem 0;
+    }
+    .job-badge { width: 2.55rem; height: 2.55rem; font-size: 0.52rem; }
+    .job-role { font-size: 1rem; }
+    .job-org { font-size: 0.88rem; }
+    .job-bullets { padding-left: 0.2rem; }
+    .subproject-trigger { margin-left: 0.2rem; }
     .nav-links { font-size: 0.74rem; gap: 0.7rem; }
     dialog.subproject-dialog { width: 94vw; max-height: 86vh; }
     .dialog-head { padding: 1.2rem 1.3rem; }
@@ -1058,30 +1083,24 @@
             <span class="hobby-chevron" aria-hidden="true">⌄</span>
           </summary>
           <div class="art-grid">
-            <button class="art-card reveal" type="button" data-full="assets/art/art1.jpg" aria-label="그림 크게 보기 1">
-              <img src="assets/art/art1.jpg" alt="공원 풍경을 그린 유화" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/art/art2.jpg" aria-label="그림 크게 보기 2">
-              <img src="assets/art/art2.jpg" alt="달항아리와 파랑새를 그린 유화" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/art/art3.jpg" aria-label="그림 크게 보기 3">
-              <img src="assets/art/art3.jpg" alt="크리스마스 트리 앞 아이를 그린 유화" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/art/art4.jpg" aria-label="그림 크게 보기 4">
-              <img src="assets/art/art4.jpg" alt="유화 작업" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/art/art5.jpg" aria-label="그림 크게 보기 5">
-              <img src="assets/art/art5.jpg" alt="신랑신부 실루엣을 그린 유화" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/art/art6.jpg" aria-label="그림 크게 보기 6">
-              <img src="assets/art/art6.jpg" alt="유화 작업" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/art/art7.jpg" aria-label="그림 크게 보기 7">
-              <img src="assets/art/art7.jpg" alt="체리 정물을 그린 유화" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/art/art8.jpg" aria-label="그림 크게 보기 8">
-              <img src="assets/art/art8.jpg" alt="유화 작업" loading="lazy">
-            </button>
+            <div class="art-track">
+              <button class="art-card" type="button" data-full="assets/art/art1.jpg" aria-label="그림 크게 보기 1"><img src="assets/art/art1.jpg" alt="공원 풍경을 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art2.jpg" aria-label="그림 크게 보기 2"><img src="assets/art/art2.jpg" alt="달항아리와 파랑새를 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art3.jpg" aria-label="그림 크게 보기 3"><img src="assets/art/art3.jpg" alt="크리스마스 트리 앞 아이를 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art4.jpg" aria-label="그림 크게 보기 4"><img src="assets/art/art4.jpg" alt="유화 작업" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art5.jpg" aria-label="그림 크게 보기 5"><img src="assets/art/art5.jpg" alt="신랑신부 실루엣을 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art6.jpg" aria-label="그림 크게 보기 6"><img src="assets/art/art6.jpg" alt="유화 작업" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art7.jpg" aria-label="그림 크게 보기 7"><img src="assets/art/art7.jpg" alt="체리 정물을 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art8.jpg" aria-label="그림 크게 보기 8"><img src="assets/art/art8.jpg" alt="유화 작업" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art1.jpg" aria-hidden="true" tabindex="-1"><img src="assets/art/art1.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art2.jpg" aria-hidden="true" tabindex="-1"><img src="assets/art/art2.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art3.jpg" aria-hidden="true" tabindex="-1"><img src="assets/art/art3.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art4.jpg" aria-hidden="true" tabindex="-1"><img src="assets/art/art4.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art5.jpg" aria-hidden="true" tabindex="-1"><img src="assets/art/art5.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art6.jpg" aria-hidden="true" tabindex="-1"><img src="assets/art/art6.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art7.jpg" aria-hidden="true" tabindex="-1"><img src="assets/art/art7.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art8.jpg" aria-hidden="true" tabindex="-1"><img src="assets/art/art8.jpg" alt="" loading="lazy"></button>
+            </div>
           </div>
         </details>
         <details class="hobby-item">
@@ -1091,21 +1110,26 @@
             <span class="hobby-chevron" aria-hidden="true">⌄</span>
           </summary>
           <div class="art-grid">
-            <button class="art-card reveal" type="button" data-full="assets/photo/photo1.jpg" aria-label="사진 크게 보기 1">
-              <img src="assets/photo/photo1.jpg" alt="사진 작업 1" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/photo/photo2.jpg" aria-label="사진 크게 보기 2">
-              <img src="assets/photo/photo2.jpg" alt="사진 작업 2" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/photo/photo3.jpg" aria-label="사진 크게 보기 3">
-              <img src="assets/photo/photo3.jpg" alt="사진 작업 3" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/photo/photo4.jpg" aria-label="사진 크게 보기 4">
-              <img src="assets/photo/photo4.jpg" alt="사진 작업 4" loading="lazy">
-            </button>
-            <button class="art-card reveal" type="button" data-full="assets/photo/photo6.jpg" aria-label="사진 크게 보기 5">
-              <img src="assets/photo/photo6.jpg" alt="사진 작업 5" loading="lazy">
-            </button>
+            <div class="art-track art-track-reverse">
+              <button class="art-card" type="button" data-full="assets/photo/photo1.jpg" aria-label="사진 크게 보기 1"><img src="assets/photo/photo1.jpg" alt="사진 작업 1" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo2.jpg" aria-label="사진 크게 보기 2"><img src="assets/photo/photo2.jpg" alt="사진 작업 2" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo3.jpg" aria-label="사진 크게 보기 3"><img src="assets/photo/photo3.jpg" alt="사진 작업 3" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo4.jpg" aria-label="사진 크게 보기 4"><img src="assets/photo/photo4.jpg" alt="사진 작업 4" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo6.jpg" aria-label="사진 크게 보기 5"><img src="assets/photo/photo6.jpg" alt="사진 작업 5" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo7.jpg" aria-label="사진 크게 보기 6"><img src="assets/photo/photo7.jpg" alt="사진 작업 6" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo8.jpg" aria-label="사진 크게 보기 7"><img src="assets/photo/photo8.jpg" alt="사진 작업 7" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo9.jpg" aria-label="사진 크게 보기 8"><img src="assets/photo/photo9.jpg" alt="사진 작업 8" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo10.jpg" aria-label="사진 크게 보기 9"><img src="assets/photo/photo10.jpg" alt="사진 작업 9" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo1.jpg" aria-hidden="true" tabindex="-1"><img src="assets/photo/photo1.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo2.jpg" aria-hidden="true" tabindex="-1"><img src="assets/photo/photo2.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo3.jpg" aria-hidden="true" tabindex="-1"><img src="assets/photo/photo3.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo4.jpg" aria-hidden="true" tabindex="-1"><img src="assets/photo/photo4.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo6.jpg" aria-hidden="true" tabindex="-1"><img src="assets/photo/photo6.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo7.jpg" aria-hidden="true" tabindex="-1"><img src="assets/photo/photo7.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo8.jpg" aria-hidden="true" tabindex="-1"><img src="assets/photo/photo8.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo9.jpg" aria-hidden="true" tabindex="-1"><img src="assets/photo/photo9.jpg" alt="" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/photo/photo10.jpg" aria-hidden="true" tabindex="-1"><img src="assets/photo/photo10.jpg" alt="" loading="lazy"></button>
+            </div>
           </div>
         </details>
       </div>
