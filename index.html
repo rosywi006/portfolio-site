@@ -67,6 +67,7 @@
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
   body {
+    position: relative;
     margin: 0;
     background: var(--bg);
     color: var(--text);
@@ -78,42 +79,39 @@
     overflow-x: hidden;
   }
 
-  /* ===== 배경 앰비언트 (글래스 패널이 굴절시킬 대상) ===== */
+  /* ===== 배경 앰비언트 (글래스 패널이 굴절시킬 대상, 페이지 전체 높이에 분포) ===== */
   .ambient-glow {
-    position: fixed;
+    position: absolute;
     inset: 0;
     z-index: -1;
     overflow: hidden;
     pointer-events: none;
   }
-  .ambient-glow::before,
-  .ambient-glow::after {
-    content: "";
+  .glow-orb {
     position: absolute;
-    width: 52vw;
-    height: 52vw;
-    max-width: 640px;
-    max-height: 640px;
+    width: 50vw;
+    height: 50vw;
+    max-width: 620px;
+    max-height: 620px;
     border-radius: 50%;
     background: var(--accent);
-    filter: blur(100px);
+    filter: blur(110px);
   }
-  .ambient-glow::before {
-    top: -14%;
-    left: -12%;
-    opacity: 0.22;
-  }
-  .ambient-glow::after {
-    top: 38%;
-    right: -16%;
-    opacity: 0.14;
-  }
+  .glow-orb.a { top: -8%; left: -12%; opacity: 0.22; }
+  .glow-orb.b { top: 22%; right: -14%; opacity: 0.14; }
+  .glow-orb.c { top: 48%; left: -10%; opacity: 0.16; }
+  .glow-orb.d { top: 72%; right: -12%; opacity: 0.14; }
+  .glow-orb.e { top: 92%; left: 20%; opacity: 0.12; }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .ambient-glow::before { opacity: 0.3; }
-    :root:not([data-theme="light"]) .ambient-glow::after { opacity: 0.2; }
+    :root:not([data-theme="light"]) .glow-orb { opacity: 0.3; }
+    :root:not([data-theme="light"]) .glow-orb.b,
+    :root:not([data-theme="light"]) .glow-orb.d,
+    :root:not([data-theme="light"]) .glow-orb.e { opacity: 0.22; }
   }
-  :root[data-theme="dark"] .ambient-glow::before { opacity: 0.3; }
-  :root[data-theme="dark"] .ambient-glow::after { opacity: 0.2; }
+  :root[data-theme="dark"] .glow-orb { opacity: 0.3; }
+  :root[data-theme="dark"] .glow-orb.b,
+  :root[data-theme="dark"] .glow-orb.d,
+  :root[data-theme="dark"] .glow-orb.e { opacity: 0.22; }
 
   a { color: inherit; }
   p { margin: 0; }
@@ -344,27 +342,30 @@
     position: sticky;
     top: 0;
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    align-items: center;
     gap: 1rem;
-    padding: 1.5rem 1.8rem;
+    padding: 1.4rem 1.8rem;
     background: var(--glass-fill);
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border-bottom: 1px solid var(--glass-border);
     border-radius: var(--radius) var(--radius) 0 0;
   }
-  .dialog-head h3 { font-size: 1.15rem; font-weight: 700; }
-  .dialog-close {
-    background: none;
+  .dialog-head h3 { font-size: 1.1rem; font-weight: 700; }
+  .traffic-lights { display: flex; gap: 0.5rem; flex-shrink: 0; }
+  .tl {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
     border: none;
-    font-size: 1.3rem;
-    line-height: 1;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 0.2rem;
+    padding: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
   }
-  .dialog-close:hover { color: var(--text); }
+  .tl-red { background: #ff5f57; cursor: pointer; }
+  .tl-yellow { background: #febc2e; }
+  .tl-green { background: #28c840; }
+  .tl-red:hover { filter: brightness(1.12); }
+  .tl-red:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .dialog-body { padding: 0.4rem 1.8rem 1.8rem; overflow-y: auto; }
   .subproject {
     padding: 1.6rem 0;
@@ -441,6 +442,9 @@
     background: var(--meter-off);
   }
   .meter span.on { background: var(--accent); }
+  .meter.level-low span.on { background: #ff5f57; }
+  .meter.level-mid span.on { background: #febc2e; }
+  .meter.level-high span.on { background: #28c840; }
 
   /* ===== Contact ===== */
   .contact-block { text-align: center; padding: clamp(4rem, 10vw, 6.5rem) 0; }
@@ -499,7 +503,13 @@
   }
 </style>
 
-<div class="ambient-glow" aria-hidden="true"></div>
+<div class="ambient-glow" aria-hidden="true">
+  <span class="glow-orb a"></span>
+  <span class="glow-orb b"></span>
+  <span class="glow-orb c"></span>
+  <span class="glow-orb d"></span>
+  <span class="glow-orb e"></span>
+</div>
 
 <nav class="nav">
   <div class="nav-row">
@@ -644,8 +654,12 @@
 
     <dialog class="subproject-dialog" id="dlg-meritz">
       <div class="dialog-head">
+        <div class="traffic-lights">
+          <button class="tl tl-red dialog-close" type="button" aria-label="닫기"></button>
+          <span class="tl tl-yellow" aria-hidden="true"></span>
+          <span class="tl tl-green" aria-hidden="true"></span>
+        </div>
         <h3>메리츠화재 — 세부 프로젝트</h3>
-        <button class="dialog-close" type="button" aria-label="닫기">×</button>
       </div>
       <div class="dialog-body">
         <div class="subproject">
@@ -707,8 +721,12 @@
 
     <dialog class="subproject-dialog" id="dlg-elements">
       <div class="dialog-head">
+        <div class="traffic-lights">
+          <button class="tl tl-red dialog-close" type="button" aria-label="닫기"></button>
+          <span class="tl tl-yellow" aria-hidden="true"></span>
+          <span class="tl tl-green" aria-hidden="true"></span>
+        </div>
         <h3>엘리먼츠 — 세부 프로젝트</h3>
-        <button class="dialog-close" type="button" aria-label="닫기">×</button>
       </div>
       <div class="dialog-body">
         <div class="subproject">
@@ -748,8 +766,12 @@
 
     <dialog class="subproject-dialog" id="dlg-naver">
       <div class="dialog-head">
+        <div class="traffic-lights">
+          <button class="tl tl-red dialog-close" type="button" aria-label="닫기"></button>
+          <span class="tl tl-yellow" aria-hidden="true"></span>
+          <span class="tl tl-green" aria-hidden="true"></span>
+        </div>
         <h3>네이버클라우드 — 세부 프로젝트</h3>
-        <button class="dialog-close" type="button" aria-label="닫기">×</button>
       </div>
       <div class="dialog-body">
         <div class="subproject">
@@ -833,68 +855,68 @@
           <h3>Data &amp; Analytics</h3>
           <div class="skill-row">
             <span class="skill-name">Python</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
+            <span class="meter level-low"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">SQL (Oracle/SAS)</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
+            <span class="meter level-mid"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Tableau</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
+            <span class="meter level-mid"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">CDP (Obzen, ecube)</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+            <span class="meter level-high"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
           </div>
         </div>
         <div class="skill-group">
           <h3>Collaboration</h3>
           <div class="skill-row">
             <span class="skill-name">Notion</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+            <span class="meter level-high"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Slack</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+            <span class="meter level-high"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Confluence</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
+            <span class="meter level-mid"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
           </div>
         </div>
         <div class="skill-group">
           <h3>Design</h3>
           <div class="skill-row">
             <span class="skill-name">Figma</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+            <span class="meter level-high"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Illustrator</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+            <span class="meter level-high"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Photoshop</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+            <span class="meter level-high"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Premiere</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
+            <span class="meter level-mid"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
           </div>
         </div>
         <div class="skill-group">
           <h3>OA</h3>
           <div class="skill-row">
             <span class="skill-name">Excel</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+            <span class="meter level-high"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Word</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+            <span class="meter level-high"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
           </div>
           <div class="skill-row">
             <span class="skill-name">PowerPoint</span>
-            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span>
+            <span class="meter level-high"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span>
           </div>
         </div>
       </div>
@@ -946,4 +968,14 @@
       if (e.target === dlg) dlg.close();
     });
   });
+
+  var jobIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.open = true;
+        jobIo.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.job-item').forEach(function (el) { jobIo.observe(el); });
 </script>
