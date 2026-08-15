@@ -61,14 +61,16 @@
     max-height: 620px;
     border-radius: 50%;
     background: var(--accent);
-    filter: blur(110px);
+    filter: blur(90px);
   }
-  .glow-orb.a { top: -8%; left: -12%; opacity: 0.4; animation: drift1 11s ease-in-out infinite, morph1 8s ease-in-out infinite; }
-  .glow-orb.b { top: 22%; right: -14%; opacity: 0.36; background: #ff9f4a; animation: drift2 13s ease-in-out infinite, morph2 9.5s ease-in-out infinite; }
-  .glow-orb.c { top: 48%; left: -10%; opacity: 0.38; background: #22d3aa; animation: drift3 12s ease-in-out infinite, morph3 7.5s ease-in-out infinite; }
-  .glow-orb.d { top: 72%; right: -12%; opacity: 0.34; background: #ff6fae; animation: drift1 15s ease-in-out infinite reverse, morph2 10s ease-in-out infinite; }
-  .glow-orb.e { top: 92%; left: 20%; opacity: 0.32; background: #a78bfa; animation: drift2 14s ease-in-out infinite, morph1 9s ease-in-out infinite; }
-  .glow-orb.f { top: 60%; left: 38%; opacity: 0.26; background: #ffd43b; width: 38vw; height: 38vw; max-width: 460px; max-height: 460px; animation: drift3 9.5s ease-in-out infinite reverse, morph3 8.5s ease-in-out infinite; }
+  .glow-orb.a { top: -8%; left: -12%; opacity: 0.42; animation: drift1 11s ease-in-out infinite, morph1 8s ease-in-out infinite; }
+  .glow-orb.b { top: 22%; right: -14%; opacity: 0.4; background: #ff9f4a; animation: drift2 13s ease-in-out infinite, morph2 9.5s ease-in-out infinite; }
+  .glow-orb.c { top: 48%; left: -10%; opacity: 0.4; background: #22d3aa; animation: drift3 12s ease-in-out infinite, morph3 7.5s ease-in-out infinite; }
+  .glow-orb.d { top: 72%; right: -12%; opacity: 0.38; background: #ff6fae; animation: drift1 15s ease-in-out infinite reverse, morph2 10s ease-in-out infinite; }
+  .glow-orb.e { top: 92%; left: 20%; opacity: 0.36; background: #a78bfa; animation: drift2 14s ease-in-out infinite, morph1 9s ease-in-out infinite; }
+  .glow-orb.f { top: 60%; left: 38%; opacity: 0.3; background: #ffd43b; width: 38vw; height: 38vw; max-width: 460px; max-height: 460px; animation: drift3 9.5s ease-in-out infinite reverse, morph3 8.5s ease-in-out infinite; }
+  .glow-orb.g { top: 6%; right: -12%; opacity: 0.34; background: #ff5c5c; width: 34vw; height: 34vw; max-width: 420px; max-height: 420px; animation: drift2 10s ease-in-out infinite reverse, morph3 8s ease-in-out infinite; }
+  .glow-orb.h { top: 80%; left: -14%; opacity: 0.34; background: #38d9ff; width: 36vw; height: 36vw; max-width: 440px; max-height: 440px; animation: drift1 12.5s ease-in-out infinite reverse, morph1 9.5s ease-in-out infinite; }
   @keyframes drift1 {
     0%, 100% { transform: translate(0, 0) scale(1); }
     25% { transform: translate(16%, 20%) scale(1.32); }
@@ -88,22 +90,32 @@
     75% { transform: translate(-8%, 20%) scale(1.1); }
   }
   @keyframes morph1 {
-    0%, 100% { border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%; }
-    33% { border-radius: 62% 38% 30% 70% / 50% 62% 38% 50%; }
-    66% { border-radius: 35% 65% 55% 45% / 62% 35% 65% 38%; }
+    0%, 100% { border-radius: 32% 68% 70% 30% / 40% 35% 65% 60%; }
+    33% { border-radius: 70% 30% 22% 78% / 52% 68% 32% 48%; }
+    66% { border-radius: 25% 75% 60% 40% / 68% 28% 72% 32%; }
   }
   @keyframes morph2 {
-    0%, 100% { border-radius: 55% 45% 38% 62% / 40% 55% 45% 60%; }
-    33% { border-radius: 30% 70% 60% 40% / 60% 35% 65% 40%; }
-    66% { border-radius: 65% 35% 45% 55% / 45% 65% 35% 55%; }
+    0%, 100% { border-radius: 62% 38% 30% 70% / 35% 60% 40% 65%; }
+    33% { border-radius: 22% 78% 68% 32% / 65% 28% 72% 35%; }
+    66% { border-radius: 72% 28% 42% 58% / 38% 70% 30% 62%; }
   }
   @keyframes morph3 {
-    0%, 100% { border-radius: 48% 52% 70% 30% / 55% 45% 55% 45%; }
-    33% { border-radius: 68% 32% 40% 60% / 35% 60% 40% 65%; }
-    66% { border-radius: 40% 60% 50% 50% / 65% 40% 60% 35%; }
+    0%, 100% { border-radius: 40% 60% 78% 22% / 60% 38% 62% 40%; }
+    33% { border-radius: 76% 24% 32% 68% / 28% 65% 35% 72%; }
+    66% { border-radius: 30% 70% 55% 45% / 72% 32% 68% 28%; }
   }
   @media (prefers-reduced-motion: reduce) {
     .glow-orb { animation: none; }
+  }
+  @media (max-width: 720px) {
+    .glow-orb, .glow-orb.f, .glow-orb.g, .glow-orb.h {
+      width: min(88vw, 480px);
+      height: min(88vw, 480px);
+      max-width: 480px;
+      max-height: 480px;
+      filter: blur(60px);
+      opacity: 0.5;
+    }
   }
 
   a { color: inherit; }
@@ -206,7 +218,7 @@
   /* ===== 섹션 공통 ===== */
   section.block { padding: clamp(3.5rem, 8vw, 6rem) 0; }
   #about { padding-top: clamp(1rem, 3vw, 1.8rem); }
-  section.block.raised { background: var(--bg-raised); }
+  section.block.raised { background: transparent; }
   .block-head { text-align: center; margin-bottom: clamp(2.2rem, 6vw, 3.2rem); }
   .block-head h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; }
   .block-head p { margin-top: 0.6rem; color: var(--text-secondary); font-size: 1.02rem; }
@@ -383,12 +395,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 4rem;
+    height: 6.5rem;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding-bottom: 0.5rem;
-    background: linear-gradient(to bottom, transparent, var(--glass-fill-strong) 65%);
+    padding-bottom: 1.3rem;
+    background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--glass-fill-strong) 55%, transparent) 45%, var(--glass-fill-strong) 88%);
     border-radius: 0 0 var(--radius) var(--radius);
     pointer-events: none;
     opacity: 1;
@@ -416,6 +428,7 @@
     flex: 0 0 auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
     padding: 1.4rem 1.8rem;
     background: var(--glass-fill);
@@ -424,20 +437,24 @@
     border-bottom: 1px solid var(--glass-border);
   }
   .dialog-head h3 { font-size: 1.1rem; font-weight: 700; }
-  .traffic-lights { display: flex; gap: 0.5rem; flex-shrink: 0; }
-  .tl {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+  .dialog-close, .lightbox-close {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
-    padding: 0;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+    border-radius: 50%;
+    background: var(--glass-fill);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
   }
-  .tl-red { background: #ff5f57; cursor: pointer; }
-  .tl-yellow { background: #febc2e; }
-  .tl-green { background: #28c840; }
-  .tl-red:hover { filter: brightness(1.12); }
-  .tl-red:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .dialog-close:hover, .lightbox-close:hover { background: var(--glass-border); color: var(--text); }
+  .dialog-close:focus-visible, .lightbox-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .dialog-body { flex: 1 1 auto; min-height: 0; padding: 0.4rem 1.8rem 1.8rem; overflow-y: auto; }
   .subproject {
     padding: 1.6rem 0;
@@ -569,7 +586,7 @@
   .lightbox-head {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: flex-end;
     padding: 1rem 1.2rem;
   }
   .lightbox-body { padding: 0 1.2rem 1.2rem; }
@@ -668,18 +685,16 @@
     .dialog-body { padding: 0.4rem 1.3rem 1.3rem; }
 
     dialog.lightbox {
-      width: 100vw;
-      height: 100dvh;
-      max-width: 100vw;
-      max-height: 100dvh;
-      border-radius: 0;
+      width: 94vw;
+      max-width: 94vw;
+      max-height: 90dvh;
     }
     dialog.lightbox[open] {
       display: flex;
       flex-direction: column;
     }
-    .lightbox-body { flex: 1 1 auto; min-height: 0; padding: 0 0.8rem 0.8rem; display: flex; align-items: center; justify-content: center; }
-    .lightbox-body img { max-height: calc(100dvh - 4.5rem); width: auto; max-width: 100%; }
+    .lightbox-body { flex: 1 1 auto; min-height: 0; padding: 0 1rem 1rem; display: flex; align-items: center; justify-content: center; }
+    .lightbox-body img { width: 100%; height: auto; max-height: calc(90dvh - 4rem); object-fit: contain; }
   }
 </style>
 
@@ -690,6 +705,8 @@
   <span class="glow-orb d"></span>
   <span class="glow-orb e"></span>
   <span class="glow-orb f"></span>
+  <span class="glow-orb g"></span>
+  <span class="glow-orb h"></span>
 </div>
 
 <nav class="nav">
@@ -841,12 +858,8 @@
 
     <dialog class="subproject-dialog" id="dlg-meritz">
       <div class="dialog-head">
-        <div class="traffic-lights">
-          <button class="tl tl-red dialog-close" type="button" aria-label="닫기"></button>
-          <span class="tl tl-yellow" aria-hidden="true"></span>
-          <span class="tl tl-green" aria-hidden="true"></span>
-        </div>
         <h3>메리츠화재 — 세부 프로젝트</h3>
+        <button class="dialog-close" type="button" aria-label="닫기">✕</button>
       </div>
       <div class="dialog-body">
         <div class="subproject reveal">
@@ -909,12 +922,8 @@
 
     <dialog class="subproject-dialog" id="dlg-elements">
       <div class="dialog-head">
-        <div class="traffic-lights">
-          <button class="tl tl-red dialog-close" type="button" aria-label="닫기"></button>
-          <span class="tl tl-yellow" aria-hidden="true"></span>
-          <span class="tl tl-green" aria-hidden="true"></span>
-        </div>
         <h3>엘리먼츠 — 세부 프로젝트</h3>
+        <button class="dialog-close" type="button" aria-label="닫기">✕</button>
       </div>
       <div class="dialog-body">
         <div class="subproject reveal">
@@ -955,12 +964,8 @@
 
     <dialog class="subproject-dialog" id="dlg-naver">
       <div class="dialog-head">
-        <div class="traffic-lights">
-          <button class="tl tl-red dialog-close" type="button" aria-label="닫기"></button>
-          <span class="tl tl-yellow" aria-hidden="true"></span>
-          <span class="tl tl-green" aria-hidden="true"></span>
-        </div>
         <h3>네이버클라우드 — 세부 프로젝트</h3>
+        <button class="dialog-close" type="button" aria-label="닫기">✕</button>
       </div>
       <div class="dialog-body">
         <div class="subproject reveal">
@@ -1161,11 +1166,7 @@
 
     <dialog class="lightbox" id="dlg-lightbox">
       <div class="lightbox-head">
-        <div class="traffic-lights">
-          <button class="tl tl-red lightbox-close" type="button" aria-label="닫기"></button>
-          <span class="tl tl-yellow" aria-hidden="true"></span>
-          <span class="tl tl-green" aria-hidden="true"></span>
-        </div>
+        <button class="lightbox-close" type="button" aria-label="닫기">✕</button>
       </div>
       <div class="lightbox-body">
         <img id="lightbox-img" src="" alt="확대된 이미지">
