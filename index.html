@@ -1,5 +1,5 @@
-<title>이서준</title>
-<meta name="description" content="프로덕트 디자이너 이서준의 포트폴리오. 작업물, 경력, 연락처를 소개합니다.">
+<title>위선영</title>
+<meta name="description" content="위선영의 포트폴리오. 경력, 프로젝트, 학력, 스킬을 소개합니다.">
 
 <style>
   /* ===== 색상 · 타이포 토큰 (라이트 기본, 다크가 메인 무드) ===== */
@@ -12,6 +12,7 @@
     --accent-tint: #e8f1fd;
     --line: #d2d2d7;
     --shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.18);
+    --meter-off: #d2d2d7;
 
     --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
       "Apple SD Gothic Neo", "Noto Sans KR", Helvetica, Arial, sans-serif;
@@ -30,6 +31,7 @@
       --accent-tint: #0e2643;
       --line: #38383a;
       --shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+      --meter-off: #38383a;
     }
   }
 
@@ -42,6 +44,7 @@
     --accent-tint: #0e2643;
     --line: #38383a;
     --shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+    --meter-off: #38383a;
   }
 
   * { box-sizing: border-box; }
@@ -62,6 +65,7 @@
   a { color: inherit; }
   p { margin: 0; }
   h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+  ul { margin: 0; padding: 0; list-style: none; }
 
   .container {
     max-width: 74rem;
@@ -69,7 +73,7 @@
     padding: 0 var(--gutter);
   }
 
-  /* ===== 내비게이션 (프로스티드 글래스) ===== */
+  /* ===== 내비게이션 ===== */
   .nav {
     position: sticky;
     top: 0;
@@ -96,11 +100,8 @@
   }
   .nav-links {
     display: flex;
-    gap: clamp(1rem, 2.5vw, 2rem);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-size: 0.82rem;
+    gap: clamp(0.9rem, 2.2vw, 1.7rem);
+    font-size: 0.8rem;
     color: var(--text-secondary);
   }
   .nav-links a { text-decoration: none; transition: color 0.2s ease; }
@@ -109,9 +110,18 @@
   /* ===== 히어로 ===== */
   .hero {
     text-align: center;
-    padding: clamp(4.5rem, 14vw, 8rem) var(--gutter) clamp(3rem, 8vw, 5rem);
+    padding: clamp(3.5rem, 12vw, 6.5rem) var(--gutter) clamp(3rem, 8vw, 5rem);
     max-width: 56rem;
     margin: 0 auto;
+  }
+  .hero-photo {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.6rem;
+    display: block;
+    border: 1px solid var(--line);
   }
   .hero-eyebrow {
     display: block;
@@ -121,14 +131,14 @@
     margin-bottom: 0.9rem;
   }
   .hero h1 {
-    font-size: clamp(2.6rem, 7vw, 4.6rem);
+    font-size: clamp(2.4rem, 6.5vw, 4.2rem);
     font-weight: 700;
-    line-height: 1.08;
+    line-height: 1.12;
   }
   .hero-sub {
     margin: 1.4rem auto 0;
-    max-width: 38ch;
-    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    max-width: 42ch;
+    font-size: clamp(1.02rem, 2vw, 1.22rem);
     color: var(--text-secondary);
     font-weight: 400;
   }
@@ -154,31 +164,45 @@
   .fact-pill a:hover { color: var(--accent); }
 
   /* ===== 섹션 공통 ===== */
-  section.block { padding: clamp(4rem, 9vw, 6.5rem) 0; }
+  section.block { padding: clamp(3.5rem, 8vw, 6rem) 0; }
   section.block.raised { background: var(--bg-raised); }
-  .block-head { text-align: center; margin-bottom: clamp(2.4rem, 6vw, 3.5rem); }
-  .block-head h2 {
-    font-size: clamp(1.9rem, 4vw, 2.6rem);
-    font-weight: 700;
-  }
-  .block-head p {
-    margin-top: 0.6rem;
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-  }
+  .block-head { text-align: center; margin-bottom: clamp(2.2rem, 6vw, 3.2rem); }
+  .block-head h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; }
+  .block-head p { margin-top: 0.6rem; color: var(--text-secondary); font-size: 1.02rem; }
 
   /* ===== About ===== */
   .about-text {
     max-width: var(--measure);
     margin: 0 auto;
     text-align: center;
-    font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+    font-size: clamp(1.15rem, 2.4vw, 1.42rem);
     font-weight: 600;
-    line-height: 1.45;
+    line-height: 1.5;
   }
   .about-text .dim { color: var(--text-secondary); font-weight: 400; }
 
-  /* ===== Work ===== */
+  /* ===== 타임라인 (경력 · 학력) ===== */
+  .timeline { max-width: 46rem; margin: 0 auto; }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .timeline-row:first-child { border-top: none; }
+  .timeline-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.2rem;
+  }
+  .timeline-role { font-size: 1.08rem; font-weight: 700; }
+  .timeline-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; }
+  .timeline-desc { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.6rem; }
+  .timeline-desc strong { color: var(--text); font-weight: 600; }
+
+  /* ===== 프로젝트 카드 ===== */
   .work-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
@@ -193,17 +217,17 @@
     flex-direction: column;
     gap: 0.85rem;
     box-shadow: var(--shadow);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease;
   }
   section.block.raised .work-card { background: var(--bg); }
   .work-card:hover { transform: translateY(-4px); }
-  .work-num {
+  .work-meta {
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--accent);
   }
-  .work-card h3 { font-size: 1.25rem; font-weight: 700; }
-  .work-card p { color: var(--text-secondary); font-size: 0.95rem; }
+  .work-card h3 { font-size: 1.2rem; font-weight: 700; }
+  .work-card p { color: var(--text-secondary); font-size: 0.94rem; }
   .work-tags { margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.4rem; padding-top: 0.5rem; }
   .tag {
     font-size: 0.72rem;
@@ -214,81 +238,80 @@
     color: var(--accent);
   }
 
-  /* ===== Experience ===== */
-  .exp-list { max-width: 44rem; margin: 0 auto; }
-  .exp-row {
-    display: grid;
-    grid-template-columns: 8rem 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem 0;
+  /* ===== 산학협력 프로젝트 리스트 ===== */
+  .mini-list {
+    max-width: 46rem;
+    margin: 2.2rem auto 0;
     border-top: 1px solid var(--line);
   }
-  .exp-row:first-child { border-top: none; }
-  .exp-date {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-variant-numeric: tabular-nums;
-    padding-top: 0.2rem;
+  .mini-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.92rem;
   }
-  .exp-role { font-size: 1.1rem; font-weight: 700; }
-  .exp-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; }
-  .exp-desc { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.6rem; }
+  .mini-row .name { font-weight: 600; }
+  .mini-row .scope { color: var(--text-secondary); }
+  .mini-row .when { color: var(--text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-  /* ===== Skills ===== */
+  /* ===== 활동 ===== */
+  .activity-list {
+    max-width: 46rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+  .activity-item { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.9rem; }
+  .activity-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    margin-top: 0.55rem;
+  }
+  .activity-title { font-weight: 700; font-size: 1rem; }
+  .activity-desc { color: var(--text-secondary); font-size: 0.94rem; margin-top: 0.3rem; }
+
+  /* ===== 스킬 ===== */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: 2.2rem;
-    max-width: 50rem;
+    max-width: 54rem;
     margin: 0 auto;
   }
-  .skill-group { text-align: center; }
   .skill-group h3 {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 700;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     margin-bottom: 1rem;
   }
-  .skill-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
-  .chip {
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    padding: 0.4rem 0.85rem;
-    font-size: 0.88rem;
-    font-weight: 500;
+  .skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
   }
+  .skill-name { font-size: 0.92rem; font-weight: 500; }
+  .meter { display: flex; gap: 3px; }
+  .meter span {
+    width: 14px; height: 6px; border-radius: 3px;
+    background: var(--meter-off);
+  }
+  .meter span.on { background: var(--accent); }
 
   /* ===== Contact ===== */
-  .contact-block { text-align: center; padding: clamp(4.5rem, 10vw, 7rem) 0; }
-  .contact-block h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    max-width: 22ch;
-    margin: 0 auto;
-  }
-  .contact-block p {
-    margin: 1.1rem auto 0;
-    max-width: 46ch;
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-  }
-  .contact-actions {
-    margin-top: 2.2rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.9rem;
-  }
+  .contact-block { text-align: center; padding: clamp(4rem, 10vw, 6.5rem) 0; }
+  .contact-block h2 { font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 700; max-width: 22ch; margin: 0 auto; }
+  .contact-block p { margin: 1.1rem auto 0; max-width: 46ch; color: var(--text-secondary); font-size: 1.02rem; }
+  .contact-actions { margin-top: 2.2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; }
   .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.75rem 1.6rem;
-    border-radius: 999px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-decoration: none;
+    display: inline-flex; align-items: center; padding: 0.75rem 1.6rem;
+    border-radius: 999px; font-size: 0.95rem; font-weight: 600; text-decoration: none;
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
   .btn:hover { transform: translateY(-1px); opacity: 0.85; }
@@ -308,7 +331,6 @@
     border-top: 1px solid var(--line);
   }
 
-  /* ===== 스크롤 등장 ===== */
   .reveal { opacity: 0; transform: translateY(18px) scale(0.985); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.is-visible { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
@@ -316,152 +338,271 @@
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
   @media (max-width: 720px) {
-    .exp-row { grid-template-columns: 1fr; gap: 0.3rem; }
-    .nav-links { font-size: 0.76rem; gap: 0.8rem; }
+    .timeline-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .nav-links { font-size: 0.74rem; gap: 0.7rem; }
+    .mini-row { grid-template-columns: 1fr; }
   }
 </style>
 
 <nav class="nav">
   <div class="nav-row">
-    <a class="nav-mark" href="#hero">이서준</a>
+    <a class="nav-mark" href="#hero">위선영</a>
     <ul class="nav-links">
       <li><a href="#about">소개</a></li>
-      <li><a href="#work">작업물</a></li>
       <li><a href="#experience">경력</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#education">학력·활동</a></li>
       <li><a href="#skills">스킬</a></li>
       <li><a href="#contact">연락처</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- ===== 히어로: 이름은 내비게이션에 있으니 여기선 한 줄 소개로 시작 ===== -->
 <header class="hero" id="hero">
-  <span class="hero-eyebrow">Product Designer</span>
-  <h1>생각을, 화면 위의<br>경험으로 옮깁니다.</h1>
-  <p class="hero-sub">사용자의 행동을 관찰하는 것에서 시작해, 화면 위의 작은 결정까지 직접 만듭니다.</p>
+  <img class="hero-photo" src="assets/profile.jpg" alt="위선영 프로필 사진">
+  <span class="hero-eyebrow">Strategy · Product Planning</span>
+  <h1>전략적 사고와 창의력으로,<br>올라운더로 성장합니다.</h1>
+  <p class="hero-sub">소비재 브랜드, 벤처캐피탈, 극초기 IT 스타트업까지 — 다양한 현장에서 기획과 실행의 감각을 쌓아왔습니다.</p>
   <div class="hero-facts">
-    <span class="fact-pill">서울, 대한민국</span>
-    <span class="fact-pill">(주)그린테이블 · 재직 중</span>
-    <span class="fact-pill"><a href="mailto:hello@example.com">hello@example.com</a></span>
+    <span class="fact-pill">Seoul, South Korea</span>
+    <span class="fact-pill">근무 경험 1년 2개월+</span>
+    <span class="fact-pill"><a href="mailto:wsy6699@naver.com">wsy6699@naver.com</a></span>
   </div>
 </header>
 
 <main>
-  <!-- ===== 소개 ===== -->
   <section class="block" id="about">
     <div class="container">
       <p class="about-text reveal">
-        6년째 디자인과 코드 사이를 오가며 일합니다.
-        <span class="dim">리서치, 프로토타입, 디자인 시스템, 프론트엔드 구현까지 —
-        아이디어가 실제로 쓰이는 제품이 되는 과정 전체에 관여하는 걸 좋아합니다.</span>
+        전략적 사고와 풍부한 창의력을 바탕으로 올라운더 인재가 되고 싶은 위선영입니다.
+        <span class="dim">소비재 브랜드, 벤처캐피탈, 극초기 IT 스타트업 창업 등 다양한 기업에서의 직무 경험을 바탕으로 성장 중입니다.</span>
       </p>
     </div>
   </section>
 
-  <!-- ===== 작업물 ===== -->
-  <section class="block raised" id="work">
+  <!-- ===== 경력 ===== -->
+  <section class="block raised" id="experience">
     <div class="container">
       <div class="block-head">
-        <h2>작업물</h2>
-        <p>최근에 진행한 프로젝트 세 가지</p>
+        <h2>경력</h2>
+        <p>근무 경험(인턴 포함) 1년 2개월+</p>
       </div>
-      <div class="work-grid">
-        <article class="work-card reveal">
-          <span class="work-num">No. 01</span>
-          <h3>그린테이블 — 주문 플랫폼 리디자인</h3>
-          <p>배달 주문 전환율을 높이기 위해 결제 흐름과 메뉴 탐색 구조를 새로 설계했습니다. 전환율 18% 개선.</p>
-          <div class="work-tags">
-            <span class="tag">Figma</span>
-            <span class="tag">Design System</span>
-            <span class="tag">React</span>
+      <div class="timeline reveal">
+        <div class="timeline-row">
+          <span class="timeline-date">2024.03 — 재직중</span>
+          <div>
+            <div class="timeline-role">교육운영 서포터 (아르바이트)</div>
+            <div class="timeline-org">지명컨설팅 · 교육운영팀</div>
+            <p class="timeline-desc">
+              제약·바이오 직무교육 프로그램의 On/Off-line 운영을 지원했습니다.
+              설문 참여율이 20%를 밑도는 것을 확인하고 마지막 쉬는 시간에 참여를 독려하는 방식을 제안해
+              <strong>참여율을 91%까지 끌어올렸습니다.</strong>
+            </p>
           </div>
-        </article>
-        <article class="work-card reveal">
-          <span class="work-num">No. 02</span>
-          <h3>루틴노트 — 습관 관리 앱</h3>
-          <p>혼자 기획, 디자인, 개발까지 진행한 개인 프로젝트. 출시 3개월 만에 사용자 4,000명 확보.</p>
-          <div class="work-tags">
-            <span class="tag">React Native</span>
-            <span class="tag">Firebase</span>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-date">2022.11 — 2023.06</span>
+          <div>
+            <div class="timeline-role">초기창업멤버</div>
+            <div class="timeline-org">엘리먼츠 (Elements) · LLM 기반 스타트업</div>
+            <p class="timeline-desc">
+              웹/앱 서비스 기획, 화면기획서·기능정의서 작성, UI/UX 와이어프레임 제작, 개발자 채용 공고 및 일정 조율을 담당했습니다.
+              <strong>창업중심대학 초기창업패키지, TIPS 지원사업</strong>에 선정되는 데 기여했습니다.
+            </p>
           </div>
-        </article>
-        <article class="work-card reveal">
-          <span class="work-num">No. 03</span>
-          <h3>카페 소보 — 브랜드 아이덴티티</h3>
-          <p>동네 카페의 로고, 패키지, 사이니지를 아우르는 브랜딩 작업. 인쇄물부터 웹까지 톤을 통일했습니다.</p>
-          <div class="work-tags">
-            <span class="tag">Branding</span>
-            <span class="tag">Illustration</span>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-date">2022.06 — 2022.08</span>
+          <div>
+            <div class="timeline-role">투자팀 인턴</div>
+            <div class="timeline-org">비에이파트너스 · 벤처캐피탈</div>
+            <p class="timeline-desc">
+              신규 펀드 결성 시기에 펀드 규약 대조표와 영업보고 장표를 제작했습니다.
+              매주 규약을 찾아보는 데 시간이 낭비되는 것을 보고 규약대조표를 직접 만들어
+              <strong>주간회의 시간을 단축</strong>시켰고, 투자심사보고서 작성과 IR 회의록 작성을 보조했습니다.
+            </p>
           </div>
-        </article>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-date">2022.01 — 2022.04</span>
+          <div>
+            <div class="timeline-role">신사업기획 인턴</div>
+            <div class="timeline-org">엔라이즈 (Nlize) · 건강기능식품 브랜드</div>
+            <p class="timeline-desc">
+              영양제 추천 서비스 'GOYO LAB' 런칭을 상위기획부터 개발 착수 단계까지 담당했습니다.
+              사업 타당성·규제 검토, SKU 선별, 화면 기획서 작성을 거쳐
+              팀에 디자이너가 없어 <strong>Figma를 독학해 UI 디자인까지 직접 수행</strong>했습니다.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 경력 ===== -->
-  <section class="block" id="experience">
+  <!-- ===== 프로젝트 ===== -->
+  <section class="block" id="projects">
     <div class="container">
       <div class="block-head">
-        <h2>경력</h2>
+        <h2>프로젝트</h2>
+        <p>기획부터 실행까지 참여한 대표 프로젝트</p>
       </div>
-      <div class="exp-list reveal">
-        <div class="exp-row">
-          <span class="exp-date">2023 — 현재</span>
-          <div>
-            <div class="exp-role">프로덕트 디자이너</div>
-            <div class="exp-org">(주)그린테이블</div>
-            <p class="exp-desc">디자인 시스템 구축을 주도하고, 신규 주문 플로우의 UX를 처음부터 설계했습니다.</p>
+      <div class="work-grid">
+        <article class="work-card reveal">
+          <span class="work-meta">2022.11 — 2023.06 · 엘리먼츠</span>
+          <h3>'그들의 생기부' 창업</h3>
+          <p>생활기록부 열람 서비스의 창업멤버로 컨셉 기획부터 검색 로직 설계, 개발자 채용, IR까지 서비스 런칭 전 과정에 참여했습니다.</p>
+          <div class="work-tags">
+            <span class="tag">서비스 기획</span>
+            <span class="tag">IR</span>
+            <span class="tag">채용</span>
           </div>
-        </div>
-        <div class="exp-row">
-          <span class="exp-date">2021 — 2023</span>
-          <div>
-            <div class="exp-role">UI/UX 디자이너</div>
-            <div class="exp-org">스튜디오 헤이즐</div>
-            <p class="exp-desc">여러 클라이언트사의 앱/웹 프로젝트를 동시에 진행하며 빠른 프로토타이핑 프로세스를 정립했습니다.</p>
+        </article>
+        <article class="work-card reveal">
+          <span class="work-meta">2022.05 — 2023.06 · LG전자</span>
+          <h3>신규 Screen 디바이스 컨셉 제안</h3>
+          <p>Z세대 행동 분석을 기반으로 새로운 디바이스 컨셉과 스펙을 구체화하고, 사업화 방안까지 기획했습니다.</p>
+          <div class="work-tags">
+            <span class="tag">산학협력</span>
+            <span class="tag">컨셉 기획</span>
           </div>
+        </article>
+        <article class="work-card reveal">
+          <span class="work-meta">2023.09 · 엘리먼츠</span>
+          <h3>TIPS 지원사업 IR 외주</h3>
+          <p>단기 프리랜서로 LLM 산업 및 제품 기술 리서치를 수행하고 TIPS 지원사업용 IR 자료를 제작해 <strong>선정까지</strong> 이끌었습니다.</p>
+          <div class="work-tags">
+            <span class="tag">리서치</span>
+            <span class="tag">IR</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="mini-list reveal">
+        <div class="mini-row">
+          <span class="name">CJ SID 산학협력프로젝트 <span class="scope">— 계약수행, 산업분석</span></span>
+          <span class="when">2022.09</span>
         </div>
-        <div class="exp-row">
-          <span class="exp-date">2019 — 2021</span>
+        <div class="mini-row">
+          <span class="name">두산로보틱스 산학협력프로젝트 <span class="scope">— 신사업발굴, 타당성검토</span></span>
+          <span class="when">2021.10</span>
+        </div>
+        <div class="mini-row">
+          <span class="name">카카오인베스트먼트 산학협력프로젝트 <span class="scope">— 기업분석, 트렌드발굴</span></span>
+          <span class="when">2021.10</span>
+        </div>
+        <div class="mini-row">
+          <span class="name">엔라이즈 × 프랙시스캐피탈 산학협력프로젝트 <span class="scope">— 플랫폼서비스기획</span></span>
+          <span class="when">2021.10</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 학력 · 활동 ===== -->
+  <section class="block raised" id="education">
+    <div class="container">
+      <div class="block-head">
+        <h2>학력 · 활동</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline-row">
+          <span class="timeline-date">2019.03 — 2024.08</span>
           <div>
-            <div class="exp-role">주니어 디자이너</div>
-            <div class="exp-org">프리랜서</div>
-            <p class="exp-desc">소규모 브랜드의 로고와 웹사이트 작업을 통해 디자인의 기본기를 다졌습니다.</p>
+            <div class="timeline-role">서울대학교</div>
+            <div class="timeline-org">교육학 · 벤처경영학 전공</div>
+            <p class="timeline-desc">컴퓨터 개념 및 실습(Python, SQL), 창업론실습, 재무관리, 경영정보론, 벤처창업웹프로그래밍(PHP) 등을 통해 경영과 벤처 생태계에 대한 식견을 넓혔습니다.</p>
           </div>
         </div>
       </div>
+
+      <ul class="activity-list reveal" style="margin-top: 2.6rem;">
+        <li class="activity-item">
+          <span class="activity-dot"></span>
+          <div>
+            <div class="activity-title">서울대학교 경영전략학회 N-CEO (2021.09 — 2022.12)</div>
+            <p class="activity-desc">콘텐츠, 벤처캐피탈, 에듀테크, 로보틱스 등 다양한 산업군 기업의 문제 해결을 위한 경영전략 세션을 매주 수행했습니다.</p>
+          </div>
+        </li>
+        <li class="activity-item">
+          <span class="activity-dot"></span>
+          <div>
+            <div class="activity-title">LG전자 ESG 아카데미 7기 우수 조 수료 (2021.07 — 2021.11)</div>
+            <p class="activity-desc">환경·사회 문제 해결안을 고안하고 ESG 우수기업 사례를 분석했습니다.</p>
+          </div>
+        </li>
+        <li class="activity-item">
+          <span class="activity-dot"></span>
+          <div>
+            <div class="activity-title">프로네시스 나눔실천단 집행부 (2020.09 — 2021.08, 봉사 113시간)</div>
+            <p class="activity-desc">고등학교 교육봉사 기획·집행(팀장/부팀장)과 소외계층 1:1 수학·진로 멘토링을 진행했습니다.</p>
+          </div>
+        </li>
+        <li class="activity-item">
+          <span class="activity-dot"></span>
+          <div>
+            <div class="activity-title">서울대학교 교육학과 학생부회장 (2019.12 — 2020.12)</div>
+            <p class="activity-desc">과 집행부장으로 학과 사업 기획과 홍보를 총괄했습니다.</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 
   <!-- ===== 스킬 ===== -->
-  <section class="block raised" id="skills">
+  <section class="block" id="skills">
     <div class="container">
       <div class="block-head">
         <h2>스킬</h2>
+        <p>영어 · TOEIC Speaking Test IH</p>
       </div>
       <div class="skills-grid reveal">
         <div class="skill-group">
+          <h3>Collaboration</h3>
+          <div class="skill-row">
+            <span class="skill-name">Notion</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Slack</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Confluence</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
+          </div>
+        </div>
+        <div class="skill-group">
           <h3>Design</h3>
-          <div class="skill-chips">
-            <span class="chip">Figma</span>
-            <span class="chip">Design Systems</span>
-            <span class="chip">Prototyping</span>
+          <div class="skill-row">
+            <span class="skill-name">Figma</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Illustrator</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Photoshop</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Premiere</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
           </div>
         </div>
         <div class="skill-group">
-          <h3>Front-end</h3>
-          <div class="skill-chips">
-            <span class="chip">HTML / CSS</span>
-            <span class="chip">React</span>
-            <span class="chip">TypeScript</span>
+          <h3>OA</h3>
+          <div class="skill-row">
+            <span class="skill-name">Excel</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
           </div>
-        </div>
-        <div class="skill-group">
-          <h3>Tools</h3>
-          <div class="skill-chips">
-            <span class="chip">Notion</span>
-            <span class="chip">Git</span>
-            <span class="chip">After Effects</span>
+          <div class="skill-row">
+            <span class="skill-name">Word</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">PowerPoint</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span>
           </div>
         </div>
       </div>
@@ -472,11 +613,10 @@
   <section class="contact-block" id="contact">
     <div class="container">
       <div class="reveal">
-        <h2>같이 만들어볼 프로젝트가 있다면</h2>
-        <p>새로운 작업이나 협업 제안은 언제든 환영합니다.</p>
+        <h2>새로운 기회에 열려 있습니다</h2>
+        <p>전략, 기획, 프로덕트 관련 제안은 언제든 환영합니다. 이메일로 편하게 연락 주세요.</p>
         <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:hello@example.com">이메일 보내기</a>
-          <a class="btn btn-ghost" href="#">이력서 다운로드</a>
+          <a class="btn btn-primary" href="mailto:wsy6699@naver.com">이메일 보내기</a>
         </div>
       </div>
     </div>
@@ -484,7 +624,7 @@
 </main>
 
 <footer>
-  <span>© 2026 Lee Seojun</span>
+  <span>© 2026 Wi Seonyeong</span>
   <span>Seoul, KR</span>
 </footer>
 
