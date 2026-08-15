@@ -4,21 +4,21 @@
 <meta name="robots" content="noindex, nofollow">
 
 <style>
-  /* ===== 색상 · 타이포 토큰 (라이트 기본, 다크가 메인 무드) ===== */
+  /* ===== 색상 · 타이포 토큰 (다크 고정 — 소프트 블랙 톤) ===== */
   :root {
-    --bg: #ffffff;
-    --bg-raised: #f5f5f7;
-    --text: #1d1d1f;
-    --text-secondary: #6e6e73;
-    --accent: #0071e3;
-    --accent-tint: #e8f1fd;
-    --line: #d2d2d7;
-    --shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.18);
-    --meter-off: #d2d2d7;
-    --glass-fill: rgba(255, 255, 255, 0.55);
-    --glass-fill-strong: rgba(255, 255, 255, 0.72);
-    --glass-border: rgba(0, 0, 0, 0.08);
-    --glass-highlight: rgba(255, 255, 255, 0.5);
+    --bg: #0b0b0d;
+    --bg-raised: #18181b;
+    --text: #f5f5f7;
+    --text-secondary: #9b9ba1;
+    --accent: #2997ff;
+    --accent-tint: #12263f;
+    --line: #2c2c30;
+    --shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.65);
+    --meter-off: #333338;
+    --glass-fill: rgba(42, 42, 46, 0.48);
+    --glass-fill-strong: rgba(46, 46, 50, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-highlight: rgba(255, 255, 255, 0.16);
     --glass-blur: 24px;
 
     --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
@@ -26,40 +26,6 @@
     --measure: 60ch;
     --gutter: clamp(1.25rem, 5vw, 4rem);
     --radius: 22px;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #000000;
-      --bg-raised: #1c1c1e;
-      --text: #f5f5f7;
-      --text-secondary: #98989d;
-      --accent: #2997ff;
-      --accent-tint: #0e2643;
-      --line: #38383a;
-      --shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
-      --meter-off: #38383a;
-      --glass-fill: rgba(40, 40, 42, 0.45);
-      --glass-fill-strong: rgba(44, 44, 46, 0.68);
-      --glass-border: rgba(255, 255, 255, 0.14);
-      --glass-highlight: rgba(255, 255, 255, 0.16);
-    }
-  }
-
-  :root[data-theme="dark"] {
-    --bg: #000000;
-    --bg-raised: #1c1c1e;
-    --text: #f5f5f7;
-    --text-secondary: #98989d;
-    --accent: #2997ff;
-    --accent-tint: #0e2643;
-    --line: #38383a;
-    --shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
-    --meter-off: #38383a;
-    --glass-fill: rgba(40, 40, 42, 0.45);
-    --glass-fill-strong: rgba(44, 44, 46, 0.68);
-    --glass-border: rgba(255, 255, 255, 0.14);
-    --glass-highlight: rgba(255, 255, 255, 0.16);
   }
 
   * { box-sizing: border-box; }
@@ -97,21 +63,11 @@
     background: var(--accent);
     filter: blur(110px);
   }
-  .glow-orb.a { top: -8%; left: -12%; opacity: 0.22; }
-  .glow-orb.b { top: 22%; right: -14%; opacity: 0.14; }
-  .glow-orb.c { top: 48%; left: -10%; opacity: 0.16; }
-  .glow-orb.d { top: 72%; right: -12%; opacity: 0.14; }
-  .glow-orb.e { top: 92%; left: 20%; opacity: 0.12; }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .glow-orb { opacity: 0.3; }
-    :root:not([data-theme="light"]) .glow-orb.b,
-    :root:not([data-theme="light"]) .glow-orb.d,
-    :root:not([data-theme="light"]) .glow-orb.e { opacity: 0.22; }
-  }
-  :root[data-theme="dark"] .glow-orb { opacity: 0.3; }
-  :root[data-theme="dark"] .glow-orb.b,
-  :root[data-theme="dark"] .glow-orb.d,
-  :root[data-theme="dark"] .glow-orb.e { opacity: 0.22; }
+  .glow-orb.a { top: -8%; left: -12%; opacity: 0.3; }
+  .glow-orb.b { top: 22%; right: -14%; opacity: 0.22; }
+  .glow-orb.c { top: 48%; left: -10%; opacity: 0.24; }
+  .glow-orb.d { top: 72%; right: -12%; opacity: 0.22; }
+  .glow-orb.e { top: 92%; left: 20%; opacity: 0.18; }
 
   a { color: inherit; }
   p { margin: 0; }
