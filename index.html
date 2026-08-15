@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>위선영</title>
 <meta name="description" content="위선영의 포트폴리오. 경력, 프로젝트, 학력, 스킬을 소개합니다.">
 <meta name="robots" content="noindex, nofollow">
@@ -87,11 +88,13 @@
   .nav-row {
     max-width: 74rem;
     margin: 0 auto;
-    padding: 0 var(--gutter);
-    height: 3.2rem;
+    padding: 0.7rem var(--gutter);
+    min-height: 3.2rem;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: 0.4rem 1rem;
   }
   .nav-mark {
     font-size: 0.95rem;
@@ -111,7 +114,7 @@
   /* ===== 히어로 ===== */
   .hero {
     text-align: center;
-    padding: clamp(3.5rem, 12vw, 6.5rem) var(--gutter) clamp(3rem, 8vw, 5rem);
+    padding: clamp(3.5rem, 12vw, 6.5rem) var(--gutter) clamp(1.5rem, 4vw, 2.5rem);
     max-width: 56rem;
     margin: 0 auto;
   }
@@ -157,6 +160,7 @@
 
   /* ===== 섹션 공통 ===== */
   section.block { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+  #about { padding-top: clamp(1rem, 3vw, 1.8rem); }
   section.block.raised { background: var(--bg-raised); }
   .block-head { text-align: center; margin-bottom: clamp(2.2rem, 6vw, 3.2rem); }
   .block-head h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; }
@@ -419,6 +423,9 @@
     .job-bullets { padding-left: 1rem; }
     .subproject-trigger { margin-left: 1rem; }
     .nav-links { font-size: 0.74rem; gap: 0.7rem; }
+    dialog.subproject-dialog { width: 94vw; max-height: 86vh; }
+    .dialog-head { padding: 1.2rem 1.3rem; }
+    .dialog-body { padding: 0.4rem 1.3rem 1.3rem; }
   }
 </style>
 
@@ -436,12 +443,11 @@
 </nav>
 
 <header class="hero" id="hero">
-  <span class="hero-eyebrow">Strategy · AI Service Planning</span>
   <h1>위선영</h1>
   <p class="hero-sub">교육학과 벤처경영학을 함께 공부하며, 서비스 기획과 AI 사이에서 성장하고 있습니다.</p>
   <div class="hero-facts">
     <span class="fact-pill">Seoul, South Korea</span>
-    <span class="fact-pill">메리츠화재 · Associate</span>
+    <span class="fact-pill">메리츠화재 · CRM &amp; Data Analyst</span>
     <span class="fact-pill"><a href="mailto:rosywi006@gmail.com">rosywi006@gmail.com</a></span>
   </div>
 </header>
@@ -468,7 +474,7 @@
           <summary>
             <span class="job-date">2025.01 — 현재</span>
             <div class="job-heading">
-              <div class="job-role">Associate</div>
+              <div class="job-role">CRM &amp; Data Analyst</div>
               <div class="job-org">메리츠화재 · 정규직 · Partners Marketing part</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
@@ -477,8 +483,9 @@
             <li>온라인 플랫폼 기반 N잡러 파트너스 유치 신사업 조직 소속, <strong>B2C·B2B 성격을 모두 가진</strong> 파트너스 사업의 전략 수립 및 성과 분석 담당</li>
             <li>모집퍼널 초입 단계(콜센터 통합동의 → 멘토 배정) 숙성·전환 효율 개선 및 사업지표 분석 (<strong>Tableau</strong> 활용, 2025.01–09)</li>
             <li>매출팀 이동 후 CRM 담당: <strong>Obzen CDP 기반 캠페인 마트 구축</strong>, 세그먼트별 대상추출 쿼리·개인화 변수 설계</li>
-            <li>학습 이탈 패턴(A/B/C군) 분석 기반 <strong>CRM 체계 개편</strong> — 마케팅CRM↔학습CRM 순환 구조 설계 (2025.10–현재)</li>
+            <li>가설 기반 CRM 캠페인 6종 설계·발송·분석 — 체결대기 넛지 캠페인 <strong>CTR 최고 19.5%</strong> 달성, 설계사→지점장 2단 구조로 CRM 확장 (2025.10–현재)</li>
           </ul>
+          <button class="subproject-trigger" type="button" data-dialog="dlg-meritz">세부 프로젝트 보기 →</button>
         </details>
         <details class="job-item">
           <summary>
@@ -562,6 +569,53 @@
         </details>
       </div>
     </div>
+
+    <dialog class="subproject-dialog" id="dlg-meritz">
+      <div class="dialog-head">
+        <h3>메리츠화재 — 세부 프로젝트</h3>
+        <button class="dialog-close" type="button" aria-label="닫기">×</button>
+      </div>
+      <div class="dialog-body">
+        <div class="subproject">
+          <div class="subproject-period">2025.01 — 2025.09</div>
+          <h4>모집퍼널 초입 전환 효율 개선</h4>
+          <dl>
+            <dt>배경</dt>
+            <dd>온라인 채널을 통한 신규 파트너스(설계사) 모집이 핵심 과제였는데, 초입 단계(콜센터 통합동의 → 멘토 배정)에서 이탈이 발생하고 있어 원인 진단이 필요했습니다.</dd>
+            <dt>활동</dt>
+            <dd>모집퍼널 초입 단계의 전환 효율을 Tableau로 대시보드화하고, 병목 구간을 진단해 운영 프로세스를 개선했습니다.</dd>
+            <dt>기른 역량</dt>
+            <dd class="pending">추후 작성 예정</dd>
+            <dt>회고</dt>
+            <dd class="pending">추후 작성 예정</dd>
+            <dt>임팩트</dt>
+            <dd class="pending">추후 작성 예정</dd>
+          </dl>
+        </div>
+        <div class="subproject">
+          <div class="subproject-period">2025.10 — 현재</div>
+          <h4>가설 기반 CRM 캠페인 설계·운영</h4>
+          <dl>
+            <dt>배경</dt>
+            <dd>매출팀으로 이동해 CRM을 전담하게 되며, 설계사의 실제 행동 데이터를 근거로 가설을 세우고 검증하는 방식으로 캠페인을 설계하고자 했습니다.</dd>
+            <dt>활동</dt>
+            <dd>매달 여러 건의 가설 기반 CRM 캠페인을 직접 설계·발송·분석했습니다. 대표적으로,
+              <br>— <strong>계약체결 대기 넛지</strong>: 가계약 승인 후 미체결 상태를 감지해 자동 발송 → CTR 7~19.5%(6개 캠페인 중 최고 반응률)
+              <br>— <strong>보장분석(MEAI) 미조회 리마인드</strong>: 손실 프레이밍 메시지 → 저활동 세그먼트 특성상 CTR 0~3.3%에 그침, 카피·타이밍 개선 필요성 진단
+              <br>— <strong>등록+MEAI대화 결합 리워드 이벤트</strong>: 신규고객 849명 중 MEAI 조회 45.5%, 추가대화 32.4% 달성, ACTIVE 세그먼트에서 더 강하게 반응(49.2% vs 31.7%)
+              <br>— <strong>지점장 알림</strong>: 설계사 단일 타겟에서 설계사→지점장 2단 구조로 CRM을 확장, 컴플라이언스 제약 속에서 '전달 대상 구조'를 실험 축으로 활용
+              <br>— <strong>마감 임박 프레이밍</strong>: 동일 문구 반복 발송 시 CTR이 5.3%→1.7%로 급감하는 것을 확인
+            </dd>
+            <dt>기른 역량</dt>
+            <dd>가설→설계→발송→분석 전체 사이클을 스스로 운영하는 캠페인 기획력, Oracle SQL로 대상군을 직접 추출하고 Tableau로 성과를 리포팅하는 데이터 역량, 컴플라이언스 제약이 큰 환경에서 실험 축을 유연하게 바꾸는 문제해결력을 길렀습니다.</dd>
+            <dt>회고</dt>
+            <dd>동일 세그먼트에 같은 카피를 반복 발송하면 반응률이 빠르게 감소한다는 것을 확인했는데, 다시 한다면 초반부터 카피 로테이션 설계를 더 촘촘히 준비하고 싶습니다.</dd>
+            <dt>임팩트</dt>
+            <dd>6개 캠페인 중 최고 반응률(CTR 최대 19.5%) 캠페인을 포함해 퍼널 진단의 실질적 근거 데이터를 축적했고, 설계사 CRM을 지점장까지 포함하는 2단 구조로 확장하는 설계 축을 마련했습니다.</dd>
+          </dl>
+        </div>
+      </div>
+    </dialog>
 
     <dialog class="subproject-dialog" id="dlg-elements">
       <div class="dialog-head">
