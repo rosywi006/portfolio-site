@@ -284,6 +284,18 @@
   }
   .job-item[open] .job-chevron { transform: rotate(180deg); }
   @media (prefers-reduced-motion: reduce) { .job-chevron { transition: none; } }
+  @keyframes jobReveal {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .job-item[open] > .job-bullets,
+  .job-item[open] > .subproject-trigger {
+    animation: jobReveal 0.4s ease both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .job-item[open] > .job-bullets,
+    .job-item[open] > .subproject-trigger { animation: none; }
+  }
   .job-bullets {
     margin: 0 0 1.6rem;
     padding-left: calc(8.5rem + 1.5rem);
@@ -442,9 +454,9 @@
     background: var(--meter-off);
   }
   .meter span.on { background: var(--accent); }
-  .meter.level-low span.on { background: #ff5f57; }
-  .meter.level-mid span.on { background: #febc2e; }
-  .meter.level-high span.on { background: #28c840; }
+  .meter.level-low span.on { background: #8ec2f2; }
+  .meter.level-mid span.on { background: #4a9eea; }
+  .meter.level-high span.on { background: var(--accent); }
 
   /* ===== Contact ===== */
   .contact-block { text-align: center; padding: clamp(4rem, 10vw, 6.5rem) 0; }
