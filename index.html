@@ -358,25 +358,25 @@
     from { opacity: 0; transform: translateY(-8px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .job-item[open] > .job-bullets,
-  .job-item[open] > .subproject-trigger {
+  .job-item[open] > .job-detail {
     animation: jobReveal 0.4s ease both;
   }
   @media (prefers-reduced-motion: reduce) {
-    .job-item[open] > .job-bullets,
-    .job-item[open] > .subproject-trigger { animation: none; }
+    .job-item[open] > .job-detail { animation: none; }
   }
-  .job-bullets {
+  .job-detail {
     margin: 0 0 1.6rem;
     padding: 0.9rem 1.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
     background: var(--glass-fill);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
     backdrop-filter: blur(var(--glass-blur)) saturate(160%);
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  }
+  .job-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
   }
   .job-bullets li {
     position: relative;
@@ -399,11 +399,11 @@
 
   /* ===== 세부 프로젝트 (팝업) ===== */
   .subproject-trigger {
-    margin: 0.2rem 0 1.6rem 0.2rem;
+    margin-top: 0.9rem;
     background: none;
     border: none;
     padding: 0;
-    color: var(--accent);
+    color: var(--text);
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -703,7 +703,7 @@
     .job-org-logo .org-logo { width: 1.9rem; height: 1.9rem; }
     .job-role { font-size: 1rem; }
     .job-org { font-size: 0.88rem; }
-    .job-bullets { padding: 0.8rem 0.9rem; }
+    .job-detail { padding: 0.8rem 0.9rem; }
     .nav-links { font-size: 0.74rem; gap: 0.7rem; }
     dialog.subproject-dialog { width: 94vw; max-height: 70vh; }
     .dialog-head { padding: 1.2rem 1.3rem; }
@@ -789,13 +789,15 @@
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
-          <ul class="job-bullets">
-            <li>온라인 플랫폼 기반 N잡러 파트너스 유치 신사업 조직 소속, <strong>B2C·B2B 성격을 모두 가진</strong> 파트너스 사업의 전략 수립 및 성과 분석 담당</li>
-            <li>모집퍼널 초입 단계(콜센터 통합동의 → 멘토 배정) 숙성·전환 효율 개선 및 사업지표 분석 (<strong>Tableau</strong> 활용, 2025.01–09)</li>
-            <li>매출팀 이동 후 CRM 담당: <strong>Obzen CDP 기반 캠페인 마트 구축</strong>, 세그먼트별 대상추출 쿼리·개인화 변수 설계</li>
-            <li>가설 기반 CRM 캠페인 7종 설계·발송·분석 — 체결대기 넛지 <strong>CTR 최고 19.5%</strong>, 파트너스-지점장 상담신청 프로세스로 <strong>휴면 파트너스 활동량 전월比 10%↑</strong> (2025.10–현재)</li>
-          </ul>
-          <button class="subproject-trigger" type="button" data-dialog="dlg-meritz">세부 프로젝트 보기 →</button>
+          <div class="job-detail">
+            <ul class="job-bullets">
+              <li>온라인 플랫폼 기반 N잡러 파트너스 유치 신사업 조직 소속, <strong>B2C·B2B 성격을 모두 가진</strong> 파트너스 사업의 전략 수립 및 성과 분석 담당</li>
+              <li>모집퍼널 초입 단계(콜센터 통합동의 → 멘토 배정) 숙성·전환 효율 개선 및 사업지표 분석 (<strong>Tableau</strong> 활용, 2025.01–09)</li>
+              <li>매출팀 이동 후 CRM 담당: <strong>Obzen CDP 기반 캠페인 마트 구축</strong>, 세그먼트별 대상추출 쿼리·개인화 변수 설계</li>
+              <li>가설 기반 CRM 캠페인 7종 설계·발송·분석 — 체결대기 넛지 <strong>CTR 최고 19.5%</strong>, 파트너스-지점장 상담신청 프로세스로 <strong>휴면 파트너스 활동량 전월比 10%↑</strong> (2025.10–현재)</li>
+            </ul>
+            <button class="subproject-trigger" type="button" data-dialog="dlg-meritz">세부 프로젝트 보기 →</button>
+          </div>
         </details>
         <details class="job-item reveal">
           <summary>
@@ -808,14 +810,16 @@
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
-          <ul class="job-bullets">
-            <li>에듀테크·AI 트렌드 분석 기반 주간 사내 뉴스레터 발행</li>
-            <li>하위권 학생(6~7등급) 대상 '쉬운 설명' 프롬프트 태스크 7종 설계 및 <strong>GPT-4·HCX 비교 테스트</strong> 진행 (목록형 구조화, 예시 생성, 힌트 첫 단계 풀이 등)</li>
-            <li>테스트 결과 기반 개념별 예시·반례 생성 가능 여부 분류 기준을 수립해 Golden Set 구축</li>
-            <li>학습 상태(User Status)별 힌트·개념 카드 생성 로직을 최종 프롬프트에 반영</li>
-            <li>Audio LLM, Voice Agent 등 신규 LLM 활용 영역 리서치</li>
-          </ul>
-          <button class="subproject-trigger" type="button" data-dialog="dlg-naver">세부 프로젝트 보기 →</button>
+          <div class="job-detail">
+            <ul class="job-bullets">
+              <li>에듀테크·AI 트렌드 분석 기반 주간 사내 뉴스레터 발행</li>
+              <li>하위권 학생(6~7등급) 대상 '쉬운 설명' 프롬프트 태스크 7종 설계 및 <strong>GPT-4·HCX 비교 테스트</strong> 진행 (목록형 구조화, 예시 생성, 힌트 첫 단계 풀이 등)</li>
+              <li>테스트 결과 기반 개념별 예시·반례 생성 가능 여부 분류 기준을 수립해 Golden Set 구축</li>
+              <li>학습 상태(User Status)별 힌트·개념 카드 생성 로직을 최종 프롬프트에 반영</li>
+              <li>Audio LLM, Voice Agent 등 신규 LLM 활용 영역 리서치</li>
+            </ul>
+            <button class="subproject-trigger" type="button" data-dialog="dlg-naver">세부 프로젝트 보기 →</button>
+          </div>
         </details>
         <details class="job-item reveal">
           <summary>
@@ -828,11 +832,13 @@
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
-          <ul class="job-bullets">
-            <li>LLM 산업 및 제품 기술 리서치 수행</li>
-            <li>TIPS 지원사업 IR 자료 제작 → <strong>2023년 10월 TIPS 기업 선정</strong></li>
-          </ul>
-          <button class="subproject-trigger" type="button" data-dialog="dlg-elements">세부 프로젝트 보기 →</button>
+          <div class="job-detail">
+            <ul class="job-bullets">
+              <li>LLM 산업 및 제품 기술 리서치 수행</li>
+              <li>TIPS 지원사업 IR 자료 제작 → <strong>2023년 10월 TIPS 기업 선정</strong></li>
+            </ul>
+            <button class="subproject-trigger" type="button" data-dialog="dlg-elements">세부 프로젝트 보기 →</button>
+          </div>
         </details>
         <details class="job-item reveal">
           <summary>
@@ -845,13 +851,15 @@
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
-          <ul class="job-bullets">
-            <li>합격생 생활기록부 열람 서비스 '그들의생기부(saenggibu.com)' 상위 기획부터 개발 착수까지 총괄</li>
-            <li>개인정보보호법 등 규제 리스크 검토 및 가격정책 수립</li>
-            <li>이탈 데이터 분석 기반 민감정보 마스킹 기능 기획 → <strong>업로드 수 5배, MAU 300%↑ 달성</strong></li>
-            <li>기능정의서 및 UX/UI(Figma) 제작</li>
-          </ul>
-          <button class="subproject-trigger" type="button" data-dialog="dlg-elements">세부 프로젝트 보기 →</button>
+          <div class="job-detail">
+            <ul class="job-bullets">
+              <li>합격생 생활기록부 열람 서비스 '그들의생기부(saenggibu.com)' 상위 기획부터 개발 착수까지 총괄</li>
+              <li>개인정보보호법 등 규제 리스크 검토 및 가격정책 수립</li>
+              <li>이탈 데이터 분석 기반 민감정보 마스킹 기능 기획 → <strong>업로드 수 5배, MAU 300%↑ 달성</strong></li>
+              <li>기능정의서 및 UX/UI(Figma) 제작</li>
+            </ul>
+            <button class="subproject-trigger" type="button" data-dialog="dlg-elements">세부 프로젝트 보기 →</button>
+          </div>
         </details>
         <details class="job-item reveal">
           <summary>
@@ -864,11 +872,13 @@
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
-          <ul class="job-bullets">
-            <li><strong>펀드 규약 대조 시트 제작</strong> → 주간회의 진행 효율화</li>
-            <li>IR 미팅 질의사항 준비 및 투자 집행 전 사무실·공장 실사 방문</li>
-            <li>투자조합 결성 서류 작성 보조</li>
-          </ul>
+          <div class="job-detail">
+            <ul class="job-bullets">
+              <li><strong>펀드 규약 대조 시트 제작</strong> → 주간회의 진행 효율화</li>
+              <li>IR 미팅 질의사항 준비 및 투자 집행 전 사무실·공장 실사 방문</li>
+              <li>투자조합 결성 서류 작성 보조</li>
+            </ul>
+          </div>
         </details>
         <details class="job-item reveal">
           <summary>
@@ -881,11 +891,13 @@
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
-          <ul class="job-bullets">
-            <li>건강기능식품 웹커머스 'GOYO LAB' 상위·상세 서비스 기획</li>
-            <li>기능정의서 및 UX/UI 와이어프레임 제작, SI업체 커뮤니케이션</li>
-            <li><strong>해외 SKU 선별 및 브랜드사·벤더사 컨택</strong>, 납품 제안·계약 진행 보조</li>
-          </ul>
+          <div class="job-detail">
+            <ul class="job-bullets">
+              <li>건강기능식품 웹커머스 'GOYO LAB' 상위·상세 서비스 기획</li>
+              <li>기능정의서 및 UX/UI 와이어프레임 제작, SI업체 커뮤니케이션</li>
+              <li><strong>해외 SKU 선별 및 브랜드사·벤더사 컨택</strong>, 납품 제안·계약 진행 보조</li>
+            </ul>
+          </div>
         </details>
       </div>
     </div>
@@ -1157,23 +1169,9 @@
     <div class="container">
       <div class="block-head">
         <h2>Hobbies</h2>
-        <p>그림을 그리고,<br>사진을 찍습니다</p>
+        <p>사진을 찍고,<br>그림을 그립니다</p>
       </div>
       <div class="hobby-groups">
-        <div class="hobby-group">
-          <div class="art-grid">
-            <div class="art-track">
-              <button class="art-card" type="button" data-full="assets/art/art1.jpg" aria-label="그림 크게 보기 1"><img src="assets/art/art1.jpg" alt="공원 풍경을 그린 유화" loading="lazy"></button>
-              <button class="art-card" type="button" data-full="assets/art/art2.jpg" aria-label="그림 크게 보기 2"><img src="assets/art/art2.jpg" alt="달항아리와 파랑새를 그린 유화" loading="lazy"></button>
-              <button class="art-card" type="button" data-full="assets/art/art3.jpg" aria-label="그림 크게 보기 3"><img src="assets/art/art3.jpg" alt="크리스마스 트리 앞 아이를 그린 유화" loading="lazy"></button>
-              <button class="art-card" type="button" data-full="assets/art/art4.jpg" aria-label="그림 크게 보기 4"><img src="assets/art/art4.jpg" alt="유화 작업" loading="lazy"></button>
-              <button class="art-card" type="button" data-full="assets/art/art5.jpg" aria-label="그림 크게 보기 5"><img src="assets/art/art5.jpg" alt="신랑신부 실루엣을 그린 유화" loading="lazy"></button>
-              <button class="art-card" type="button" data-full="assets/art/art6.jpg" aria-label="그림 크게 보기 6"><img src="assets/art/art6.jpg" alt="유화 작업" loading="lazy"></button>
-              <button class="art-card" type="button" data-full="assets/art/art7.jpg" aria-label="그림 크게 보기 7"><img src="assets/art/art7.jpg" alt="체리 정물을 그린 유화" loading="lazy"></button>
-              <button class="art-card" type="button" data-full="assets/art/art8.jpg" aria-label="그림 크게 보기 8"><img src="assets/art/art8.jpg" alt="유화 작업" loading="lazy"></button>
-            </div>
-          </div>
-        </div>
         <div class="hobby-group">
           <div class="art-grid">
             <div class="art-track">
@@ -1186,6 +1184,20 @@
               <button class="art-card" type="button" data-full="assets/photo/photo8.jpg" aria-label="사진 크게 보기 7"><img src="assets/photo/photo8.jpg" alt="사진 작업 7" loading="lazy"></button>
               <button class="art-card" type="button" data-full="assets/photo/photo9.jpg" aria-label="사진 크게 보기 8"><img src="assets/photo/photo9.jpg" alt="사진 작업 8" loading="lazy"></button>
               <button class="art-card" type="button" data-full="assets/photo/photo10.jpg" aria-label="사진 크게 보기 9"><img src="assets/photo/photo10.jpg" alt="사진 작업 9" loading="lazy"></button>
+            </div>
+          </div>
+        </div>
+        <div class="hobby-group">
+          <div class="art-grid">
+            <div class="art-track">
+              <button class="art-card" type="button" data-full="assets/art/art1.jpg" aria-label="그림 크게 보기 1"><img src="assets/art/art1.jpg" alt="공원 풍경을 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art2.jpg" aria-label="그림 크게 보기 2"><img src="assets/art/art2.jpg" alt="달항아리와 파랑새를 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art3.jpg" aria-label="그림 크게 보기 3"><img src="assets/art/art3.jpg" alt="크리스마스 트리 앞 아이를 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art4.jpg" aria-label="그림 크게 보기 4"><img src="assets/art/art4.jpg" alt="유화 작업" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art5.jpg" aria-label="그림 크게 보기 5"><img src="assets/art/art5.jpg" alt="신랑신부 실루엣을 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art6.jpg" aria-label="그림 크게 보기 6"><img src="assets/art/art6.jpg" alt="유화 작업" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art7.jpg" aria-label="그림 크게 보기 7"><img src="assets/art/art7.jpg" alt="체리 정물을 그린 유화" loading="lazy"></button>
+              <button class="art-card" type="button" data-full="assets/art/art8.jpg" aria-label="그림 크게 보기 8"><img src="assets/art/art8.jpg" alt="유화 작업" loading="lazy"></button>
             </div>
           </div>
         </div>
