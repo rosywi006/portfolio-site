@@ -222,6 +222,7 @@
   .block-head { text-align: center; margin-bottom: clamp(2.2rem, 6vw, 3.2rem); }
   .block-head h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; }
   .block-head p { margin-top: 0.6rem; color: var(--text-secondary); font-size: 1.02rem; }
+  .block-head-note { display: inline-block; margin-top: 0.3rem; font-size: 0.8rem; opacity: 0.65; }
 
   /* ===== About ===== */
   .about-text {
@@ -231,12 +232,29 @@
     font-weight: 400;
     line-height: 1.75;
     color: var(--text-secondary);
+    background: var(--glass-fill);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: clamp(1.6rem, 4vw, 2.6rem);
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
   }
   .about-text p + p { margin-top: 1.2rem; }
   .about-text strong { color: var(--text); font-weight: 600; }
 
   /* ===== 타임라인 (경력 · 학력) ===== */
-  .timeline { max-width: 46rem; margin: 0 auto; }
+  .timeline {
+    max-width: 46rem;
+    margin: 0 auto;
+    background: var(--glass-fill);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 0.4rem clamp(1.2rem, 3.5vw, 2.2rem);
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
+  }
   .timeline-row {
     display: grid;
     grid-template-columns: 8.5rem 1fr;
@@ -257,13 +275,25 @@
   .timeline-desc strong { color: var(--text); font-weight: 600; }
 
   /* ===== 경력 (토글) ===== */
-  .job-list { max-width: 46rem; margin: 0 auto; position: relative; }
+  .job-list {
+    --job-pad: clamp(1.2rem, 3.5vw, 2.2rem);
+    max-width: 46rem;
+    margin: 0 auto;
+    position: relative;
+    background: var(--glass-fill);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 0.4rem var(--job-pad);
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
+  }
   .job-list::before {
     content: "";
     position: absolute;
-    top: 1.6rem;
-    bottom: 1.6rem;
-    left: 1.7rem;
+    top: 2rem;
+    bottom: 2rem;
+    left: calc(1.7rem + var(--job-pad));
     width: 2px;
     background: var(--line);
   }
@@ -491,6 +521,13 @@
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
+    background: var(--glass-fill);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: clamp(1.4rem, 3.5vw, 2rem) clamp(1.2rem, 3.5vw, 2.2rem);
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
   }
   .activity-item { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.9rem; }
   .activity-dot {
@@ -531,40 +568,32 @@
   .hobby-label { flex: 1; }
   .hobby-chevron { color: var(--text-secondary); transition: transform 0.2s ease; }
   .hobby-item[open] .hobby-chevron { transform: rotate(180deg); }
-  .hobby-item .art-grid { padding: 0.2rem 0 1.3rem; }
+  .hobby-item .art-grid { padding: 0; }
   .art-grid {
     max-width: 100%;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
     animation: jobReveal 0.4s ease both;
   }
   @media (prefers-reduced-motion: reduce) { .art-grid { animation: none; } }
   .art-track {
-    display: flex;
-    gap: 0.9rem;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    padding: 0 1.3rem 0.5rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--glass-border);
   }
-  .art-track::-webkit-scrollbar { display: none; }
   .art-card {
     display: block;
-    flex: 0 0 auto;
-    width: 15rem;
-    scroll-snap-align: start;
     padding: 0;
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius);
+    border: none;
+    border-radius: 0;
     background: var(--bg-raised);
     overflow: hidden;
     cursor: zoom-in;
-    aspect-ratio: 4 / 5;
-    transition: transform 0.25s ease;
+    aspect-ratio: 1 / 1;
   }
-  .art-card:hover { transform: translateY(-4px); }
-  .art-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .art-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .art-card:hover img { transform: scale(1.08); }
+  .art-card:last-child:nth-child(3n+2) { grid-column: span 2; }
+  .art-card:last-child:nth-child(3n+1) { grid-column: span 3; }
   dialog.lightbox {
     position: fixed;
     top: 50%;
@@ -668,7 +697,8 @@
 
   @media (max-width: 720px) {
     .timeline-row { grid-template-columns: 1fr; gap: 0.3rem; }
-    .job-list::before { left: 1.35rem; top: 1.4rem; bottom: 1.4rem; }
+    .job-list { --job-pad: 1.1rem; padding: 0.4rem var(--job-pad); }
+    .job-list::before { left: calc(1.35rem + var(--job-pad)); top: 1.8rem; bottom: 1.8rem; }
     .job-item summary {
       grid-template-columns: 2.7rem 1fr 1.2rem;
       gap: 0.7rem;
@@ -695,6 +725,9 @@
     }
     .lightbox-body { flex: 1 1 auto; min-height: 0; padding: 0 1rem 1rem; display: flex; align-items: center; justify-content: center; }
     .lightbox-body img { width: 100%; height: auto; max-height: calc(90dvh - 4rem); object-fit: contain; }
+    .art-track { grid-template-columns: repeat(2, 1fr); }
+    .art-card { grid-column: auto; }
+    .art-card:last-child:nth-child(2n+1) { grid-column: span 2; }
   }
 </style>
 
@@ -713,11 +746,11 @@
   <div class="nav-row">
     <a class="nav-mark" href="#hero">위선영</a>
     <ul class="nav-links">
-      <li><a href="#about">소개</a></li>
-      <li><a href="#experience">경력</a></li>
-      <li><a href="#education">학력·활동</a></li>
-      <li><a href="#skills">스킬</a></li>
-      <li><a href="#contact">연락처</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Career</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -746,8 +779,8 @@
   <section class="block raised" id="experience">
     <div class="container">
       <div class="block-head">
-        <h2>경력</h2>
-        <p>정규직 포함 총 경력 3년+</p>
+        <h2>Career</h2>
+        <p>총 경력 3년+<br><span class="block-head-note">(계약직 포함)</span></p>
       </div>
       <div class="job-list">
         <details class="job-item reveal" open>
@@ -993,7 +1026,7 @@
   <section class="block raised" id="education">
     <div class="container">
       <div class="block-head">
-        <h2>학력 · 활동</h2>
+        <h2>Education &amp; Activities</h2>
       </div>
       <div class="timeline reveal">
         <div class="timeline-row">
@@ -1043,7 +1076,7 @@
   <section class="block" id="skills">
     <div class="container">
       <div class="block-head">
-        <h2>스킬</h2>
+        <h2>Skills</h2>
       </div>
       <div class="skills-grid reveal">
         <div class="skill-group">
@@ -1122,7 +1155,7 @@
   <section class="block raised" id="art">
     <div class="container">
       <div class="hobby-teasers">
-        <details class="hobby-item">
+        <details class="hobby-item" open>
           <summary>
             <span class="hobby-icon" aria-hidden="true">🎨</span>
             <span class="hobby-label">취미로 그림도 그려요</span>
