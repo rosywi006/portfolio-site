@@ -75,7 +75,45 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     letter-spacing: -0.01em;
+    overflow-x: hidden;
   }
+
+  /* ===== 배경 앰비언트 (글래스 패널이 굴절시킬 대상) ===== */
+  .ambient-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .ambient-glow::before,
+  .ambient-glow::after {
+    content: "";
+    position: absolute;
+    width: 52vw;
+    height: 52vw;
+    max-width: 640px;
+    max-height: 640px;
+    border-radius: 50%;
+    background: var(--accent);
+    filter: blur(100px);
+  }
+  .ambient-glow::before {
+    top: -14%;
+    left: -12%;
+    opacity: 0.22;
+  }
+  .ambient-glow::after {
+    top: 38%;
+    right: -16%;
+    opacity: 0.14;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .ambient-glow::before { opacity: 0.3; }
+    :root:not([data-theme="light"]) .ambient-glow::after { opacity: 0.2; }
+  }
+  :root[data-theme="dark"] .ambient-glow::before { opacity: 0.3; }
+  :root[data-theme="dark"] .ambient-glow::after { opacity: 0.2; }
 
   a { color: inherit; }
   p { margin: 0; }
@@ -460,6 +498,8 @@
     .dialog-body { padding: 0.4rem 1.3rem 1.3rem; }
   }
 </style>
+
+<div class="ambient-glow" aria-hidden="true"></div>
 
 <nav class="nav">
   <div class="nav-row">
