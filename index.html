@@ -63,12 +63,27 @@
     background: var(--accent);
     filter: blur(110px);
   }
-  .glow-orb.a { top: -8%; left: -12%; opacity: 0.3; }
-  .glow-orb.b { top: 22%; right: -14%; opacity: 0.22; background: #ff9f4a; }
-  .glow-orb.c { top: 48%; left: -10%; opacity: 0.24; }
-  .glow-orb.d { top: 72%; right: -12%; opacity: 0.2; background: #ff6fae; }
-  .glow-orb.e { top: 92%; left: 20%; opacity: 0.18; }
-  .glow-orb.f { top: 60%; left: 38%; opacity: 0.14; background: #ffd43b; width: 38vw; height: 38vw; max-width: 460px; max-height: 460px; }
+  .glow-orb.a { top: -8%; left: -12%; opacity: 0.3; animation: drift1 19s ease-in-out infinite; }
+  .glow-orb.b { top: 22%; right: -14%; opacity: 0.22; background: #ff9f4a; animation: drift2 23s ease-in-out infinite; }
+  .glow-orb.c { top: 48%; left: -10%; opacity: 0.24; animation: drift3 21s ease-in-out infinite; }
+  .glow-orb.d { top: 72%; right: -12%; opacity: 0.2; background: #ff6fae; animation: drift1 27s ease-in-out infinite reverse; }
+  .glow-orb.e { top: 92%; left: 20%; opacity: 0.18; animation: drift2 25s ease-in-out infinite; }
+  .glow-orb.f { top: 60%; left: 38%; opacity: 0.14; background: #ffd43b; width: 38vw; height: 38vw; max-width: 460px; max-height: 460px; animation: drift3 17s ease-in-out infinite reverse; }
+  @keyframes drift1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(4%, 5%) scale(1.1); }
+  }
+  @keyframes drift2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-5%, 4%) scale(0.92); }
+  }
+  @keyframes drift3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(3%, -4%) scale(1.07); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glow-orb { animation: none; }
+  }
 
   a { color: inherit; }
   p { margin: 0; }
@@ -238,13 +253,14 @@
     z-index: 1;
   }
   .job-badge {
-    width: 2.9rem;
-    height: 2.9rem;
+    width: 3.15rem;
+    height: 3.15rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.72rem;
+    font-size: 0.62rem;
+    letter-spacing: -0.02em;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     background: var(--bg-raised);
@@ -320,6 +336,7 @@
   .subproject-trigger:hover { text-decoration: underline; }
 
   dialog.subproject-dialog {
+    position: relative;
     max-width: 40rem;
     width: 90vw;
     max-height: 82vh;
@@ -331,6 +348,34 @@
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
     color: var(--text);
     box-shadow: var(--shadow), inset 0 1px 0 var(--glass-highlight);
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    background: linear-gradient(to bottom, transparent, var(--glass-fill-strong) 65%);
+    border-radius: 0 0 var(--radius) var(--radius);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+  .scroll-hint.is-hidden { opacity: 0; }
+  .scroll-hint-arrow {
+    color: var(--accent);
+    font-size: 1.1rem;
+    line-height: 1;
+    animation: hintBounce 1.4s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) { .scroll-hint-arrow { animation: none; } }
+  @keyframes hintBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
   }
   dialog.subproject-dialog::backdrop {
     background: rgba(0, 0, 0, 0.4);
@@ -410,6 +455,82 @@
   }
   .activity-title { font-weight: 700; font-size: 1rem; }
   .activity-desc { color: var(--text-secondary); font-size: 0.94rem; margin-top: 0.3rem; }
+
+  /* ===== 취미 (접이식 티저) ===== */
+  .hobby-teasers {
+    max-width: 34rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .hobby-item {
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    background: var(--glass-fill);
+    overflow: hidden;
+  }
+  .hobby-item summary {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1rem 1.3rem;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+  }
+  .hobby-item summary::-webkit-details-marker { display: none; }
+  .hobby-icon { font-size: 1.05rem; }
+  .hobby-label { flex: 1; }
+  .hobby-chevron { color: var(--text-secondary); transition: transform 0.2s ease; }
+  .hobby-item[open] .hobby-chevron { transform: rotate(180deg); }
+  .hobby-item .art-grid { padding: 0.2rem 1.3rem 1.3rem; }
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 0.7rem;
+    max-width: 56rem;
+    margin: 0 auto;
+    animation: jobReveal 0.4s ease both;
+  }
+  @media (prefers-reduced-motion: reduce) { .art-grid { animation: none; } }
+  .art-card {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+    overflow: hidden;
+    cursor: zoom-in;
+    aspect-ratio: 4 / 5;
+    transition: transform 0.25s ease;
+  }
+  .art-card:hover { transform: translateY(-4px); }
+  .art-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  dialog.lightbox {
+    max-width: min(90vw, 44rem);
+    width: auto;
+    max-height: 88vh;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 0;
+    background: var(--glass-fill-strong);
+    backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    box-shadow: var(--shadow), inset 0 1px 0 var(--glass-highlight);
+  }
+  dialog.lightbox::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .lightbox-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+  }
+  .lightbox-body { padding: 0 1.2rem 1.2rem; }
+  .lightbox-body img { display: block; width: 100%; max-height: 74vh; object-fit: contain; border-radius: 12px; }
 
   /* ===== 스킬 ===== */
   .skills-grid {
@@ -524,7 +645,7 @@
   <div class="hero-facts">
     <span class="fact-pill">Seoul, South Korea</span>
     <span class="fact-pill">메리츠화재 · CRM &amp; Data Analyst</span>
-    <span class="fact-pill"><a href="mailto:rosywi006@gmail.com">rosywi006@gmail.com</a></span>
+    <span class="fact-pill"><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=rosywi006@gmail.com" target="_blank" rel="noopener">rosywi006@gmail.com</a></span>
   </div>
 </header>
 
@@ -548,7 +669,7 @@
       <div class="job-list">
         <details class="job-item reveal" open>
           <summary>
-            <div class="job-marker"><span class="job-badge current">2025</span></div>
+            <div class="job-marker"><span class="job-badge current">'25.01</span></div>
             <div class="job-heading">
               <span class="job-date-range">2025.01 — 현재</span>
               <div class="job-role">CRM &amp; Data Analyst</div>
@@ -566,11 +687,11 @@
         </details>
         <details class="job-item reveal">
           <summary>
-            <div class="job-marker"><span class="job-badge">2024</span></div>
+            <div class="job-marker"><span class="job-badge">'24.06</span></div>
             <div class="job-heading">
               <span class="job-date-range">2024.06 — 2024.08</span>
-              <div class="job-role">LLM서비스기획 (계약직)</div>
-              <div class="job-org">네이버클라우드 · Hyper AI Planning팀 · 경기</div>
+              <div class="job-role">LLM서비스기획</div>
+              <div class="job-org">네이버클라우드 · 계약직 · Hyper AI Planning팀 · 경기</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -585,11 +706,11 @@
         </details>
         <details class="job-item reveal">
           <summary>
-            <div class="job-marker"><span class="job-badge">2023</span></div>
+            <div class="job-marker"><span class="job-badge">'23.09</span></div>
             <div class="job-heading">
               <span class="job-date-range">2023.09</span>
-              <div class="job-role">투자유치 (프리랜서)</div>
-              <div class="job-org">엘리먼츠 · 창업팀</div>
+              <div class="job-role">투자유치</div>
+              <div class="job-org">엘리먼츠 · 프리랜서 · 창업팀</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -601,11 +722,11 @@
         </details>
         <details class="job-item reveal">
           <summary>
-            <div class="job-marker"><span class="job-badge">2022</span></div>
+            <div class="job-marker"><span class="job-badge">'22.11</span></div>
             <div class="job-heading">
               <span class="job-date-range">2022.11 — 2023.06</span>
-              <div class="job-role">웹서비스기획 (프리랜서)</div>
-              <div class="job-org">엘리먼츠 (Elements) · 창업팀 · LLM 기반 스타트업</div>
+              <div class="job-role">웹서비스기획</div>
+              <div class="job-org">엘리먼츠 (Elements) · 프리랜서 · 창업팀 · LLM 기반 스타트업</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -619,11 +740,11 @@
         </details>
         <details class="job-item reveal">
           <summary>
-            <div class="job-marker"><span class="job-badge">2022</span></div>
+            <div class="job-marker"><span class="job-badge">'22.06</span></div>
             <div class="job-heading">
               <span class="job-date-range">2022.06 — 2022.08</span>
-              <div class="job-role">투자팀 조사역 (계약직)</div>
-              <div class="job-org">비에이파트너스 · 벤처캐피탈</div>
+              <div class="job-role">투자팀 조사역</div>
+              <div class="job-org">비에이파트너스 · 계약직 · 벤처캐피탈</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -635,11 +756,11 @@
         </details>
         <details class="job-item reveal">
           <summary>
-            <div class="job-marker"><span class="job-badge">2022</span></div>
+            <div class="job-marker"><span class="job-badge">'22.01</span></div>
             <div class="job-heading">
               <span class="job-date-range">2022.01 — 2022.04</span>
-              <div class="job-role">신사업기획 (계약직)</div>
-              <div class="job-org">엔라이즈 (Nlize) · 신사업기획팀</div>
+              <div class="job-role">신사업기획</div>
+              <div class="job-org">엔라이즈 (Nlize) · 계약직 · 신사업기획팀</div>
             </div>
             <span class="job-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -717,6 +838,7 @@
           </dl>
         </div>
       </div>
+      <div class="scroll-hint" aria-hidden="true"><span class="scroll-hint-arrow">⌄</span></div>
     </dialog>
 
     <dialog class="subproject-dialog" id="dlg-elements">
@@ -762,6 +884,7 @@
           </dl>
         </div>
       </div>
+      <div class="scroll-hint" aria-hidden="true"><span class="scroll-hint-arrow">⌄</span></div>
     </dialog>
 
     <dialog class="subproject-dialog" id="dlg-naver">
@@ -791,6 +914,7 @@
           </dl>
         </div>
       </div>
+      <div class="scroll-hint" aria-hidden="true"><span class="scroll-hint-arrow">⌄</span></div>
     </dialog>
   </section>
 
@@ -923,14 +1047,92 @@
     </div>
   </section>
 
+  <!-- ===== 취미 (그림 · 사진, 궁금한 사람만 열어보게 접어둠) ===== -->
+  <section class="block raised" id="art">
+    <div class="container">
+      <div class="hobby-teasers">
+        <details class="hobby-item">
+          <summary>
+            <span class="hobby-icon" aria-hidden="true">🎨</span>
+            <span class="hobby-label">취미로 그림도 그려요</span>
+            <span class="hobby-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="art-grid">
+            <button class="art-card reveal" type="button" data-full="assets/art/art1.jpg" aria-label="그림 크게 보기 1">
+              <img src="assets/art/art1.jpg" alt="공원 풍경을 그린 유화" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/art/art2.jpg" aria-label="그림 크게 보기 2">
+              <img src="assets/art/art2.jpg" alt="달항아리와 파랑새를 그린 유화" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/art/art3.jpg" aria-label="그림 크게 보기 3">
+              <img src="assets/art/art3.jpg" alt="크리스마스 트리 앞 아이를 그린 유화" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/art/art4.jpg" aria-label="그림 크게 보기 4">
+              <img src="assets/art/art4.jpg" alt="유화 작업" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/art/art5.jpg" aria-label="그림 크게 보기 5">
+              <img src="assets/art/art5.jpg" alt="신랑신부 실루엣을 그린 유화" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/art/art6.jpg" aria-label="그림 크게 보기 6">
+              <img src="assets/art/art6.jpg" alt="유화 작업" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/art/art7.jpg" aria-label="그림 크게 보기 7">
+              <img src="assets/art/art7.jpg" alt="체리 정물을 그린 유화" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/art/art8.jpg" aria-label="그림 크게 보기 8">
+              <img src="assets/art/art8.jpg" alt="유화 작업" loading="lazy">
+            </button>
+          </div>
+        </details>
+        <details class="hobby-item">
+          <summary>
+            <span class="hobby-icon" aria-hidden="true">📷</span>
+            <span class="hobby-label">사진도 찍어요</span>
+            <span class="hobby-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="art-grid">
+            <button class="art-card reveal" type="button" data-full="assets/photo/photo1.jpg" aria-label="사진 크게 보기 1">
+              <img src="assets/photo/photo1.jpg" alt="사진 작업 1" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/photo/photo2.jpg" aria-label="사진 크게 보기 2">
+              <img src="assets/photo/photo2.jpg" alt="사진 작업 2" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/photo/photo3.jpg" aria-label="사진 크게 보기 3">
+              <img src="assets/photo/photo3.jpg" alt="사진 작업 3" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/photo/photo4.jpg" aria-label="사진 크게 보기 4">
+              <img src="assets/photo/photo4.jpg" alt="사진 작업 4" loading="lazy">
+            </button>
+            <button class="art-card reveal" type="button" data-full="assets/photo/photo6.jpg" aria-label="사진 크게 보기 5">
+              <img src="assets/photo/photo6.jpg" alt="사진 작업 5" loading="lazy">
+            </button>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <dialog class="lightbox" id="dlg-lightbox">
+      <div class="lightbox-head">
+        <div class="traffic-lights">
+          <button class="tl tl-red lightbox-close" type="button" aria-label="닫기"></button>
+          <span class="tl tl-yellow" aria-hidden="true"></span>
+          <span class="tl tl-green" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="lightbox-body">
+        <img id="lightbox-img" src="" alt="확대된 이미지">
+      </div>
+    </dialog>
+  </section>
+
   <!-- ===== 연락처 ===== -->
   <section class="contact-block" id="contact">
     <div class="container">
       <div class="reveal">
-        <h2>새로운 기회에 열려 있습니다</h2>
-        <p>전략, 기획, 프로덕트 관련 제안은 언제든 환영합니다. 이메일로 편하게 연락 주세요.</p>
+        <h2>Contact</h2>
+        <p>전략, 기획, 프로덕트 관련 제안은 언제든 환영합니다.<br>이메일로 편하게 연락 주세요.</p>
         <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:rosywi006@gmail.com">이메일 보내기</a>
+          <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=rosywi006@gmail.com" target="_blank" rel="noopener">이메일 보내기</a>
         </div>
       </div>
     </div>
@@ -967,6 +1169,20 @@
     dlg.addEventListener('click', function (e) {
       if (e.target === dlg) dlg.close();
     });
+
+    var body = dlg.querySelector('.dialog-body');
+    var hint = dlg.querySelector('.scroll-hint');
+    if (body && hint) {
+      var updateHint = function () {
+        var atBottom = body.scrollTop + body.clientHeight >= body.scrollHeight - 8;
+        var scrollable = body.scrollHeight > body.clientHeight + 8;
+        hint.classList.toggle('is-hidden', !scrollable || atBottom);
+      };
+      body.addEventListener('scroll', updateHint);
+      var dlgObserver = new MutationObserver(updateHint);
+      dlgObserver.observe(dlg, { attributes: true, attributeFilter: ['open'] });
+      setTimeout(updateHint, 50);
+    }
   });
 
   var jobIo = new IntersectionObserver(function (entries) {
@@ -978,4 +1194,18 @@
     });
   }, { threshold: 0.4 });
   document.querySelectorAll('.job-item').forEach(function (el) { jobIo.observe(el); });
+
+  var lightbox = document.getElementById('dlg-lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.art-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      lightboxImg.src = card.dataset.full;
+      lightboxImg.alt = card.querySelector('img').alt;
+      lightbox.showModal();
+    });
+  });
+  lightbox.querySelector('.lightbox-close').addEventListener('click', function () { lightbox.close(); });
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) lightbox.close();
+  });
 </script>
