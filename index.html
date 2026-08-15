@@ -114,15 +114,6 @@
     max-width: 56rem;
     margin: 0 auto;
   }
-  .hero-photo {
-    width: 112px;
-    height: 112px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 1.6rem;
-    display: block;
-    border: 1px solid var(--line);
-  }
   .hero-eyebrow {
     display: block;
     font-size: 0.95rem;
@@ -174,12 +165,13 @@
   .about-text {
     max-width: var(--measure);
     margin: 0 auto;
-    text-align: center;
-    font-size: clamp(1.15rem, 2.4vw, 1.42rem);
-    font-weight: 600;
-    line-height: 1.5;
+    font-size: 1.08rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--text-secondary);
   }
-  .about-text .dim { color: var(--text-secondary); font-weight: 400; }
+  .about-text p + p { margin-top: 1.2rem; }
+  .about-text strong { color: var(--text); font-weight: 600; }
 
   /* ===== 타임라인 (경력 · 학력) ===== */
   .timeline { max-width: 46rem; margin: 0 auto; }
@@ -359,10 +351,9 @@
 </nav>
 
 <header class="hero" id="hero">
-  <img class="hero-photo" src="assets/profile.jpg" alt="위선영 프로필 사진">
-  <span class="hero-eyebrow">Strategy · Product Planning</span>
-  <h1>전략적 사고와 창의력으로,<br>올라운더로 성장합니다.</h1>
-  <p class="hero-sub">메리츠화재, 네이버클라우드, 벤처캐피탈, 극초기 IT 스타트업까지 — 다양한 현장에서 기획과 실행의 감각을 쌓아왔습니다.</p>
+  <span class="hero-eyebrow">Strategy · AI Service Planning</span>
+  <h1>위선영</h1>
+  <p class="hero-sub">교육학과 벤처경영학을 함께 공부하며, 서비스 기획과 AI 사이에서 성장하고 있습니다.</p>
   <div class="hero-facts">
     <span class="fact-pill">Seoul, South Korea</span>
     <span class="fact-pill">메리츠화재 · Associate</span>
@@ -373,10 +364,11 @@
 <main>
   <section class="block" id="about">
     <div class="container">
-      <p class="about-text reveal">
-        전략적 사고와 풍부한 창의력을 바탕으로 올라운더 인재가 되고 싶은 위선영입니다.
-        <span class="dim">소비재 브랜드, 벤처캐피탈, 극초기 IT 스타트업 창업 등 다양한 기업에서의 직무 경험을 바탕으로 성장 중입니다.</span>
-      </p>
+      <div class="about-text reveal">
+        <p>"교육학도들이 창업으로 세상에 변화를 만들 수도 있다"는 한 교수님의 말이 터닝 포인트가 됐습니다. 사람의 성장을 돕고 싶어 교육학을 전공했지만, 더 넓은 세상에서 변화를 만들고 싶다는 열망으로 경영전략학회에 들어가 매주 산업 과제를 풀며 낯선 분야를 빠르게 학습하는 감각을 익혔습니다.</p>
+        <p>엔라이즈 인턴십에서 서비스 기획에 흥미를 느꼈지만 실제 런칭을 경험하지 못한 아쉬움이 남았고, 그 아쉬움을 원동력 삼아 <strong>엘리먼츠 창업팀에서 '그들의생기부' 서비스 기획의 전 과정을 직접 이끌었습니다.</strong> 사업을 키워가며 비즈니스에 대한 이해가 부족하다고 느껴 벤처경영학을 복수전공했고, 이후 네이버클라우드에서 LLM 기반 서비스를 기획하며 AI에 대한 이해를 한층 더 깊이 쌓았습니다.</p>
+        <p>다양한 도메인을 넘나들며 쌓은 경험을 바탕으로, 지금은 메리츠화재에서 새로운 성장을 이어가고 있습니다. 기술로 고객과 서비스 사이의 간극을 좁히는 <strong>AI 서비스 기획자</strong>가 되는 것이 다음 목표입니다.</p>
+      </div>
     </div>
   </section>
 
@@ -401,45 +393,58 @@
         <div class="timeline-row">
           <span class="timeline-date">2024.06 — 2024.08</span>
           <div>
-            <div class="timeline-role">Service Planning Intern</div>
-            <div class="timeline-org">네이버클라우드 (NAVER Cloud) · 하이브리드 근무</div>
+            <div class="timeline-role">LLM서비스기획 인턴</div>
+            <div class="timeline-org">네이버클라우드 · Hyper AI Planning팀 · 경기</div>
             <p class="timeline-desc">
-              <strong>HCX(하이퍼클로바X) 기반 수학 과외 서비스</strong>를 기획하며, 학습 성취도에 따라 개인화되는 튜터링 로직을 설계했습니다.
+              에듀테크·AI 트렌드를 분석해 매주 임직원 대상 뉴스레터를 발행하고,
+              <strong>HCX(하이퍼클로바X) 기반 수학튜터서비스</strong>의 프롬프트를 대량의 문항 데이터셋으로 테스트하며 Golden Set을 제작했습니다.
+              학습 상태(User Status)에 따라 힌트·개념 카드를 생성하는 로직을 고도화하고, Audio LLM·Voice Agent 등 신규 LLM 활용 영역 리서치도 병행했습니다.
             </p>
           </div>
         </div>
         <div class="timeline-row">
-          <span class="timeline-date">2022.12 — 2023.06</span>
+          <span class="timeline-date">2023.09</span>
           <div>
-            <div class="timeline-role">Product Manager (프리랜서)</div>
-            <div class="timeline-org">엘리먼츠 (Elements) · LLM 기반 스타트업</div>
+            <div class="timeline-role">투자유치 (프리랜서)</div>
+            <div class="timeline-org">엘리먼츠 · 창업팀</div>
             <p class="timeline-desc">
-              웹 서비스 '그들의생기부(saenggibu.com)'를 기획·운영했습니다. 화면기획서·기능정의서 작성, UI/UX 와이어프레임 제작, 개발자 채용 공고 및 일정 조율을 담당했으며,
-              <strong>창업중심대학 초기창업패키지, TIPS 지원사업</strong>에 선정되는 데 기여했습니다.
+              단기 프리랜서로 고용되어 프로덕트 기술 관련 리서치를 수행하고 TIPS 지원사업용 IR 자료를 제작해
+              <strong>2023년 10월 TIPS 기업 선정</strong>에 기여했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-date">2022.11 — 2023.06</span>
+          <div>
+            <div class="timeline-role">기획 담당 (창업멤버)</div>
+            <div class="timeline-org">엘리먼츠 (Elements) · 창업팀 · LLM 기반 스타트업</div>
+            <p class="timeline-desc">
+              합격생 생활기록부 열람 서비스 '그들의생기부(saenggibu.com)'를 상위 기획부터 개발 착수까지 담당했습니다.
+              이탈 데이터를 분석해 공급 고객이 동아리명·학교명 등 유추 가능한 정보 노출에 거부감을 느낀다는 점을 파악하고
+              민감 정보를 마스킹하는 기능을 도입해 <strong>생활기록부 업로드 수를 5배, 페이지 MAU를 300% 이상</strong> 끌어올렸습니다.
             </p>
           </div>
         </div>
         <div class="timeline-row">
           <span class="timeline-date">2022.06 — 2022.08</span>
           <div>
-            <div class="timeline-role">투자팀 인턴</div>
+            <div class="timeline-role">투자팀 RA</div>
             <div class="timeline-org">비에이파트너스 · 벤처캐피탈</div>
             <p class="timeline-desc">
-              신규 펀드 결성 시기에 펀드 규약 대조표와 영업보고 장표를 제작했습니다.
-              매주 규약을 찾아보는 데 시간이 낭비되는 것을 보고 규약대조표를 직접 만들어
-              <strong>주간회의 시간을 단축</strong>시켰고, 투자심사보고서 작성과 IR 회의록 작성을 보조했습니다.
+              신규 펀드 결성 시기에 <strong>규약 대조 시트를 직접 제작</strong>해 회의 진행 효율을 높였고,
+              홈페이지 관리와 IR 미팅 질의사항 준비, 투자 집행 전 사무실·공장 실사 방문, 투자조합 결성 서류 작성을 보조했습니다.
             </p>
           </div>
         </div>
         <div class="timeline-row">
           <span class="timeline-date">2022.01 — 2022.04</span>
           <div>
-            <div class="timeline-role">신사업기획 인턴</div>
-            <div class="timeline-org">엔라이즈 (Nlize) · 건강기능식품 브랜드</div>
+            <div class="timeline-role">신사업(웹커머스) 기획</div>
+            <div class="timeline-org">엔라이즈 (Nlize) · 신사업기획팀</div>
             <p class="timeline-desc">
-              영양제 추천 서비스 'GOYO LAB' 런칭을 상위기획부터 개발 착수 단계까지 담당했습니다.
-              사업 타당성·규제 검토, SKU 선별, 화면 기획서 작성을 거쳐
-              팀에 디자이너가 없어 <strong>Figma를 독학해 UI 디자인까지 직접 수행</strong>했습니다.
+              건강기능식품 웹커머스 'GOYO LAB'의 상위·상세 서비스 기획을 담당했습니다.
+              기능정의서와 UX/UI 와이어프레임을 제작해 SI업체와 소통했고,
+              <strong>해외 SKU를 선별해 브랜드사·벤더사에 직접 컨택</strong>하며 납품 제안과 계약 진행을 보조했습니다.
             </p>
           </div>
         </div>
@@ -456,17 +461,26 @@
       </div>
       <div class="work-grid">
         <article class="work-card reveal">
-          <span class="work-meta">2022.12 — 2023.06 · 엘리먼츠</span>
+          <span class="work-meta">2022.11 — 2023.06 · 엘리먼츠</span>
           <h3>'그들의 생기부' 기획·운영</h3>
-          <p>생활기록부 열람 서비스 saenggibu.com의 PM으로 컨셉 기획부터 검색 로직 설계, 개발자 채용, IR까지 서비스 런칭 전 과정에 참여했습니다.</p>
+          <p>생활기록부 열람 서비스 saenggibu.com의 창업멤버로 서비스 런칭 전 과정을 이끌었습니다. 이탈 데이터를 분석해 민감 정보 마스킹 기능을 도입, <strong>업로드 수 5배 · MAU 300%↑</strong>를 달성했습니다.</p>
           <div class="work-tags">
+            <span class="tag">데이터 분석</span>
             <span class="tag">서비스 기획</span>
             <span class="tag">IR</span>
-            <span class="tag">채용</span>
           </div>
         </article>
         <article class="work-card reveal">
-          <span class="work-meta">2022.05 — 2023.06 · LG전자</span>
+          <span class="work-meta">2024.06 — 2024.08 · 네이버클라우드</span>
+          <h3>HCX 기반 수학튜터서비스 기획</h3>
+          <p>대량의 문항 데이터셋으로 프롬프트를 테스트해 Golden Set을 만들고, 학습 상태별 힌트·개념 카드 생성 로직을 설계했습니다.</p>
+          <div class="work-tags">
+            <span class="tag">AI</span>
+            <span class="tag">프롬프트 엔지니어링</span>
+          </div>
+        </article>
+        <article class="work-card reveal">
+          <span class="work-meta">2022.05 · LG전자</span>
           <h3>신규 Screen 디바이스 컨셉 제안</h3>
           <p>Z세대 행동 분석을 기반으로 새로운 디바이스 컨셉과 스펙을 구체화하고, 사업화 방안까지 기획했습니다.</p>
           <div class="work-tags">
@@ -476,8 +490,8 @@
         </article>
         <article class="work-card reveal">
           <span class="work-meta">2023.09 · 엘리먼츠</span>
-          <h3>TIPS 지원사업 IR 외주</h3>
-          <p>단기 프리랜서로 LLM 산업 및 제품 기술 리서치를 수행하고 TIPS 지원사업용 IR 자료를 제작해 <strong>선정까지</strong> 이끌었습니다.</p>
+          <h3>TIPS 지원사업 IR 자료 제작</h3>
+          <p>단기 프리랜서로 LLM 산업 및 제품 기술 리서치를 수행하고 IR 자료를 제작해 <strong>TIPS 선정</strong>에 기여했습니다.</p>
           <div class="work-tags">
             <span class="tag">리서치</span>
             <span class="tag">IR</span>
@@ -487,20 +501,28 @@
 
       <div class="mini-list reveal">
         <div class="mini-row">
+          <span class="name">프랙시스캐피탈 산학협력프로젝트 <span class="scope">— 엔라이즈 신사업 타당성 검토, PT 1등 → 엔라이즈 인턴 연계</span></span>
+          <span class="when">2021.10</span>
+        </div>
+        <div class="mini-row">
+          <span class="name">카카오인베스트먼트 산학협력프로젝트 <span class="scope">— 트렌드 분석, 신규기업 발굴</span></span>
+          <span class="when">2021.11</span>
+        </div>
+        <div class="mini-row">
+          <span class="name">롯데백화점 산학협력프로젝트 <span class="scope">— 메타버스 신사업 전략</span></span>
+          <span class="when">2021.11</span>
+        </div>
+        <div class="mini-row">
+          <span class="name">두산로보틱스 산학협력프로젝트 <span class="scope">— 신사업 발굴, 타당성 검토</span></span>
+          <span class="when">2022.04</span>
+        </div>
+        <div class="mini-row">
           <span class="name">CJ SID 산학협력프로젝트 <span class="scope">— 계약수행, 산업분석</span></span>
           <span class="when">2022.09</span>
         </div>
         <div class="mini-row">
-          <span class="name">두산로보틱스 산학협력프로젝트 <span class="scope">— 신사업발굴, 타당성검토</span></span>
-          <span class="when">2021.10</span>
-        </div>
-        <div class="mini-row">
-          <span class="name">카카오인베스트먼트 산학협력프로젝트 <span class="scope">— 기업분석, 트렌드발굴</span></span>
-          <span class="when">2021.10</span>
-        </div>
-        <div class="mini-row">
-          <span class="name">엔라이즈 × 프랙시스캐피탈 산학협력프로젝트 <span class="scope">— 플랫폼서비스기획</span></span>
-          <span class="when">2021.10</span>
+          <span class="name">SKT 서비스기획 CAMP <span class="scope">— 에이닷 서비스 고객여정 분석 및 신규 아이디어 제안</span></span>
+          <span class="when">2023.08</span>
         </div>
       </div>
     </div>
@@ -528,28 +550,28 @@
           <span class="activity-dot"></span>
           <div>
             <div class="activity-title">서울대학교 경영전략학회 N-CEO (2021.09 — 2022.12)</div>
-            <p class="activity-desc">콘텐츠, 벤처캐피탈, 에듀테크, 로보틱스 등 다양한 산업군 기업의 문제 해결을 위한 경영전략 세션을 매주 수행했습니다.</p>
+            <p class="activity-desc">팀원으로 PEF·VC·로보틱스·가전 등 6개 산학 프로젝트와 8개 내부 케이스 스터디를 수행했고, <strong>이후 회장을 맡아</strong> 교육 세션 기획, 산학 계약 수주, 조직 운영, 네트워킹 행사 기획을 총괄했습니다.</p>
           </div>
         </li>
         <li class="activity-item">
           <span class="activity-dot"></span>
           <div>
-            <div class="activity-title">LG전자 ESG 아카데미 7기 우수 조 수료 (2021.07 — 2021.11)</div>
-            <p class="activity-desc">환경·사회 문제 해결안을 고안하고 ESG 우수기업 사례를 분석했습니다.</p>
+            <div class="activity-title">LG전자 ESG 아카데미 7기 우수 조 수료 (2021.06 — 2021.11)</div>
+            <p class="activity-desc">ESG 관련 과제를 수행하며 전반에 대한 이해를 쌓고, 우수기업 사례를 스터디해 관련 캠페인을 직접 집행했습니다.</p>
           </div>
         </li>
         <li class="activity-item">
           <span class="activity-dot"></span>
           <div>
-            <div class="activity-title">프로네시스 나눔실천단 집행부 (2020.09 — 2021.08, 봉사 113시간)</div>
-            <p class="activity-desc">고등학교 교육봉사 기획·집행(팀장/부팀장)과 소외계층 1:1 수학·진로 멘토링을 진행했습니다.</p>
+            <div class="activity-title">프로네시스 나눔실천단 (2020.08 — 2021.09)</div>
+            <p class="activity-desc">교육소외학교 학생 약 80명을 대상으로 5박 6일 교육봉사를 2회 진행했습니다. 교내 재학생 20명과 팀을 꾸려 한 달 반 동안 프로그램을 준비했고, 부팀장과 팀장을 맡아 각각 이끌었습니다.</p>
           </div>
         </li>
         <li class="activity-item">
           <span class="activity-dot"></span>
           <div>
-            <div class="activity-title">서울대학교 교육학과 학생부회장 (2019.12 — 2020.12)</div>
-            <p class="activity-desc">과 집행부장으로 학과 사업 기획과 홍보를 총괄했습니다.</p>
+            <div class="activity-title">서울대학교 교육학과 부학생회장 (2019.12 — 2020.12)</div>
+            <p class="activity-desc">임기 시작과 함께 찾아온 코로나 팬데믹으로 기존 사업이 무산되자, 비대면 전환과 신규사업 수행을 위한 TF를 총괄하고 위기상황 매뉴얼을 제작했습니다.</p>
           </div>
         </li>
       </ul>
@@ -561,9 +583,23 @@
     <div class="container">
       <div class="block-head">
         <h2>스킬</h2>
-        <p>영어 · TOEIC Speaking Test IH</p>
       </div>
       <div class="skills-grid reveal">
+        <div class="skill-group">
+          <h3>Data &amp; Analytics</h3>
+          <div class="skill-row">
+            <span class="skill-name">Python</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">SQL</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Tableau</span>
+            <span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
+          </div>
+        </div>
         <div class="skill-group">
           <h3>Collaboration</h3>
           <div class="skill-row">
