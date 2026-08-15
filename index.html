@@ -250,59 +250,81 @@
   }
   .job-bullets strong { color: var(--text); font-weight: 600; }
 
-  /* ===== 프로젝트 카드 ===== */
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-    gap: 1.25rem;
-  }
-  .work-card {
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1.9rem 1.7rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    box-shadow: var(--shadow);
-    transition: transform 0.25s ease;
-  }
-  section.block.raised .work-card { background: var(--bg); }
-  .work-card:hover { transform: translateY(-4px); }
-  .work-meta {
-    font-size: 0.8rem;
-    font-weight: 600;
+  /* ===== 세부 프로젝트 (팝업) ===== */
+  .subproject-trigger {
+    margin: 0.2rem 0 1.6rem calc(8.5rem + 1.5rem);
+    background: none;
+    border: none;
+    padding: 0;
     color: var(--accent);
-  }
-  .work-card h3 { font-size: 1.2rem; font-weight: 700; }
-  .work-card p { color: var(--text-secondary); font-size: 0.94rem; }
-  .work-tags { margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.4rem; padding-top: 0.5rem; }
-  .tag {
-    font-size: 0.72rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    padding: 0.28rem 0.6rem;
-    border-radius: 999px;
-    background: var(--accent-tint);
-    color: var(--accent);
+    cursor: pointer;
+    font-family: inherit;
   }
+  .subproject-trigger:hover { text-decoration: underline; }
 
-  /* ===== 산학협력 프로젝트 리스트 ===== */
-  .mini-list {
-    max-width: 46rem;
-    margin: 2.2rem auto 0;
+  dialog.subproject-dialog {
+    max-width: 40rem;
+    width: 90vw;
+    max-height: 82vh;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    box-shadow: var(--shadow);
+  }
+  dialog.subproject-dialog::backdrop { background: rgba(0, 0, 0, 0.55); }
+  .dialog-head {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 1.8rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .dialog-head h3 { font-size: 1.15rem; font-weight: 700; }
+  .dialog-close {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    line-height: 1;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.2rem;
+  }
+  .dialog-close:hover { color: var(--text); }
+  .dialog-body { padding: 0.4rem 1.8rem 1.8rem; overflow-y: auto; }
+  .subproject {
+    padding: 1.6rem 0;
     border-top: 1px solid var(--line);
   }
-  .mini-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
-    padding: 0.9rem 0;
-    border-bottom: 1px solid var(--line);
-    font-size: 0.92rem;
+  .subproject:first-child { border-top: none; }
+  .subproject-period {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.3rem;
   }
-  .mini-row .name { font-weight: 600; }
-  .mini-row .scope { color: var(--text-secondary); }
-  .mini-row .when { color: var(--text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .subproject h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.9rem; }
+  .subproject dt {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 0.9rem;
+  }
+  .subproject dt:first-of-type { margin-top: 0; }
+  .subproject dd {
+    margin: 0.25rem 0 0;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .subproject dd strong { color: var(--text); font-weight: 600; }
 
   /* ===== 활동 ===== */
   .activity-list {
@@ -394,8 +416,8 @@
       column-gap: 0.75rem;
     }
     .job-bullets { padding-left: 1rem; }
+    .subproject-trigger { margin-left: 1rem; }
     .nav-links { font-size: 0.74rem; gap: 0.7rem; }
-    .mini-row { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -405,7 +427,6 @@
     <ul class="nav-links">
       <li><a href="#about">소개</a></li>
       <li><a href="#experience">경력</a></li>
-      <li><a href="#projects">프로젝트</a></li>
       <li><a href="#education">학력·활동</a></li>
       <li><a href="#skills">스킬</a></li>
       <li><a href="#contact">연락처</a></li>
@@ -473,6 +494,7 @@
             <li>학습 상태(User Status)별 힌트·개념 카드 생성 로직을 최종 프롬프트에 반영</li>
             <li>Audio LLM, Voice Agent 등 신규 LLM 활용 영역 리서치</li>
           </ul>
+          <button class="subproject-trigger" type="button" data-dialog="dlg-naver">세부 프로젝트 보기 →</button>
         </details>
         <details class="job-item">
           <summary>
@@ -487,6 +509,7 @@
             <li>LLM 산업 및 제품 기술 리서치 수행</li>
             <li>TIPS 지원사업 IR 자료 제작 → <strong>2023년 10월 TIPS 기업 선정</strong></li>
           </ul>
+          <button class="subproject-trigger" type="button" data-dialog="dlg-elements">세부 프로젝트 보기 →</button>
         </details>
         <details class="job-item">
           <summary>
@@ -503,6 +526,7 @@
             <li>이탈 데이터 분석 기반 민감정보 마스킹 기능 기획 → <strong>업로드 수 5배, MAU 300%↑ 달성</strong></li>
             <li>기능정의서 및 UX/UI(Figma) 제작</li>
           </ul>
+          <button class="subproject-trigger" type="button" data-dialog="dlg-elements">세부 프로젝트 보기 →</button>
         </details>
         <details class="job-item">
           <summary>
@@ -536,83 +560,72 @@
         </details>
       </div>
     </div>
-  </section>
 
-  <!-- ===== 프로젝트 ===== -->
-  <section class="block" id="projects">
-    <div class="container">
-      <div class="block-head">
-        <h2>프로젝트</h2>
-        <p>기획부터 실행까지 참여한 대표 프로젝트</p>
+    <dialog class="subproject-dialog" id="dlg-elements">
+      <div class="dialog-head">
+        <h3>엘리먼츠 — 세부 프로젝트</h3>
+        <button class="dialog-close" type="button" aria-label="닫기">×</button>
       </div>
-      <div class="work-grid">
-        <article class="work-card reveal">
-          <span class="work-meta">2022.11 — 2023.06 · 엘리먼츠</span>
-          <h3>'그들의 생기부' 기획·운영</h3>
-          <p>생활기록부 열람 서비스 saenggibu.com의 창업멤버로 서비스 런칭 전 과정을 이끌었습니다. 이탈 데이터를 분석해 민감 정보 마스킹 기능을 도입, <strong>업로드 수 5배 · MAU 300%↑</strong>를 달성했습니다.</p>
-          <div class="work-tags">
-            <span class="tag">데이터 분석</span>
-            <span class="tag">서비스 기획</span>
-            <span class="tag">IR</span>
-          </div>
-        </article>
-        <article class="work-card reveal">
-          <span class="work-meta">2024.06 — 2024.08 · 네이버클라우드</span>
-          <h3>HCX 기반 수학튜터서비스 기획</h3>
-          <p>하위권 학생을 위한 '쉬운 설명' 프롬프트 태스크 7종을 설계해 <strong>GPT-4·HCX로 비교 테스트</strong>하고, 모델 성능에 따라 개념 카드 분류 기준을 세워 최종 프롬프트에 반영했습니다.</p>
-          <div class="work-tags">
-            <span class="tag">AI</span>
-            <span class="tag">프롬프트 엔지니어링</span>
-            <span class="tag">모델 비교 테스트</span>
-          </div>
-        </article>
-        <article class="work-card reveal">
-          <span class="work-meta">2022.05 · LG전자</span>
-          <h3>신규 Screen 디바이스 컨셉 제안</h3>
-          <p>Z세대 행동 분석을 기반으로 새로운 디바이스 컨셉과 스펙을 구체화하고, 사업화 방안까지 기획했습니다.</p>
-          <div class="work-tags">
-            <span class="tag">산학협력</span>
-            <span class="tag">컨셉 기획</span>
-          </div>
-        </article>
-        <article class="work-card reveal">
-          <span class="work-meta">2023.09 · 엘리먼츠</span>
-          <h3>TIPS 지원사업 IR 자료 제작</h3>
-          <p>단기 프리랜서로 LLM 산업 및 제품 기술 리서치를 수행하고 IR 자료를 제작해 <strong>TIPS 선정</strong>에 기여했습니다.</p>
-          <div class="work-tags">
-            <span class="tag">리서치</span>
-            <span class="tag">IR</span>
-          </div>
-        </article>
+      <div class="dialog-body">
+        <div class="subproject">
+          <div class="subproject-period">2022.11 — 2023.06</div>
+          <h4>'그들의생기부' 기획·운영</h4>
+          <dl>
+            <dt>배경</dt>
+            <dd>엔라이즈 인턴십에서 서비스 기획에 흥미를 느꼈지만 실제 런칭을 경험하지 못한 아쉬움이 남아, 기획의 전 과정을 직접 이끌어보고자 창업팀에 합류했습니다.</dd>
+            <dt>활동</dt>
+            <dd>합격생 생활기록부 열람 서비스를 상위 기획부터 개발 착수까지 담당했습니다. 이탈 데이터를 분석해 공급 고객이 동아리명·학교명 등 유추 가능한 정보 노출에 거부감을 느낀다는 점을 발견하고 민감정보 마스킹 기능을 기획해 도입했습니다. 학과명 표기 정확도를 위해 개발자와 <strong>크롤링·OpenAPI 절충안</strong>을 제시하고, 크롤링 작업은 직접 수행해 협업 부담을 낮췄습니다.</dd>
+            <dt>기른 역량</dt>
+            <dd>데이터를 근거로 문제를 정의하고 해결책을 설계하는 힘, 사수 없이 개발자와 직접 조율하며 사업 전체를 책임지는 주도성을 길렀습니다.</dd>
+            <dt>회고</dt>
+            <dd>서비스를 키워가는 과정에서 비즈니스모델에 대한 기초 이해가 부족하다는 것을 느껴, 이후 벤처경영학을 복수전공하며 신사업 발굴 과정을 다시 학습했습니다.</dd>
+            <dt>임팩트</dt>
+            <dd>마스킹 기능 도입 이후 <strong>생활기록부 업로드 수 5배, 페이지 MAU 300% 이상</strong> 증가했습니다. 이 경험은 이후 모든 서비스 기획에서 데이터를 먼저 확인하는 습관으로 이어졌습니다.</dd>
+          </dl>
+        </div>
+        <div class="subproject">
+          <div class="subproject-period">2023.09</div>
+          <h4>TIPS 지원사업 IR 자료 제작</h4>
+          <dl>
+            <dt>배경</dt>
+            <dd>엘리먼츠가 TIPS 지원사업에 도전하며 LLM 산업에 대한 이해와 설득력 있는 IR 자료가 필요해, 단기 프리랜서로 다시 합류했습니다.</dd>
+            <dt>활동</dt>
+            <dd>LLM 산업 및 제품 기술을 리서치하고, 이를 바탕으로 TIPS 지원사업용 IR 자료를 제작했습니다.</dd>
+            <dt>기른 역량</dt>
+            <dd>빠르게 새로운 산업(LLM)을 학습해 투자자 관점의 설득력 있는 자료로 압축하는 능력을 길렀습니다.</dd>
+            <dt>회고</dt>
+            <dd>재무·투자 관련 지식을 더 갖추고 참여했다면 IR 자료의 설득력을 한층 더 높일 수 있었을 것 같습니다.</dd>
+            <dt>임팩트</dt>
+            <dd><strong>2023년 10월 TIPS 기업 선정</strong>에 기여했습니다.</dd>
+          </dl>
+        </div>
       </div>
+    </dialog>
 
-      <div class="mini-list reveal">
-        <div class="mini-row">
-          <span class="name">프랙시스캐피탈 산학협력프로젝트 <span class="scope">— 엔라이즈 신사업 타당성 검토, PT 1등 → 엔라이즈 인턴 연계</span></span>
-          <span class="when">2021.10</span>
-        </div>
-        <div class="mini-row">
-          <span class="name">카카오인베스트먼트 산학협력프로젝트 <span class="scope">— 트렌드 분석, 신규기업 발굴</span></span>
-          <span class="when">2021.11</span>
-        </div>
-        <div class="mini-row">
-          <span class="name">롯데백화점 산학협력프로젝트 <span class="scope">— 메타버스 신사업 전략</span></span>
-          <span class="when">2021.11</span>
-        </div>
-        <div class="mini-row">
-          <span class="name">두산로보틱스 산학협력프로젝트 <span class="scope">— 신사업 발굴, 타당성 검토</span></span>
-          <span class="when">2022.04</span>
-        </div>
-        <div class="mini-row">
-          <span class="name">CJ SID 산학협력프로젝트 <span class="scope">— 계약수행, 산업분석</span></span>
-          <span class="when">2022.09</span>
-        </div>
-        <div class="mini-row">
-          <span class="name">SKT 서비스기획 CAMP <span class="scope">— 에이닷 서비스 고객여정 분석 및 신규 아이디어 제안</span></span>
-          <span class="when">2023.08</span>
+    <dialog class="subproject-dialog" id="dlg-naver">
+      <div class="dialog-head">
+        <h3>네이버클라우드 — 세부 프로젝트</h3>
+        <button class="dialog-close" type="button" aria-label="닫기">×</button>
+      </div>
+      <div class="dialog-body">
+        <div class="subproject">
+          <div class="subproject-period">2024.06 — 2024.08</div>
+          <h4>HCX 기반 수학튜터서비스 '쉬운 설명' 프롬프트 설계</h4>
+          <dl>
+            <dt>배경</dt>
+            <dd>이해도 점수가 낮은 하위권 학생(6~7등급)도 쉬운 문제는 맞힐 수 있다는 가설 아래, 이들을 위한 '쉬운 설명'을 AI가 어떻게 생성할 수 있을지 정의가 필요했습니다.</dd>
+            <dt>활동</dt>
+            <dd>목록형 구조화, 예시 생성, 힌트 첫 단계 풀이 등 <strong>프롬프트 태스크 7종</strong>을 설계하고 GPT-4·HCX로 각각 테스트했습니다. 테스트 결과를 바탕으로 개념별 예시·반례 생성 가능 여부에 대한 분류 기준을 세워 최종 프롬프트에 반영했습니다.</dd>
+            <dt>기른 역량</dt>
+            <dd>모델 특성(GPT-4 vs HCX)을 실험으로 검증하고 한계에 맞춰 설계를 조정하는 프롬프트 엔지니어링 역량, 정성적 결과를 정량 지표로 환산해 의사결정하는 습관을 길렀습니다.</dd>
+            <dt>회고</dt>
+            <dd>테스트 문항의 문장 길이가 짧아 '문장 길이 제한' 태스크는 제대로 검증하지 못했는데, 다시 한다면 실험 초반에 문항 특성을 더 다양하게 확보해 태스크별 검증 조건을 갖추고 싶습니다.</dd>
+            <dt>임팩트</dt>
+            <dd>목록형 구조화·예시 생성·힌트 첫 단계 풀이·이것만은 알고가자·힌트 개념 맵핑 5개 태스크가 최종 프롬프트에 반영되어, 실제 수학튜터서비스의 힌트·개념 카드 생성 로직의 기반이 되었습니다.</dd>
+          </dl>
         </div>
       </div>
-    </div>
+    </dialog>
   </section>
 
   <!-- ===== 학력 · 활동 ===== -->
@@ -627,7 +640,7 @@
           <div>
             <div class="timeline-role">서울대학교</div>
             <div class="timeline-org">교육학 · 벤처경영학 전공</div>
-            <p class="timeline-desc">컴퓨터 개념 및 실습(Python, SQL), 창업론실습, 재무관리, 경영정보론, 벤처창업웹프로그래밍(PHP) 등을 통해 경영과 벤처 생태계에 대한 식견을 넓혔습니다.</p>
+            <p class="timeline-desc">컴퓨터 개념 및 실습(Python, SQL), 창업론실습, 재무관리, 경영정보론 등을 통해 경영과 벤처 생태계에 대한 식견을 넓혔습니다.</p>
           </div>
         </div>
       </div>
@@ -650,7 +663,7 @@
         <li class="activity-item">
           <span class="activity-dot"></span>
           <div>
-            <div class="activity-title">프로네시스 나눔실천단 (2020.08 — 2021.09)</div>
+            <div class="activity-title">서울대학교 프로네시스 나눔실천단 (2020.08 — 2021.09)</div>
             <p class="activity-desc">교육소외학교 학생 약 80명을 대상으로 5박 6일 교육봉사를 2회 진행했습니다. 교내 재학생 20명과 팀을 꾸려 한 달 반 동안 프로그램을 준비했고, 부팀장과 팀장을 맡아 각각 이끌었습니다.</p>
           </div>
         </li>
@@ -773,4 +786,16 @@
   } else {
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
   }
+
+  document.querySelectorAll('[data-dialog]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.getElementById(btn.dataset.dialog).showModal();
+    });
+  });
+  document.querySelectorAll('.subproject-dialog').forEach(function (dlg) {
+    dlg.querySelector('.dialog-close').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) {
+      if (e.target === dlg) dlg.close();
+    });
+  });
 </script>
