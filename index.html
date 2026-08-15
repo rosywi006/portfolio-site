@@ -770,11 +770,11 @@
 
 <header class="hero" id="hero">
   <h1>위선영</h1>
-  <p class="hero-sub">교육학과 벤처경영학을 공부했고,<br>데이터, AI, 사람과 친한 비즈니스 전문가로 성장하고 있습니다.</p>
+  <p class="hero-sub">교육학과 벤처경영학을 공부했고,<br>데이터, AI와 친한 서비스기획자로 성장중입니다.</p>
   <div class="hero-facts">
     <span class="fact-pill">Seoul, South Korea</span>
     <span class="fact-pill">메리츠화재 · CRM &amp; Data Analyst</span>
-    <span class="fact-pill"><a href="mailto:rosywi006@gmail.com">rosywi006@gmail.com</a></span>
+    <span class="fact-pill"><a class="email-link" href="mailto:rosywi006@gmail.com">rosywi006@gmail.com</a></span>
   </div>
 </header>
 
@@ -1241,7 +1241,7 @@
         <h2>Contact</h2>
         <p>전략, 기획, 프로덕트 관련 제안은 언제든 환영합니다.<br>이메일로 편하게 연락 주세요.</p>
         <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:rosywi006@gmail.com">이메일 보내기</a>
+          <a class="btn btn-primary email-link" href="mailto:rosywi006@gmail.com">이메일 보내기</a>
         </div>
       </div>
     </div>
@@ -1312,5 +1312,20 @@
   lightbox.querySelector('.lightbox-close').addEventListener('click', function () { lightbox.close(); });
   lightbox.addEventListener('click', function (e) {
     if (e.target === lightbox) lightbox.close();
+  });
+
+  document.querySelectorAll('.email-link').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      var to = 'rosywi006@gmail.com';
+      var fellBack = false;
+      window.location.href = 'googlegmail://co?to=' + to;
+      setTimeout(function () {
+        if (!document.hidden && !fellBack) {
+          fellBack = true;
+          window.location.href = 'mailto:' + to;
+        }
+      }, 800);
+    });
   });
 </script>
