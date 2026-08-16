@@ -648,8 +648,17 @@
   @media (prefers-reduced-motion: reduce) { .hobby-group-chevron { transition: none; } }
   .art-grid {
     max-width: 100%;
+    max-height: 15.5rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     animation: jobReveal 0.4s ease both;
+    scrollbar-width: thin;
+    scrollbar-color: var(--glass-border) transparent;
   }
+  .art-grid::-webkit-scrollbar { width: 7px; }
+  .art-grid::-webkit-scrollbar-track { background: transparent; }
+  .art-grid::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 4px; }
+  .art-grid::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
   @media (prefers-reduced-motion: reduce) { .art-grid { animation: none; } }
   .art-track {
     display: grid;
@@ -804,6 +813,7 @@
     .art-track { grid-template-columns: repeat(2, 1fr); }
     .art-card { grid-column: auto; }
     .art-card:last-child:nth-child(2n+1) { grid-column: span 2; }
+    .art-grid { max-height: 11rem; }
   }
 </style>
 
