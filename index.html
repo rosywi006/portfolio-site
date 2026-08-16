@@ -568,7 +568,8 @@
   /* ===== 사분면 분석 예시 ===== */
   .quad-mock-body { padding: 1rem 1.1rem 0.6rem; }
   .quad-mock svg { width: 100%; height: auto; display: block; }
-  .quad-mock-dot-label { font-size: 8.5px; fill: var(--text-secondary); }
+  .quad-mock-dot-label { font-size: 8.5px; fill: var(--text); font-weight: 600; }
+  .quad-mock-dot-sub { fill: var(--text-secondary); font-weight: 400; }
   .quad-mock-axis-label { font-size: 9.5px; fill: var(--text-secondary); font-weight: 600; }
   .quad-mock-quad-label { font-size: 8.5px; fill: var(--text-secondary); font-style: italic; }
   .quad-mock-avg-label { font-size: 8px; fill: #ff6f6f; font-weight: 700; }
@@ -1068,21 +1069,21 @@
 
             <div class="dash-mock quad-mock">
               <div class="dash-mock-head">
-                <span class="dash-mock-title">CTR × 매출전환 사분면 분석</span>
-                <span class="dash-mock-tag">Unmatching 진단 · 좌표는 예시값</span>
+                <span class="dash-mock-title">상담신청 × 매출전환 사분면 분석</span>
+                <span class="dash-mock-tag">Unmatching 진단 · 날짜·캠페인명·좌표는 예시값</span>
               </div>
               <div class="quad-mock-body">
-                <svg viewBox="0 0 440 260" role="img" aria-label="CTR과 매출전환율 사분면 분석 예시 차트">
+                <svg viewBox="0 0 440 260" role="img" aria-label="상담신청과 매출전환율 사분면 분석 예시 차트">
                   <rect x="220" y="125" width="210" height="105" fill="rgba(255,255,159,0.07)"></rect>
                   <line x1="30" y1="10" x2="30" y2="230" stroke="var(--line)" stroke-width="1"></line>
                   <line x1="30" y1="230" x2="430" y2="230" stroke="var(--line)" stroke-width="1"></line>
                   <line x1="220" y1="10" x2="220" y2="230" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"></line>
                   <line x1="30" y1="125" x2="430" y2="125" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"></line>
 
-                  <text x="425" y="24" text-anchor="end" class="quad-mock-quad-label">후킹 O · 전환 O (이상적)</text>
-                  <text x="425" y="222" text-anchor="end" class="quad-mock-quad-label">후킹 O · 전환 X (Unmatching)</text>
-                  <text x="35" y="24" class="quad-mock-quad-label">후킹 X · 전환 O (숨은 전환)</text>
-                  <text x="35" y="222" class="quad-mock-quad-label">후킹 X · 전환 X (저관심)</text>
+                  <text x="425" y="24" text-anchor="end" class="quad-mock-quad-label">상담신청 O · 전환 O (이상적)</text>
+                  <text x="425" y="222" text-anchor="end" class="quad-mock-quad-label">상담신청 O · 전환 X (숙성 필요)</text>
+                  <text x="35" y="24" class="quad-mock-quad-label">상담신청 X · 전환 O (효율형)</text>
+                  <text x="35" y="222" class="quad-mock-quad-label">상담신청 X · 전환 X (저관심)</text>
                   <text x="226" y="119" class="quad-mock-avg-label">평균</text>
 
                   <!-- 배경 텍스처용 소형 버블(예시) -->
@@ -1092,27 +1093,27 @@
                   <circle cx="255" cy="85" r="3.5" fill="#ff6fae" fill-opacity="0.6"></circle>
                   <circle cx="265" cy="160" r="3" fill="#22d3aa" fill-opacity="0.6"></circle>
                   <circle cx="310" cy="70" r="2.5" fill="var(--accent)" fill-opacity="0.6"></circle>
-                  <circle cx="345" cy="160" r="3" fill="#ff9f4a" fill-opacity="0.6"></circle>
-                  <circle cx="405" cy="100" r="3" fill="var(--accent)" fill-opacity="0.6"></circle>
+                  <circle cx="345" cy="150" r="3" fill="#ff9f4a" fill-opacity="0.6"></circle>
+                  <circle cx="405" cy="90" r="3" fill="var(--accent)" fill-opacity="0.6"></circle>
                   <circle cx="200" cy="185" r="2.5" fill="#ff5c5c" fill-opacity="0.6"></circle>
                   <circle cx="55" cy="60" r="2.5" fill="#8f8f52" fill-opacity="0.6"></circle>
 
-                  <circle cx="330" cy="45" r="9" fill="var(--accent)" fill-opacity="0.85"></circle>
-                  <text x="330" y="31" text-anchor="middle" class="quad-mock-dot-label">영업방향</text>
-                  <circle cx="300" cy="175" r="6" fill="#ff9f4a" fill-opacity="0.85"></circle>
-                  <text x="300" y="164" text-anchor="middle" class="quad-mock-dot-label">순통치</text>
-                  <circle cx="385" cy="185" r="8" fill="#ff5c5c" fill-opacity="0.85"></circle>
-                  <text x="385" y="171" text-anchor="middle" class="quad-mock-dot-label">치매</text>
-                  <circle cx="110" cy="175" r="7" fill="#22d3aa" fill-opacity="0.85"></circle>
-                  <text x="110" y="190" text-anchor="middle" class="quad-mock-dot-label">멘토상담</text>
-                  <circle cx="90" cy="55" r="5" fill="#a78bfa" fill-opacity="0.85"></circle>
-                  <text x="90" y="44" text-anchor="middle" class="quad-mock-dot-label">자료제공</text>
+                  <circle cx="390" cy="195" r="11" fill="#ff6fae" fill-opacity="0.85"></circle>
+                  <text x="375" y="198" text-anchor="end" class="quad-mock-dot-label">8/3 신규혜택공개<tspan class="quad-mock-dot-sub" font-size="7"> (268)</tspan></text>
+                  <circle cx="300" cy="170" r="9" fill="#22d3aa" fill-opacity="0.85"></circle>
+                  <text x="287" y="173" text-anchor="end" class="quad-mock-dot-label">7/18 라방_본방안내<tspan class="quad-mock-dot-sub" font-size="7"> (215)</tspan></text>
+                  <circle cx="330" cy="50" r="7" fill="#ffd43b" fill-opacity="0.85"></circle>
+                  <text x="319" y="53" text-anchor="end" class="quad-mock-dot-label">7/9 청약프로세스안내<tspan class="quad-mock-dot-sub" font-size="7"> (38)</tspan></text>
+                  <circle cx="70" cy="55" r="6" fill="#4ade80" fill-opacity="0.85"></circle>
+                  <text x="80" y="58" text-anchor="start" class="quad-mock-dot-label">7/25 운전자_3대보장안내<tspan class="quad-mock-dot-sub" font-size="7"> (27)</tspan></text>
+                  <circle cx="95" cy="180" r="5" fill="#ff5c5c" fill-opacity="0.85"></circle>
+                  <text x="104" y="183" text-anchor="start" class="quad-mock-dot-label">8/14 치아_파트너스<tspan class="quad-mock-dot-sub" font-size="7"> (19)</tspan></text>
 
-                  <text x="230" y="245" class="quad-mock-axis-label quad-mock-axis-arrow">CTR →</text>
-                  <text x="12" y="120" class="quad-mock-axis-label quad-mock-axis-arrow" transform="rotate(-90 12 120)">매출전환율 →</text>
+                  <text x="230" y="245" class="quad-mock-axis-label quad-mock-axis-arrow">상담신청 →</text>
+                  <text x="12" y="120" class="quad-mock-axis-label quad-mock-axis-arrow" transform="rotate(-90 12 120)">매출전환율(유실적전환) →</text>
                 </svg>
               </div>
-              <div class="dash-mock-foot">원 크기는 상담신청 수, 색상은 캠페인분류를 나타냅니다. CTR은 높지만 매출전환은 낮은 우하단(Unmatching) 캠페인을 골라내 카피·타이밍 개선 대상으로 우선순위를 매겼습니다.</div>
+              <div class="dash-mock-foot">원 크기는 상담신청 수를 나타냅니다. 라방·혜택공개형처럼 단순 후킹 메시지는 상담신청은 많이 모아도 곧장 매출전환으로 이어지지 않는다는 걸 확인했고(우하단, 숙성 필요), 이런 리드는 바로 영업으로 꽂기보다 CRM으로 한 번 더 숙성시킨 뒤 영업리드로 전환해야 한다는 인사이트를 얻었습니다.</div>
             </div>
             <dt>기른 역량</dt>
             <dd>지표 간 괴리(CTR vs 매출전환)를 캠페인·CTA 단위까지 쪼개 원인을 추적하는 진단형 대시보드 설계력을 길렀습니다.</dd>
