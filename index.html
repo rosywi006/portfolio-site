@@ -571,6 +571,8 @@
   .quad-mock-dot-label { font-size: 8.5px; fill: var(--text-secondary); }
   .quad-mock-axis-label { font-size: 9.5px; fill: var(--text-secondary); font-weight: 600; }
   .quad-mock-quad-label { font-size: 8.5px; fill: var(--text-secondary); font-style: italic; }
+  .quad-mock-avg-label { font-size: 8px; fill: #ff6f6f; font-weight: 700; }
+  .quad-mock-axis-arrow { fill: #ff6f6f; }
 
   /* ===== 활동 ===== */
   .activity-list {
@@ -1081,6 +1083,19 @@
                   <text x="425" y="222" text-anchor="end" class="quad-mock-quad-label">후킹 O · 전환 X (Unmatching)</text>
                   <text x="35" y="24" class="quad-mock-quad-label">후킹 X · 전환 O (숨은 전환)</text>
                   <text x="35" y="222" class="quad-mock-quad-label">후킹 X · 전환 X (저관심)</text>
+                  <text x="226" y="119" class="quad-mock-avg-label">평균</text>
+
+                  <!-- 배경 텍스처용 소형 버블(예시) -->
+                  <circle cx="65" cy="110" r="3" fill="#ff6fae" fill-opacity="0.6"></circle>
+                  <circle cx="150" cy="70" r="2.5" fill="var(--accent)" fill-opacity="0.6"></circle>
+                  <circle cx="170" cy="205" r="3" fill="#ff9f4a" fill-opacity="0.6"></circle>
+                  <circle cx="255" cy="85" r="3.5" fill="#ff6fae" fill-opacity="0.6"></circle>
+                  <circle cx="265" cy="160" r="3" fill="#22d3aa" fill-opacity="0.6"></circle>
+                  <circle cx="310" cy="70" r="2.5" fill="var(--accent)" fill-opacity="0.6"></circle>
+                  <circle cx="345" cy="160" r="3" fill="#ff9f4a" fill-opacity="0.6"></circle>
+                  <circle cx="405" cy="100" r="3" fill="var(--accent)" fill-opacity="0.6"></circle>
+                  <circle cx="200" cy="185" r="2.5" fill="#ff5c5c" fill-opacity="0.6"></circle>
+                  <circle cx="55" cy="60" r="2.5" fill="#8f8f52" fill-opacity="0.6"></circle>
 
                   <circle cx="330" cy="45" r="9" fill="var(--accent)" fill-opacity="0.85"></circle>
                   <text x="330" y="31" text-anchor="middle" class="quad-mock-dot-label">영업방향</text>
@@ -1093,8 +1108,8 @@
                   <circle cx="90" cy="55" r="5" fill="#a78bfa" fill-opacity="0.85"></circle>
                   <text x="90" y="44" text-anchor="middle" class="quad-mock-dot-label">자료제공</text>
 
-                  <text x="230" y="245" class="quad-mock-axis-label">CTR →</text>
-                  <text x="12" y="120" class="quad-mock-axis-label" transform="rotate(-90 12 120)">매출전환율 →</text>
+                  <text x="230" y="245" class="quad-mock-axis-label quad-mock-axis-arrow">CTR →</text>
+                  <text x="12" y="120" class="quad-mock-axis-label quad-mock-axis-arrow" transform="rotate(-90 12 120)">매출전환율 →</text>
                 </svg>
               </div>
               <div class="dash-mock-foot">원 크기는 상담신청 수, 색상은 캠페인분류를 나타냅니다. CTR은 높지만 매출전환은 낮은 우하단(Unmatching) 캠페인을 골라내 카피·타이밍 개선 대상으로 우선순위를 매겼습니다.</div>
