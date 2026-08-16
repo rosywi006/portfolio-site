@@ -558,7 +558,19 @@
   .dash-mock-table tbody th { color: var(--text-secondary); font-weight: 500; }
   .dash-mock-table tbody tr:last-child th, .dash-mock-table tbody tr:last-child td { border-bottom: none; }
   .dash-mock-table td.blur { filter: blur(5px); color: var(--text); user-select: none; }
+  .dash-mock-table td.heat-1 { background: rgba(255, 255, 159, 0.06); }
+  .dash-mock-table td.heat-2 { background: rgba(255, 255, 159, 0.14); }
+  .dash-mock-table td.heat-3 { background: rgba(255, 255, 159, 0.26); }
+  .dash-mock-table thead tr:first-child th { border-bottom: 1px solid var(--line); text-align: center; }
+  .dash-mock-table th.grp-start, .dash-mock-table td.grp-start { border-left: 1px solid var(--line); }
   .dash-mock-foot { padding: 0.55rem 0.9rem; font-size: 0.72rem; color: var(--text-secondary); border-top: 1px solid var(--line); }
+
+  /* ===== 사분면 분석 예시 ===== */
+  .quad-mock-body { padding: 1rem 1.1rem 0.6rem; }
+  .quad-mock svg { width: 100%; height: auto; display: block; }
+  .quad-mock-dot-label { font-size: 8.5px; fill: var(--text-secondary); }
+  .quad-mock-axis-label { font-size: 9.5px; fill: var(--text-secondary); font-weight: 600; }
+  .quad-mock-quad-label { font-size: 8.5px; fill: var(--text-secondary); font-style: italic; }
 
   /* ===== 활동 ===== */
   .activity-list {
@@ -697,21 +709,10 @@
     width: 14px; height: 6px; border-radius: 3px;
     background: var(--meter-off);
   }
-  .meter span.on {
-    background: var(--accent); color: var(--accent);
-    box-shadow: 0 0 3px 0.5px currentColor, 0 0 1px rgba(255, 255, 255, 0.4);
-    animation: meterPulse 2.6s ease-in-out infinite;
-  }
-  .meter.level-low span.on { background: #8f8f52; color: #8f8f52; }
-  .meter.level-mid span.on { background: #d9d976; color: #d9d976; }
-  .meter.level-high span.on { background: var(--accent); color: var(--accent); }
-  @keyframes meterPulse {
-    0%, 100% { box-shadow: 0 0 2.5px 0.5px currentColor, 0 0 1px rgba(255, 255, 255, 0.35); }
-    50% { box-shadow: 0 0 5px 1px currentColor, 0 0 1.5px rgba(255, 255, 255, 0.45); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .meter span.on { animation: none; }
-  }
+  .meter span.on { background: var(--accent); }
+  .meter.level-low span.on { background: #8f8f52; }
+  .meter.level-mid span.on { background: #d9d976; }
+  .meter.level-high span.on { background: var(--accent); }
 
   /* ===== Contact ===== */
   .contact-block { text-align: center; padding: clamp(4rem, 10vw, 6.5rem) 0; }
@@ -999,7 +1000,7 @@
             <div class="dash-mock">
               <div class="dash-mock-head">
                 <span class="dash-mock-title">캠페인별 상세 반응현황</span>
-                <span class="dash-mock-tag">Tableau 대시보드 · 실제 수치는 블러 처리</span>
+                <span class="dash-mock-tag">Tableau 대시보드 구조 재현 · 수치는 예시값</span>
               </div>
               <div class="dash-mock-scroll">
                 <table class="dash-mock-table">
@@ -1007,15 +1008,96 @@
                     <tr><th>캠페인분류</th><th>발송수</th><th>CTR</th><th>상담신청률</th><th>가계약전환율</th><th>매출전환율</th></tr>
                   </thead>
                   <tbody>
-                    <tr><th>영업방향</th><td class="blur">19,864</td><td class="blur">51.7%</td><td class="blur">48.5%</td><td class="blur">57.5%</td><td class="blur">29.7%</td></tr>
-                    <tr><th>실손</th><td class="blur">4,569</td><td class="blur">20.7%</td><td class="blur">33.4%</td><td class="blur">11.9%</td><td class="blur">35.5%</td></tr>
-                    <tr><th>치매</th><td class="blur">4,291</td><td class="blur">3.7%</td><td class="blur">25.8%</td><td class="blur">3.2%</td><td class="blur">12.5%</td></tr>
-                    <tr><th>순통치</th><td class="blur">7,163</td><td class="blur">1.8%</td><td class="blur">38.0%</td><td class="blur">20.7%</td><td class="blur">54.3%</td></tr>
-                    <tr><th>상품이슈</th><td class="blur">7,207</td><td class="blur">2.0%</td><td class="blur">38.6%</td><td class="blur">20.6%</td><td class="blur">52.6%</td></tr>
+                    <tr><th>영업방향</th><td class="blur">12,450</td><td class="blur">38.2%</td><td class="blur">41.0%</td><td class="blur">33.5%</td><td class="blur">18.4%</td></tr>
+                    <tr><th>실손</th><td class="blur">5,320</td><td class="blur">24.6%</td><td class="blur">29.8%</td><td class="blur">15.2%</td><td class="blur">27.1%</td></tr>
+                    <tr><th>치매</th><td class="blur">4,980</td><td class="blur">6.1%</td><td class="blur">22.4%</td><td class="blur">8.7%</td><td class="blur">14.9%</td></tr>
+                    <tr><th>순통치</th><td class="blur">6,740</td><td class="blur">3.4%</td><td class="blur">33.1%</td><td class="blur">19.8%</td><td class="blur">41.6%</td></tr>
+                    <tr><th>상품이슈</th><td class="blur">6,110</td><td class="blur">4.8%</td><td class="blur">35.5%</td><td class="blur">17.3%</td><td class="blur">38.2%</td></tr>
                   </tbody>
                 </table>
               </div>
-              <div class="dash-mock-foot">CTA버튼별 효율(게시판CTA_상담신청이후_Tracking) 등 하위 대시보드를 클릭하면 세부 반응률까지 드릴다운되도록 설계했습니다.</div>
+              <div class="dash-mock-foot">캠페인분류별 발송수·CTR·상담신청률·가계약전환율·매출전환율을 한 화면에서 비교하도록 설계했습니다.</div>
+            </div>
+
+            <div class="dash-mock">
+              <div class="dash-mock-head">
+                <span class="dash-mock-title">CRM 캠페인 CTA_Tracking</span>
+                <span class="dash-mock-tag">N잡 등급 × CRM 조회 여부 · 수치는 예시값</span>
+              </div>
+              <div class="dash-mock-scroll">
+                <table class="dash-mock-table">
+                  <thead>
+                    <tr>
+                      <th rowspan="2">N잡_구분</th>
+                      <th colspan="4" class="grp-start">CRM조회O</th>
+                      <th colspan="4" class="grp-start">CRM조회X</th>
+                      <th colspan="4" class="grp-start">총합계</th>
+                    </tr>
+                    <tr>
+                      <th class="grp-start">CTR</th><th>상담신청</th><th>가계약전환율</th><th>유실적률</th>
+                      <th class="grp-start">CTR</th><th>상담신청</th><th>가계약전환율</th><th>유실적률</th>
+                      <th class="grp-start">CTR</th><th>상담신청</th><th>가계약전환율</th><th>유실적률</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>1_Rookie</th>
+                      <td class="blur heat-3 grp-start">92%</td><td class="blur">54</td><td class="blur heat-3">88%</td><td class="blur heat-2">58%</td>
+                      <td class="blur heat-1 grp-start">12%</td><td class="blur">22</td><td class="blur heat-2">60%</td><td class="blur heat-3">71%</td>
+                      <td class="blur heat-2 grp-start">45%</td><td class="blur">76</td><td class="blur heat-3">79%</td><td class="blur heat-2">64%</td>
+                    </tr>
+                    <tr>
+                      <th>2_Active</th>
+                      <td class="blur heat-2 grp-start">78%</td><td class="blur">610</td><td class="blur heat-2">55%</td><td class="blur heat-1">24%</td>
+                      <td class="blur heat-1 grp-start">9%</td><td class="blur">240</td><td class="blur heat-1">38%</td><td class="blur heat-2">41%</td>
+                      <td class="blur heat-1 grp-start">34%</td><td class="blur">850</td><td class="blur heat-2">47%</td><td class="blur heat-1">31%</td>
+                    </tr>
+                    <tr>
+                      <th>3_Chance</th>
+                      <td class="blur heat-2 grp-start">65%</td><td class="blur">220</td><td class="blur heat-1">32%</td><td class="blur heat-1">12%</td>
+                      <td class="blur heat-1 grp-start">4%</td><td class="blur">480</td><td class="blur heat-1">19%</td><td class="blur heat-2">33%</td>
+                      <td class="blur heat-1 grp-start">15%</td><td class="blur">700</td><td class="blur heat-1">24%</td><td class="blur heat-1">22%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="dash-mock-foot">CRM 조회 여부·N잡 등급(Rookie/Active/Chance)별로 CTA버튼 반응이 얼마나 갈리는지 교차 비교하도록 설계했습니다.</div>
+            </div>
+
+            <div class="dash-mock quad-mock">
+              <div class="dash-mock-head">
+                <span class="dash-mock-title">CTR × 매출전환 사분면 분석</span>
+                <span class="dash-mock-tag">Unmatching 진단 · 좌표는 예시값</span>
+              </div>
+              <div class="quad-mock-body">
+                <svg viewBox="0 0 440 260" role="img" aria-label="CTR과 매출전환율 사분면 분석 예시 차트">
+                  <rect x="220" y="125" width="210" height="105" fill="rgba(255,255,159,0.07)"></rect>
+                  <line x1="30" y1="10" x2="30" y2="230" stroke="var(--line)" stroke-width="1"></line>
+                  <line x1="30" y1="230" x2="430" y2="230" stroke="var(--line)" stroke-width="1"></line>
+                  <line x1="220" y1="10" x2="220" y2="230" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"></line>
+                  <line x1="30" y1="125" x2="430" y2="125" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"></line>
+
+                  <text x="425" y="24" text-anchor="end" class="quad-mock-quad-label">후킹 O · 전환 O (이상적)</text>
+                  <text x="425" y="222" text-anchor="end" class="quad-mock-quad-label">후킹 O · 전환 X (Unmatching)</text>
+                  <text x="35" y="24" class="quad-mock-quad-label">후킹 X · 전환 O (숨은 전환)</text>
+                  <text x="35" y="222" class="quad-mock-quad-label">후킹 X · 전환 X (저관심)</text>
+
+                  <circle cx="330" cy="45" r="9" fill="var(--accent)" fill-opacity="0.85"></circle>
+                  <text x="330" y="31" text-anchor="middle" class="quad-mock-dot-label">영업방향</text>
+                  <circle cx="300" cy="175" r="6" fill="#ff9f4a" fill-opacity="0.85"></circle>
+                  <text x="300" y="164" text-anchor="middle" class="quad-mock-dot-label">순통치</text>
+                  <circle cx="385" cy="185" r="8" fill="#ff5c5c" fill-opacity="0.85"></circle>
+                  <text x="385" y="171" text-anchor="middle" class="quad-mock-dot-label">치매</text>
+                  <circle cx="110" cy="175" r="7" fill="#22d3aa" fill-opacity="0.85"></circle>
+                  <text x="110" y="190" text-anchor="middle" class="quad-mock-dot-label">멘토상담</text>
+                  <circle cx="90" cy="55" r="5" fill="#a78bfa" fill-opacity="0.85"></circle>
+                  <text x="90" y="44" text-anchor="middle" class="quad-mock-dot-label">자료제공</text>
+
+                  <text x="230" y="245" class="quad-mock-axis-label">CTR →</text>
+                  <text x="12" y="120" class="quad-mock-axis-label" transform="rotate(-90 12 120)">매출전환율 →</text>
+                </svg>
+              </div>
+              <div class="dash-mock-foot">원 크기는 상담신청 수, 색상은 캠페인분류를 나타냅니다. CTR은 높지만 매출전환은 낮은 우하단(Unmatching) 캠페인을 골라내 카피·타이밍 개선 대상으로 우선순위를 매겼습니다.</div>
             </div>
             <dt>기른 역량</dt>
             <dd>지표 간 괴리(CTR vs 매출전환)를 캠페인·CTA 단위까지 쪼개 원인을 추적하는 진단형 대시보드 설계력을 길렀습니다.</dd>
