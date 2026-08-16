@@ -283,6 +283,21 @@
   .timeline-org { color: var(--text-secondary); margin-top: 0.2rem; font-size: 0.95rem; }
   .timeline-desc { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.6rem; }
   .timeline-desc strong { color: var(--text); font-weight: 600; }
+  .timeline-courses { margin-top: 0.9rem; }
+  .timeline-courses-label {
+    font-size: 0.74rem; font-weight: 700; color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.45rem;
+  }
+  .timeline-courses-list { display: flex; flex-direction: column; gap: 0.4rem; }
+  .timeline-courses-list li {
+    position: relative; padding-left: 1rem;
+    color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55;
+  }
+  .timeline-courses-list li::before {
+    content: ""; position: absolute; left: 2px; top: 0.6em;
+    width: 4px; height: 4px; border-radius: 50%; background: var(--text-secondary);
+  }
+  .timeline-courses-list strong { color: var(--text); font-weight: 600; }
 
   /* ===== 경력 (토글) ===== */
   .job-list {
@@ -1303,7 +1318,17 @@
           <div>
             <div class="timeline-role"><img class="org-logo" src="assets/logos/snu.jpeg" alt="" loading="lazy">서울대학교</div>
             <div class="timeline-org">교육학 · 벤처경영학 전공</div>
-            <p class="timeline-desc">사람의 배움과 성장에 관심이 많아 창의성과 재능계발교육, 학습과학 기초(AI·테크놀로지 기반 학습) 등을 공부했고, 컴퓨터 개념 및 실습(Python, SQL), 창업론실습, 재무관리, 경영정보론 등을 통해 경영과 벤처 생태계에 대한 식견도 함께 넓혔습니다.</p>
+            <p class="timeline-desc">사람의 배움과 성장에 대한 관심을 시작으로 교육학을 전공했습니다. 학습자 개개인의 재능과 성장 과정을 깊이 들여다보는 법을 배우다 보니, 이 관심을 한 사람을 넘어 더 큰 단위로 넓혀보고 싶다는 생각이 들었고, <strong>더 많은 사람들에게 더 큰 임팩트를 전하고 싶다는 마음</strong>으로 벤처경영학을 복수전공했습니다.</p>
+            <div class="timeline-courses">
+              <div class="timeline-courses-label">대표 수강교과목</div>
+              <ul class="timeline-courses-list">
+                <li><strong>창의성과 재능계발교육</strong> — 창의적 재능의 진단·계발 방안 연구 (기업영재 재능 진단 및 교육 프로그램 설계)</li>
+                <li><strong>학습과학 기초</strong> — 뇌인지과학·AI 기반 교육 사례 분석 (AI 활용 미술 수업 사례 연구)</li>
+                <li><strong>네트워크비즈니스경영</strong> — 네트워크 기반 비즈니스모델 분석 (테슬라 VPP 사례)</li>
+                <li><strong>창업론실습·재무관리·경영정보론</strong> — 창업 프로세스, 재무·정보시스템 기초</li>
+                <li><strong>컴퓨터 개념 및 실습</strong>(Python, SQL) — 데이터를 다루는 기초 역량</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
